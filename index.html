@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploidus | High-Integrity Systems & Kernel-Level Cyber Defense</title>
+  <meta name="description" content="Exploidus engineers deterministic, zero-allocation state estimation, line-rate eBPF cyber defense, and bio-mimetic distributed systems from first principles in Rust.">
+  <meta name="keywords" content="Exploidus, Aegis-Filter, XDP-Guard, scx_intent, HuddleCluster, Kalman Filter, UKF, eBPF, Linux Kernel Scheduler, Rust, Aerospace, Cyber Defense">
+  <meta name="author" content="Rahad Bhuiya">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://exploidus.com/">
+  <meta property="og:title" content="Exploidus | High-Integrity Systems & Cyber Defense Architecture">
+  <meta property="og:description" content="Deterministic 4.07 ns aerospace state estimation, 100 Gbps line-rate eBPF cyber defense, and bio-mimetic distributed clustering.">
+  <meta property="twitter:card" content="summary_large_image">
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090C'/><path d='M50 15 L82 30 V55 C82 72 50 85 50 85 C50 85 18 72 18 55 V30 Z' fill='none' stroke='%2300F2FE' stroke-width='6'/><circle cx='50' cy='48' r='12' fill='%2300F2FE'/></svg>">
+
+  <style>
+    :root {
+      --bg: #07080B;
+      --bg-alt: #0D1017;
+      --panel: #121722;
+      --panel-hover: #171E2C;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(0, 242, 254, 0.4);
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --cyan: #00F2FE;
+      --cyan-glow: rgba(0, 242, 254, 0.25);
+      --blue: #3B82F6;
+      --emerald: #10B981;
+      --emerald-glow: rgba(16, 185, 129, 0.2);
+      --amber: #F59E0B;
+      --rose: #F43F5E;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --max-width: 1240px;
+      --radius: 10px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 0%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 50% 60%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+    }
+
+    ::selection {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Grid background pattern */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    }
+
+    /* Top Banner */
+    .top-pill-bar {
+      background: rgba(13, 16, 23, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 0;
+      text-align: center;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 60;
+    }
+    .top-pill-bar span {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+    .top-pill-bar a {
+      color: var(--text);
+      text-decoration: underline;
+      margin-left: 8px;
+    }
+
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 8, 11, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(59, 130, 246, 0.1));
+      border: 1px solid var(--cyan);
+      border-radius: 8px;
+      box-shadow: 0 0 16px var(--cyan-glow);
+    }
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--cyan);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .nav-links a:hover {
+      color: var(--text);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-sans);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: #07080B;
+      box-shadow: 0 0 20px var(--cyan-glow);
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      background: #38f8ff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 28px rgba(0, 242, 254, 0.45);
+    }
+    .btn-emerald {
+      background: var(--emerald);
+      color: #07080B;
+      box-shadow: 0 0 20px var(--emerald-glow);
+      font-weight: 700;
+    }
+    .btn-emerald:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Nav Drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(7, 8, 11, 0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      z-index: 49;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-nav.active {
+      display: flex;
+    }
+    .mobile-nav a {
+      font-size: 16px;
+      color: var(--text-muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 80px 0 60px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      margin-bottom: 24px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 242, 254, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 5.2vw, 58px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 24px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 20%, #A5F3FC 60%, #00F2FE 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-emerald {
+      background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+    .hero-badges span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-badges svg {
+      color: var(--emerald);
+    }
+
+    /* Live Telemetry Panel (Right Column) */
+    .telemetry-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      position: relative;
+    }
+    .telemetry-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+    .telemetry-header {
+      background: rgba(13, 16, 23, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .telemetry-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .telemetry-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .telemetry-tab:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .telemetry-tab.active {
+      color: var(--cyan);
+      background: rgba(0, 242, 254, 0.08);
+      border-color: rgba(0, 242, 254, 0.25);
+      font-weight: 600;
+    }
+    .telemetry-body {
+      padding: 20px;
+      min-height: 340px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+    }
+    .telemetry-pane {
+      display: none;
+    }
+    .telemetry-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .telemetry-stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .stat-pill {
+      background: rgba(7, 8, 11, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    .stat-pill-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-pill-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .stat-pill-value.cyan { color: var(--cyan); }
+    .stat-pill-value.emerald { color: var(--emerald); }
+    .stat-pill-value.rose { color: var(--rose); }
+
+    .terminal-trace {
+      background: #060709;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      height: 170px;
+      overflow-y: hidden;
+      position: relative;
+    }
+    .trace-line {
+      display: flex;
+      justify-content: space-between;
+    }
+    .trace-tag {
+      color: var(--cyan);
+    }
+    .trace-ok {
+      color: var(--emerald);
+    }
+    .trace-drop {
+      color: var(--rose);
+      font-weight: 600;
+    }
+
+    /* Hard Metrics Bar */
+    .metrics-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(13, 16, 23, 0.6);
+      padding: 38px 0;
+      margin-top: 40px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+    .metric-item {
+      text-align: left;
+    }
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+    .metric-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+    .section-header {
+      max-width: 780px;
+      margin-bottom: 56px;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(30px, 3.8vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Division Layout */
+    .division-banner {
+      background: linear-gradient(90deg, rgba(0, 242, 254, 0.08), rgba(59, 130, 246, 0.02));
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .division-meta h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .division-meta p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .division-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    /* Product Cards Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 50px;
+    }
+    .product-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .product-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+    .product-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(145deg, #121722, #0D1118);
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+    .product-top {
+      margin-bottom: 24px;
+    }
+    .product-category {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cat-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .product-name {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .product-tagline {
+      font-size: 15px;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+      margin-bottom: 16px;
+    }
+    .product-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .feature-list li {
+      font-size: 13.5px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .feature-list li svg {
+      color: var(--emerald);
+      flex-shrink: 0;
+    }
+
+    .code-box {
+      background: #07080B;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      transition: all 0.15s ease;
+    }
+    .copy-btn:hover {
+      color: var(--cyan);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Architecture Interactive Topology */
+    .arch-container {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .arch-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    .arch-node {
+      background: #0B0E14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 20px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .arch-node:hover, .arch-node.active {
+      border-color: var(--cyan);
+      box-shadow: 0 0 24px var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+    .arch-node-step {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .arch-node-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .arch-node-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .arch-details {
+      margin-top: 32px;
+      background: #07080B;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Licensing / Business Model Grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pricing-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .pricing-card.highlight {
+      border-color: var(--cyan);
+      box-shadow: 0 0 32px rgba(0, 242, 254, 0.15);
+      background: linear-gradient(180deg, #151C28, #0F131C);
+    }
+    .pricing-tier {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .pricing-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .pricing-target {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      min-height: 40px;
+    }
+    .pricing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+      flex-grow: 1;
+    }
+    .pricing-list li {
+      font-size: 13.5px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Peer-Reviewed & Research Box */
+    .research-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(59, 130, 246, 0.03));
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .research-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--emerald);
+      margin-bottom: 12px;
+    }
+    .research-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .research-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Founder Section */
+    .founder-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .founder-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      background: #090B10;
+      display: grid;
+      place-items: center;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+    }
+    .founder-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    .founder-bio {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    /* Enterprise Contact Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--panel);
+      border: 1px solid var(--border-focus);
+      box-shadow: 0 24px 60px rgba(0, 242, 254, 0.2);
+      border-radius: var(--radius);
+      max-width: 580px;
+      width: 100%;
+      padding: 36px;
+      position: relative;
+      animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      color: var(--text);
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: #07080B;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 11px 14px;
+      font-size: 14px;
+      color: var(--text);
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan-glow);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border);
+      background: #050608;
+      padding: 80px 0 40px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .footer-brand h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      line-height: 1.6;
+      max-width: 320px;
+      margin-bottom: 20px;
+    }
+    .footer-col h5 {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card.featured {
+        grid-column: span 1;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .arch-flow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions .btn-secondary {
+        display: none;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .hero {
+        padding: 50px 0 40px;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .founder-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .founder-avatar {
+        margin: 0 auto;
+      }
+      .research-card {
+        grid-template-columns: 1fr;
+      }
+      .arch-flow {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background decorative grid -->
+  <div class="bg-grid"></div>
+
+  <!-- Top Notification Bar -->
+  <div class="top-pill-bar">
+    <div class="container">
+      <span>ANNOUNCEMENT:</span> Aegis-Filter 4.07ns zero-allocation GNC engine released &amp; scx_intent v2 pure BPF scheduler available. 
+      <a href="#research">Read Technical Briefings &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <div class="brand-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#00F2FE"/>
+          </svg>
+        </div>
+        <span>EXPLOIDUS</span>
+        <span class="brand-tag">SYS // LABS</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#aerospace">Aerospace &amp; GNC</a>
+        <a href="#sched-ext">scx_intent</a>
+        <a href="#cyber-defense">eBPF Defense</a>
+        <a href="#huddlecluster">Distributed Fabric</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#licensing">Enterprise</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/Exploidus" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          Open Core
+        </a>
+        <button onclick="openPilotModal()" class="btn btn-primary">Enterprise Pilot</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">≡</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#aerospace" onclick="closeMobileNav()">Aerospace &amp; GNC</a>
+    <a href="#sched-ext" onclick="closeMobileNav()">scx_intent Scheduler</a>
+    <a href="#cyber-defense" onclick="closeMobileNav()">eBPF Cyber Defense</a>
+    <a href="#huddlecluster" onclick="closeMobileNav()">Distributed HuddleCluster</a>
+    <a href="#architecture" onclick="closeMobileNav()">System Architecture</a>
+    <a href="#licensing" onclick="closeMobileNav()">Enterprise Licensing</a>
+    <a href="https://github.com/Exploidus" target="_blank" rel="noopener">GitHub Organization &rarr;</a>
+    <button onclick="closeMobileNav(); openPilotModal();" class="btn btn-primary" style="margin-top: 12px; width: 100%;">Enterprise Pilot</button>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <div class="pulse-dot"></div>
+            SOVEREIGN HIGH-INTEGRITY SYSTEMS &amp; CYBER DEFENSE
+          </div>
+          
+          <h1 class="hero-title">
+            Deterministic Foundations for <span class="gradient-text">Mission-Critical Computing</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Exploidus engineers zero-allocation state estimation, line-rate eBPF cyber defense, and deterministic kernel scheduling for aerospace, defense, and sovereign cloud infrastructure. Built from first principles in memory-safe Rust.
+          </p>
+
+          <div class="hero-cta-group">
+            <button onclick="openPilotModal()" class="btn btn-primary">Request Enterprise Briefing</button>
+            <a href="#products" class="btn btn-secondary">Explore Capabilities &darr;</a>
+            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" class="btn btn-secondary">scx_intent BPF</a>
+          </div>
+
+          <div class="hero-badges">
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Zero Dynamic Allocation
+            </span>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Pure In-Kernel eBPF
+            </span>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              DO-178C Architecture
+            </span>
+          </div>
+        </div>
+
+        <!-- Interactive Telemetry Dashboard -->
+        <div class="telemetry-card">
+          <div class="telemetry-header">
+            <div class="telemetry-tabs">
+              <button class="telemetry-tab active" onclick="switchTelemetry('aegis')">Aegis-Filter GNC</button>
+              <button class="telemetry-tab" onclick="switchTelemetry('xdp')">XDP-Guard 100G</button>
+              <button class="telemetry-tab" onclick="switchTelemetry('scx')">scx_intent BPF</button>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--emerald);">LIVE ENGINE</div>
+          </div>
+
+          <div class="telemetry-body">
+            <!-- TAB 1: AEGIS-FILTER -->
+            <div class="telemetry-pane active" id="pane-aegis">
+              <div class="telemetry-stat-row">
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Execution Latency</div>
+                  <div class="stat-pill-value cyan" id="aegis-latency">4.07 ns</div>
+                </div>
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Covariance Status</div>
+                  <div class="stat-pill-value emerald" id="aegis-status">JOSEPH STABLE</div>
+                </div>
+              </div>
+              <div class="terminal-trace" id="aegis-trace">
+                <!-- Dynamically updated via JS -->
+              </div>
+            </div>
+
+            <!-- TAB 2: XDP-GUARD -->
+            <div class="telemetry-pane" id="pane-xdp">
+              <div class="telemetry-stat-row">
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Ingress Throughput</div>
+                  <div class="stat-pill-value cyan" id="xdp-pps">84.2 Mpps</div>
+                </div>
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Mitigation Action</div>
+                  <div class="stat-pill-value rose">XDP_DROP (&lt;82ns)</div>
+                </div>
+              </div>
+              <div class="terminal-trace" id="xdp-trace">
+                <!-- Dynamically updated via JS -->
+              </div>
+            </div>
+
+            <!-- TAB 3: SCX_INTENT -->
+            <div class="telemetry-pane" id="pane-scx">
+              <div class="telemetry-stat-row">
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Active DSQ Tiers</div>
+                  <div class="stat-pill-value cyan">5 In-Kernel DSQs</div>
+                </div>
+                <div class="stat-pill">
+                  <div class="stat-pill-label">Starvation Relief</div>
+                  <div class="stat-pill-value emerald">0% DROP / 0 JITTER</div>
+                </div>
+              </div>
+              <div class="terminal-trace" id="scx-trace">
+                <!-- Dynamically updated via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF METRICS BAR -->
+    <section class="metrics-bar">
+      <div class="container metrics-grid">
+        <div class="metric-item">
+          <div class="metric-val gradient-text">4.07 ns</div>
+          <div class="metric-desc">Kalman filter scalar loop execution (16 CPU cycles at 4GHz)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val gradient-text">100 Gbps</div>
+          <div class="metric-desc">Line-rate eBPF/XDP hardware ingress DDoS mitigation</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val gradient-emerald">0 Alloc</div>
+          <div class="metric-desc">Pure #![no_std] zero-heap aerospace memory guarantees</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val gradient-text">5 DSQ</div>
+          <div class="metric-desc">Intent-driven preemptive Linux kernel scheduler queues</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val gradient-emerald">3x DOI</div>
+          <div class="metric-desc">Zenodo &amp; figshare indexed publications (HuddleCluster &amp; XDP-Guard)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE PRODUCTS & CAPABILITIES -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Technical Infrastructure</span>
+          <h2 class="section-title">Engineered For Sovereign Reliability</h2>
+          <p class="section-desc">
+            Exploidus unifies deterministic guidance algorithms, kernel-level execution scheduling, and line-rate hardware network defense into a resilient foundation for defense and enterprise.
+          </p>
+        </div>
+
+        <!-- DIVISION 1: AEROSPACE & AUTONOMOUS SYSTEMS -->
+        <div class="division-banner" id="aerospace">
+          <div class="division-meta">
+            <h3>Division I: Autonomous AI, Aerospace GNC &amp; Kernel Systems</h3>
+            <p>Edge AI Robotics, Aerospace GNC, Sensor Fusion &amp; Deterministic CPU Scheduling</p>
+          </div>
+          <div class="division-code">CRATE: aegis-filter &amp; scx_intent</div>
+        </div>
+
+        <div class="products-grid">
+          <!-- CARD 1: AEGIS-FILTER -->
+          <div class="product-card featured">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge">AEROSPACE GNC &amp; EDGE AI ROBOTICS</span>
+                <a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.3.0 AUDITED &amp; GITHUB &rarr;</a>
+              </div>
+              <h3 class="product-name">
+                Aegis-Filter Core
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </h3>
+              <div class="product-tagline">4.07 ns #![no_std] Zero-Allocation State Estimation &amp; FDIR for Edge AI</div>
+              <p class="product-desc">
+                High-integrity state estimation engine implementing Unscented Kalman Filtering (UKF), continuous-discrete extended filters, and Joseph-form covariance stabilization. Engineered specifically for Edge AI robotics, supersonic UAV guidance, LEO satellite attitude control, 8KHz ultra-high-frequency sensor smoothing, and low-latency algorithmic systems.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <strong>Zero-Heap Allocation:</strong> Guarantees zero runtime memory allocations and zero page faults in critical flight loops.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <strong>Joseph Covariance Stabilization:</strong> Mathematically guarantees positive semi-definiteness even with round-off errors.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <strong>Multi-Sensor FDIR:</strong> Real-time Fault Detection, Isolation, and Recovery with consecutive anomaly thresholding.
+                </li>
+              </ul>
+            </div>
+            <div class="code-box">
+              <code>cargo add aegis-filter --no-default-features</code>
+              <button class="copy-btn" onclick="copyCode(this, 'cargo add aegis-filter --no-default-features')">Copy</button>
+            </div>
+          </div>
+
+          <!-- CARD 2: SCX_INTENT -->
+          <div class="product-card" id="sched-ext">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge">EBPF KERNEL SCHEDULER</span>
+                <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">SCHED-EXT PR #3845 &rarr;</a>
+              </div>
+              <h3 class="product-name">scx_intent BPF</h3>
+              <div class="product-tagline">Intent-Driven 5-Tier Preemptive Kernel Scheduler</div>
+              <p class="product-desc">
+                Pure in-kernel eBPF CPU scheduler designed for sched-ext (Linux 6.12+ and 7.4+). Dynamically categorizes tasks into 5 dedicated Dispatch Queues: Audit, Interactive, IO, Network, and Compute—eliminating priority inversion and micro-stuttering under saturated multi-core workloads.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Dedicated BPF DSQs with multi-tier starvation relief.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Sub-microsecond task dispatch with zero user-space latency.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  CachyOS and high-performance gaming/simulation tuned.
+                </li>
+              </ul>
+            </div>
+            <div class="code-box">
+              <code>scx_intent --interactive-boost --anti-starve</code>
+              <button class="copy-btn" onclick="copyCode(this, 'scx_intent --interactive-boost --anti-starve')">Copy</button>
+            </div>
+          </div>
+
+          <!-- CARD 3: XDP-GUARD -->
+          <div class="product-card" id="cyber-defense">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge">HIGH-SPEED CYBER DEFENSE</span>
+                <a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--rose); text-decoration: underline;">100G LINE-RATE &amp; GITHUB &rarr;</a>
+              </div>
+              <h3 class="product-name">XDP-Guard Ingress</h3>
+              <div class="product-tagline">100 Gbps Line-Rate Driver-Hook eBPF DDoS Shield</div>
+              <p class="product-desc">
+                High-performance eBPF/XDP network defense engine operating directly at the NIC driver DMA layer. Drops multi-gigabit SYN floods, UDP reflection amplification, and malicious malformed payloads before socket memory allocation occurs.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Line-rate XDP_DROP at hardware wire-speed (&lt;100 ns).
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Native Prometheus metrics exporter &amp; Grafana dashboard.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Kubernetes DaemonSet with automated Helm deployment.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <a href="https://doi.org/10.5281/zenodo.23120995" target="_blank" rel="noopener" style="color: var(--cyan);">Zenodo DOI: 10.5281/zenodo.23120995</a>
+                </li>
+              </ul>
+            </div>
+            <div class="code-box">
+              <code>xdp-guard --iface eth0 --mode drv --rules /etc/xdp/</code>
+              <button class="copy-btn" onclick="copyCode(this, 'xdp-guard --iface eth0 --mode drv --rules /etc/xdp/')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIVISION 2: DISTRIBUTED FABRIC & THREAT INTEL -->
+        <div class="division-banner" id="huddlecluster">
+          <div class="division-meta">
+            <h3>Division II: Bio-Mimetic Distributed Fabric &amp; Threat Intelligence</h3>
+            <p>Self-Organizing Thermal Dynamic Balancing &amp; Real-Time Cross-Vector Threat Intelligence</p>
+          </div>
+          <div class="division-code">PYPI: huddle-cluster &amp; cnsl</div>
+        </div>
+
+        <div class="products-grid">
+          <!-- CARD 4: HUDDLECLUSTER -->
+          <div class="product-card">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge">BIO-MIMETIC CLUSTERING</span>
+                <a href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">GITHUB &amp; 2x DOI &rarr;</a>
+              </div>
+              <h3 class="product-name">
+                HuddleCluster
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="36" height="36" style="flex-shrink:0;">
+                  <defs>
+                    <radialGradient id="hcBg" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#0f172a"/>
+                      <stop offset="100%" stop-color="#020617"/>
+                    </radialGradient>
+                    <linearGradient id="hcActive" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#38bdf8"/>
+                      <stop offset="100%" stop-color="#0284c7"/>
+                    </linearGradient>
+                    <linearGradient id="hcResting" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#94a3b8"/>
+                      <stop offset="100%" stop-color="#475569"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="500" height="500" rx="40" fill="url(#hcBg)"/>
+                  <circle cx="250" cy="250" r="160" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+                  <circle cx="250" cy="250" r="95" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0.4"/>
+                  <g transform="translate(250,90)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(363,137)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(410,250)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(363,363)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(250,410)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(137,363)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(90,250)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(137,137)"><rect x="-18" y="-18" width="36" height="36" rx="8" fill="url(#hcResting)"/><circle cx="0" cy="0" r="4" fill="#cbd5e1"/></g>
+                  <g transform="translate(250,155)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(317,183)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(345,250)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(317,317)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(250,345)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(183,317)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(155,250)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(183,183)"><rect x="-16" y="-16" width="32" height="32" rx="6" fill="url(#hcActive)"/></g>
+                  <g transform="translate(250,245) scale(1.1)">
+                    <ellipse cx="0" cy="15" rx="32" ry="40" fill="#1e293b"/>
+                    <ellipse cx="0" cy="18" rx="22" ry="30" fill="#f8fafc"/>
+                    <circle cx="0" cy="-30" r="22" fill="#1e293b"/>
+                    <circle cx="-7" cy="-34" r="3" fill="#38bdf8"/>
+                    <circle cx="7" cy="-34" r="3" fill="#38bdf8"/>
+                    <polygon points="0,-27 -5,-20 5,-20" fill="#f59e0b"/>
+                    <ellipse cx="-32" cy="10" rx="8" ry="20" transform="rotate(15 -32 10)" fill="#1e293b"/>
+                    <ellipse cx="32" cy="10" rx="8" ry="20" transform="rotate(-15 32 10)" fill="#1e293b"/>
+                  </g>
+                </svg>
+              </h3>
+              <div class="product-tagline">Thermal-Aware Self-Organizing Distributed Balancer</div>
+              <p class="product-desc">
+                Inspired by the thermal equilibrium physics of emperor penguin huddles. Dynamically redistributes high-frequency workloads, evicts thermally saturated compute nodes, and ensures zero-downtime clustering without a single point of failure.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Biomimetic core temperature redistribution algorithms.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Self-healing cluster mesh with instant gossip topology.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Officially published on PyPI with open DOI scientific paper.
+                </li>
+              </ul>
+            </div>
+            <div class="code-box">
+              <code>pip install huddle-cluster</code>
+              <button class="copy-btn" onclick="copyCode(this, 'pip install huddle-cluster')">Copy</button>
+            </div>
+          </div>
+
+          <!-- CARD 5: CNSL BRAIN -->
+          <div class="product-card" id="cnsl">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge">CROSS-VECTOR SIEM ENGINE</span>
+                <a href="https://pypi.org/project/cnsl/" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald);">PYPI RELEASE &rarr;</a>
+              </div>
+              <h3 class="product-name">
+                CNSL Intelligence
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </h3>
+              <div class="product-tagline">Correlated Network Security &amp; Predictive Trajectory SIEM</div>
+              <p class="product-desc">
+                Lightweight, self-hosted security log intelligence and cross-vector correlation engine. Tracks multi-stage attack velocity across distributed services, ingests high-volume Kafka event topics, and executes automated host-level iptables firewall quarantines before systemic lateral breach occurs.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Real-time cross-vector correlation across disparate authentication &amp; service logs.
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  High-throughput asynchronous stream ingestion via native Apache Kafka (aiokafka).
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Automated predictive trajectory mitigation via host firewall &amp; iptables isolation.
+                </li>
+              </ul>
+            </div>
+            <div class="code-box">
+              <code>pip install "cnsl[full]"</code>
+              <button class="copy-btn" onclick="copyCode(this, 'pip install \&quot;cnsl[full]\&quot;')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SYSTEM TOPOLOGY ARCHITECTURE -->
+    <section class="section" id="architecture" style="background: rgba(13, 16, 23, 0.4);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">System Blueprints</span>
+          <h2 class="section-title">The Unified Exploidus Pipeline</h2>
+          <p class="section-desc">
+            How Exploidus modules integrate from the physical network wire up to autonomous aerospace control loops. Click any tier to inspect its technical specification.
+          </p>
+        </div>
+
+        <div class="arch-container">
+          <div class="arch-flow">
+            <div class="arch-node active" onclick="selectArch(0)">
+              <div class="arch-node-step">01 // INGRESS WIRE</div>
+              <h4 class="arch-node-title">XDP-Guard</h4>
+              <p class="arch-node-desc">NIC Driver DMA hook. Filters 100Gbps SYN/UDP floods in under 100ns.</p>
+            </div>
+            <div class="arch-node" onclick="selectArch(1)">
+              <div class="arch-node-step">02 // CLUSTER MESH</div>
+              <h4 class="arch-node-title">HuddleCluster</h4>
+              <p class="arch-node-desc">Thermal equilibrium balancing. Distributes load across healthy node topology.</p>
+            </div>
+            <div class="arch-node" onclick="selectArch(2)">
+              <div class="arch-node-step">03 // KERNEL RUNTIME</div>
+              <h4 class="arch-node-title">scx_intent</h4>
+              <p class="arch-node-desc">Preemptive eBPF scheduling across 5 DSQs. Zero starvation on critical threads.</p>
+            </div>
+            <div class="arch-node" onclick="selectArch(3)">
+              <div class="arch-node-step">04 // SENSOR LOOP</div>
+              <h4 class="arch-node-title">Aegis-Filter</h4>
+              <p class="arch-node-desc">4.07 ns zero-allocation Kalman/UKF. Guarantees deterministic state convergence.</p>
+            </div>
+          </div>
+
+          <div class="arch-details" id="archDetailBox">
+            <span style="color: var(--cyan); font-weight: 700;">SPECIFICATION // TIER 01: XDP-GUARD DRIVER HOOK</span><br>
+            • Hook location: <span style="color: #fff;">XDP_DRV (Direct Network Interface Card DMA buffer)</span><br>
+            • Action: Evaluates SYN cookies, ACK flood patterns, and reflection signatures via eBPF BPF_MAP_TYPE_LRU_HASH.<br>
+            • Return: Emits XDP_DROP instantly, preventing Linux sk_buff memory allocations under volumetric attack.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH & ACADEMIC CREDENTIALS -->
+    <section class="section" id="research">
+      <div class="container">
+        <div class="research-card">
+          <div>
+            <div class="research-meta">PEER-REVIEWED PUBLICATION &amp; OPEN SCIENCE</div>
+            <h3 class="research-title">Bio-Mimetic Load Balancing Under Extreme Thermal Constraints</h3>
+            <p class="research-desc">
+              Authored by Rahad Bhuiya, this research presents an adaptive mathematical model for node clustering based on thermodynamics in extreme environments. Indexed on both Zenodo and figshare with permanent Digital Object Identifiers, cross-listed across global scholarly databases.
+            </p>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="https://doi.org/10.5281/zenodo.20348019" target="_blank" rel="noopener" class="btn btn-secondary">
+                HuddleCluster Zenodo &rarr;
+              </a>
+              <a href="https://doi.org/10.6084/m9.figshare.32397180" target="_blank" rel="noopener" class="btn btn-secondary">
+                figshare DOI &rarr;
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.23120995" target="_blank" rel="noopener" class="btn btn-secondary">
+                XDP-Guard Zenodo &rarr;
+              </a>
+              <a href="https://pypi.org/project/huddle-cluster/" target="_blank" rel="noopener" class="btn btn-secondary">
+                PyPI Release &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 8px; padding: 20px; font-family: var(--font-mono); font-size: 12px; max-height: 380px; overflow-y: auto;">
+            <div style="color: var(--emerald); margin-bottom: 8px;">// CITATIONS</div>
+            <div style="color: var(--text-muted); line-height: 1.8;">
+              @software{bhuiya_2025_huddle,<br>
+              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
+              &nbsp;&nbsp;title = {HuddleCluster},<br>
+              &nbsp;&nbsp;year = {2025},<br>
+              &nbsp;&nbsp;url = {https://github.com/rahadbhuiya/HuddleCluster}<br>
+              }<br><br>
+              @software{bhuiya_2026_zenodo,<br>
+              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
+              &nbsp;&nbsp;title = {HuddleCluster},<br>
+              &nbsp;&nbsp;doi = {10.5281/zenodo.20348019},<br>
+              &nbsp;&nbsp;year = {2026}<br>
+              }<br><br>
+              @article{bhuiya_2026_figshare,<br>
+              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
+              &nbsp;&nbsp;title = {HuddleCluster},<br>
+              &nbsp;&nbsp;doi = {10.6084/m9.figshare.32397180},<br>
+              &nbsp;&nbsp;year = {2026}<br>
+              }<br><br>
+              @software{bhuiya_xdp_guard_2026,<br>
+              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
+              &nbsp;&nbsp;title = {xdp-guard: Memory-Safe In-Kernel XDP Firewall &amp; Per-IP Rate Limiter in Pure Rust},<br>
+              &nbsp;&nbsp;month = {oct},<br>
+              &nbsp;&nbsp;year = {2026},<br>
+              &nbsp;&nbsp;publisher = {Zenodo},<br>
+              &nbsp;&nbsp;version = {v0.1.0},<br>
+              &nbsp;&nbsp;doi = {10.5281/zenodo.23120995}<br>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMERCIAL & LICENSING MODEL -->
+    <section class="section" id="licensing">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Enterprise Engagement</span>
+          <h2 class="section-title">Open Core &amp; Commercial Pilots</h2>
+          <p class="section-desc">
+            We provide permissive open-source foundations alongside bespoke engineering, mission certifications, and dedicated enterprise SLAs.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- TIER 1 -->
+          <div class="pricing-card">
+            <div class="pricing-tier">COMMUNITY EDITION</div>
+            <h3 class="pricing-title">Open Core</h3>
+            <p class="pricing-target">For independent researchers, systems engineers, and open-source contributors.</p>
+            <ul class="pricing-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Permissive MIT &amp; Apache 2.0 licenses
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Full access to public GitHub repositories
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Standard community issue tracker &amp; Discord
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Public benchmarks &amp; documentation
+              </li>
+            </ul>
+            <a href="https://github.com/Exploidus" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%;">Access Repositories</a>
+          </div>
+
+          <!-- TIER 2 -->
+          <div class="pricing-card highlight">
+            <div class="pricing-tier" style="color: var(--cyan);">COMMERCIAL ENTERPRISE</div>
+            <h3 class="pricing-title">Enterprise Fleet</h3>
+            <p class="pricing-target">For data centers, cloud providers, and mission-critical network operators.</p>
+            <ul class="pricing-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                High-availability 24/7 SLA &amp; incident triage
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom eBPF packet mitigation &amp; telemetry rulesets
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Enterprise multi-cluster Helm &amp; K8s integration
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00F2FE" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom Linux kernel patches &amp; CachyOS optimizations
+              </li>
+            </ul>
+            <button onclick="openPilotModal('Enterprise Fleet')" class="btn btn-primary" style="width: 100%;">Request Fleet Pilot</button>
+          </div>
+
+          <!-- TIER 3 -->
+          <div class="pricing-card">
+            <div class="pricing-tier">DEFENSE &amp; AEROSPACE</div>
+            <h3 class="pricing-title">Mission GNC</h3>
+            <p class="pricing-target">For aerospace contractors, defense agencies, and autonomous robotics fleets.</p>
+            <ul class="pricing-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom DO-178C / ISO 26262 verification artifacts
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                NASA F Prime framework integration &amp; avionics tailoring
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Hardware-in-the-Loop (HIL) state estimation tuning
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Direct Principal Architect consulting &amp; advisory
+              </li>
+            </ul>
+            <button onclick="openPilotModal('Aerospace & Defense Mission')" class="btn btn-secondary" style="width: 100%;">Contact Principal Architect</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & FOUNDER -->
+    <section class="section" id="founder">
+      <div class="container">
+        <div class="founder-card">
+          <div class="founder-avatar">RB</div>
+          <div>
+            <h3 class="founder-title">Rahad Bhuiya</h3>
+            <div class="founder-role">Founder &amp; Principal Systems Architect // <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">@rahadbhuiya</a></div>
+            <p class="founder-bio">
+              Low-level systems programmer, kernel developer, and eBPF researcher. Dedicated to building sovereign computing infrastructure from the silicon up—where memory safety is non-negotiable and deterministic execution is mathematically proven. Contributor to Linux kernel sched-ext ecosystem, author of published peer-reviewed distributed algorithms, and designer of the Aegis-Filter aerospace state estimation engine.
+            </p>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 13px;">
+                GitHub Profile &rarr;
+              </a>
+              <a href="https://discord.gg/eGAGHpvXbB" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 13px;">
+                Community Discord &rarr;
+              </a>
+              <a href="mailto:rahadbhuiya2021@gmail.com" class="btn btn-secondary" style="font-size: 13px;">
+                Direct Email &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ENTERPRISE PILOT MODAL -->
+  <div class="modal-overlay" id="pilotModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closePilotModal()">&times;</button>
+      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Request Enterprise Pilot</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+        Connect directly with our engineering team for aerospace GNC contracts, 100Gbps network protection, or kernel scheduler deployments.
+      </p>
+
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="pilotName">FULL NAME</label>
+          <input type="text" id="pilotName" class="form-input" placeholder="e.g. Dr. Alex Vance" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pilotOrg">ORGANIZATION / COMPANY</label>
+          <input type="text" id="pilotOrg" class="form-input" placeholder="e.g. Orbital Systems / Cloud Infrastructure Corp" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pilotEmail">WORK EMAIL</label>
+          <input type="email" id="pilotEmail" class="form-input" placeholder="alex@organization.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pilotDivision">DOMAIN OF INTEREST</label>
+          <select id="pilotDivision" class="form-select">
+            <option value="aegis">Aegis-Filter (Aerospace / Autonomous GNC)</option>
+            <option value="scx">scx_intent (Linux Kernel CPU Scheduling)</option>
+            <option value="xdp">XDP-Guard (100Gbps Line-Rate DDoS Defense)</option>
+            <option value="huddle">HuddleCluster (Bio-Mimetic Load Balancer)</option>
+            <option value="custom">Custom High-Integrity Defense Contract</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pilotMsg">MISSION OBJECTIVES</label>
+          <textarea id="pilotMsg" class="form-textarea" placeholder="Describe your throughput requirements, latency constraints, or mission goals..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Submit Pilot Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>EXPLOIDUS SYSTEMS</h4>
+          <p>
+            Deterministic computing, aerospace state estimation, and kernel-level cyber defense. Built from first principles in pure Rust.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan);">
+            DOMAIN: exploidus.com
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Aerospace &amp; Kernel</h5>
+          <ul class="footer-links">
+            <a href="#aerospace">Aegis-Filter GNC</a>
+            <a href="#sched-ext">scx_intent Linux Scheduler</a>
+            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (PR #3845)</a>
+            <a href="https://crates.io/crates/aegis-filter" target="_blank" rel="noopener">Crates.io Release</a>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Cyber &amp; Cloud</h5>
+          <ul class="footer-links">
+            <a href="#cyber-defense">XDP-Guard eBPF 100G</a>
+            <a href="https://pypi.org/project/cnsl/" target="_blank" rel="noopener">cnsl PyPI SIEM</a>
+            <a href="https://pypi.org/project/huddle-cluster/" target="_blank" rel="noopener">huddle-cluster PyPI</a>
+            <a href="https://doi.org/10.5281/zenodo.20348019" target="_blank" rel="noopener">HuddleCluster Zenodo</a>
+            <a href="https://doi.org/10.5281/zenodo.23120995" target="_blank" rel="noopener">XDP-Guard Zenodo</a>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Community &amp; Connect</h5>
+          <ul class="footer-links">
+            <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener">Founder GitHub (@rahadbhuiya)</a>
+            <a href="https://github.com/Exploidus" target="_blank" rel="noopener">Exploidus Organization</a>
+            <a href="https://discord.gg/eGAGHpvXbB" target="_blank" rel="noopener">Engineering Discord</a>
+            <a href="mailto:rahadbhuiya2021@gmail.com">Direct Inquiry</a>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Exploidus Systems. All modules open-sourced under MIT / Apache-2.0.</div>
+        <div>Engineered with deterministic rigor by <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">Rahad Bhuiya (@rahadbhuiya)</a>.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Copy code button helper
+    function copyCode(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.color = '#00F2FE';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 1800);
+      });
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+      menuToggle.textContent = mobileNav.classList.contains('active') ? '✕' : '≡';
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('active');
+      menuToggle.textContent = '≡';
+    }
+
+    // Modal Control
+    const pilotModal = document.getElementById('pilotModal');
+    function openPilotModal(plan = '') {
+      pilotModal.classList.add('active');
+      if (plan) {
+        const select = document.getElementById('pilotDivision');
+        if (plan.includes('Aerospace')) select.value = 'aegis';
+        else if (plan.includes('Fleet')) select.value = 'xdp';
+      }
+    }
+    function closePilotModal() {
+      pilotModal.classList.remove('active');
+    }
+    function closeModalOnOverlay(e) {
+      if (e.target === pilotModal) closePilotModal();
+    }
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('pilotName').value;
+      const org = document.getElementById('pilotOrg').value;
+      const email = document.getElementById('pilotEmail').value;
+      const division = document.getElementById('pilotDivision').value;
+      const msg = document.getElementById('pilotMsg').value;
+
+      // Direct fallback to mailto
+      const subject = encodeURIComponent(`[Exploidus Enterprise Pilot] - ${org} (${name})`);
+      const body = encodeURIComponent(`Name: ${name}\nOrganization: ${org}\nEmail: ${email}\nDomain: ${division}\n\nObjectives:\n${msg}`);
+      window.location.href = `mailto:rahadbhuiya2021@gmail.com?subject=${subject}&body=${body}`;
+      closePilotModal();
+    }
+
+    // Telemetry Tab Switcher
+    function switchTelemetry(tabName) {
+      document.querySelectorAll('.telemetry-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.telemetry-pane').forEach(p => p.classList.remove('active'));
+
+      if (tabName === 'aegis') {
+        event.target.classList.add('active');
+        document.getElementById('pane-aegis').classList.add('active');
+      } else if (tabName === 'xdp') {
+        event.target.classList.add('active');
+        document.getElementById('pane-xdp').classList.add('active');
+      } else if (tabName === 'scx') {
+        event.target.classList.add('active');
+        document.getElementById('pane-scx').classList.add('active');
+      }
+    }
+
+    // Dynamic Live Simulated Telemetry Generators
+    const aegisTrace = document.getElementById('aegis-trace');
+    const xdpTrace = document.getElementById('xdp-trace');
+    const scxTrace = document.getElementById('scx-trace');
+
+    let tick = 0;
+    setInterval(() => {
+      tick++;
+
+      // Aegis Filter Trace
+      if (aegisTrace) {
+        const q_var = (0.0012 + Math.random() * 0.0004).toFixed(6);
+        const p_cov = (0.00045 - (tick % 20) * 0.00001).toFixed(6);
+        const line = document.createElement('div');
+        line.className = 'trace-line';
+        line.innerHTML = `<span>[GNC #${tick.toString().padStart(5, '0')}] Q_var: ${q_var} | P_cov: ${p_cov}</span><span class="trace-ok">JOSEPH_OK</span>`;
+        aegisTrace.appendChild(line);
+        if (aegisTrace.children.length > 6) aegisTrace.removeChild(aegisTrace.children[0]);
+      }
+
+      // XDP Guard Trace
+      if (xdpTrace) {
+        const port = Math.floor(1024 + Math.random() * 60000);
+        const pps = (82.5 + Math.random() * 4.2).toFixed(1);
+        document.getElementById('xdp-pps').textContent = `${pps} Mpps`;
+        const line = document.createElement('div');
+        line.className = 'trace-line';
+        line.innerHTML = `<span>[NIC drv] Ingress SYN-Flood :${port} &rarr; 0xDEAD</span><span class="trace-drop">XDP_DROP (79ns)</span>`;
+        xdpTrace.appendChild(line);
+        if (xdpTrace.children.length > 6) xdpTrace.removeChild(xdpTrace.children[0]);
+      }
+
+      // SCX Intent Trace
+      if (scxTrace) {
+        const dsq = ['DSQ_INTERACTIVE', 'DSQ_IO', 'DSQ_NETWORK', 'DSQ_COMPUTE'][tick % 4];
+        const line = document.createElement('div');
+        line.className = 'trace-line';
+        line.innerHTML = `<span>[BPF_DISPATCH] Task pid_${1000 + tick} &rarr; ${dsq}</span><span class="trace-ok">SLICE: 5ms</span>`;
+        scxTrace.appendChild(line);
+        if (scxTrace.children.length > 6) scxTrace.removeChild(scxTrace.children[0]);
+      }
+    }, 1200);
+
+    // Interactive Architecture Specification Switcher
+    const archSpecs = [
+      `<strong>SPECIFICATION // TIER 01: XDP-GUARD DRIVER HOOK</strong><br>
+       • Hook location: <span style="color: #fff;">XDP_DRV (Direct Network Interface Card DMA buffer)</span><br>
+       • Action: Evaluates SYN cookies, ACK flood patterns, and reflection signatures via eBPF LRU hash maps.<br>
+       • Return: Emits XDP_DROP instantly (&lt;100 ns), preventing Linux sk_buff memory allocations under volumetric attack.`,
+
+      `<strong>SPECIFICATION // TIER 02: HUDDLECLUSTER THERMAL EQUILIBRIUM</strong><br>
+       • Core Engine: <span style="color: #fff;">Bio-mimetic thermodynamic redistribution (Zenodo DOI: 10.5281/zenodo.20348019 | figshare: 10.6084/m9.figshare.32397180)</span><br>
+       • Action: Monitors per-node CPU thermals and request queues. Automatically redistributes ingress flow from core to periphery.<br>
+       • Fault Tolerance: Zero single point of failure (SPOF) with instant peer gossip reconciliation.`,
+
+      `<strong>SPECIFICATION // TIER 03: SCX_INTENT PREEMPTIVE LINUX KERNEL BPF</strong><br>
+       • Architecture: <span style="color: #fff;">5 Dedicated In-Kernel Dispatch Queues (DSQ 0 to 4)</span><br>
+       • Action: Separates Audit (0), Interactive (1), IO (2), Network (3), and Compute (4) into isolated priority classes.<br>
+       • Starvation Protection: Enforces strict time slices and auto-boosts starving compute threads during interactive bursts.`,
+
+      `<strong>SPECIFICATION // TIER 04: AEGIS-FILTER DETERMINISTIC GNC LOOP</strong><br>
+       • Execution Bound: <span style="color: #fff;">4.07 ns scalar cycle latency (16 CPU cycles at 4.0GHz)</span><br>
+       • Guarantees: Pure #![no_std] zero-allocation memory constraints with Joseph-stabilized covariance symmetry.<br>
+       • Aerospace Integration: NASA F Prime architecture compatible with real-time FDIR sensor divergence isolation.`
+    ];
+
+    function selectArch(index) {
+      const nodes = document.querySelectorAll('.arch-node');
+      nodes.forEach((n, i) => {
+        if (i === index) n.classList.add('active');
+        else n.classList.remove('active');
+      });
+      document.getElementById('archDetailBox').innerHTML = archSpecs[index];
+    }
+  </script>
+</body>
+</html>
