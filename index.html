@@ -1280,7 +1280,7 @@
             <h3>Division I: Autonomous AI, Aerospace GNC &amp; Kernel Systems</h3>
             <p>Edge AI Robotics, Aerospace GNC, Sensor Fusion &amp; Deterministic CPU Scheduling</p>
           </div>
-          <div class="division-code">CRATE: aegis-filter &amp; scx_intent</div>
+          <div class="division-code">AEROSPACE GNC &amp; KERNEL SYSTEMS</div>
         </div>
 
         <div class="products-grid">
@@ -1289,7 +1289,7 @@
             <div class="product-top">
               <div class="product-category">
                 <span class="cat-badge">AEROSPACE GNC &amp; EDGE AI ROBOTICS</span>
-                <a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.3.0 AUDITED &amp; GITHUB &rarr;</a>
+                <a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.3.1 AUDITED &amp; GITHUB &rarr;</a>
               </div>
               <h3 class="product-name">
                 Aegis-Filter Core
@@ -1326,13 +1326,13 @@
           <div class="product-card" id="sched-ext">
             <div class="product-top">
               <div class="product-category">
-                <span class="cat-badge">EBPF KERNEL SCHEDULER</span>
-                <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">SCHED-EXT PR #3845 &rarr;</a>
+                <span class="cat-badge" style="background: rgba(0, 242, 254, 0.1); color: var(--cyan); border-color: rgba(0, 242, 254, 0.3);">LINUX KERNEL RFC // PR #3845</span>
+                <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">SCHED-EXT PR #3845 (IN REVIEW) &rarr;</a>
               </div>
               <h3 class="product-name">scx_intent BPF</h3>
-              <div class="product-tagline">Intent-Driven 5-Tier Preemptive Kernel Scheduler</div>
+              <div class="product-tagline">Intent-Driven 5-Tier Preemptive Kernel Scheduler (Sched-ext RFC)</div>
               <p class="product-desc">
-                Pure in-kernel eBPF CPU scheduler designed for sched-ext (Linux 6.12+ and 7.4+). Dynamically categorizes tasks into 5 dedicated Dispatch Queues: Audit, Interactive, IO, Network, and Compute—eliminating priority inversion and micro-stuttering under saturated multi-core workloads.
+                Pure in-kernel eBPF CPU scheduler engineered for Linux sched-ext (Linux 6.12+), submitted upstream under PR #3845. Dynamically categorizes tasks into 5 dedicated Dispatch Queues: Audit, Interactive, IO, Network, and Compute - eliminating priority inversion and micro-stuttering under saturated multi-core workloads.
               </p>
               <ul class="feature-list">
                 <li>
@@ -1350,8 +1350,8 @@
               </ul>
             </div>
             <div class="code-box">
-              <code>scx_intent --interactive-boost --anti-starve</code>
-              <button class="copy-btn" onclick="copyCode(this, 'scx_intent --interactive-boost --anti-starve')">Copy</button>
+              <code>git fetch origin pull/3845/head:scx_intent &amp;&amp; meson compile</code>
+              <button class="copy-btn" onclick="copyCode(this, 'git fetch origin pull/3845/head:scx_intent &amp;&amp; meson compile')">Copy</button>
             </div>
           </div>
 
@@ -1360,7 +1360,7 @@
             <div class="product-top">
               <div class="product-category">
                 <span class="cat-badge">HIGH-SPEED CYBER DEFENSE</span>
-                <a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--rose); text-decoration: underline;">100G LINE-RATE &amp; GITHUB &rarr;</a>
+                <a href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--rose); text-decoration: underline;">v0.4.0 ON CRATES.IO &rarr;</a>
               </div>
               <h3 class="product-name">XDP-Guard Ingress</h3>
               <div class="product-tagline">100 Gbps Line-Rate Driver-Hook eBPF DDoS Shield</div>
@@ -1728,12 +1728,12 @@
     <section class="section" id="founder">
       <div class="container">
         <div class="founder-card">
-          <div class="founder-avatar">RB</div>
+          <div class="founder-avatar">YS</div>
           <div>
             <h3 class="founder-title">Rahad Bhuiya</h3>
             <div class="founder-role">Founder &amp; Principal Systems Architect // <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">@rahadbhuiya</a></div>
             <p class="founder-bio">
-              Low-level systems programmer, kernel developer, and eBPF researcher. Dedicated to building sovereign computing infrastructure from the silicon up—where memory safety is non-negotiable and deterministic execution is mathematically proven. Contributor to Linux kernel sched-ext ecosystem, author of published peer-reviewed distributed algorithms, and designer of the Aegis-Filter aerospace state estimation engine.
+              Low-level systems programmer, kernel developer, and eBPF researcher. Dedicated to building sovereign computing infrastructure from the silicon up - where memory safety is non-negotiable and deterministic execution is mathematically proven. Contributor to the Linux kernel sched-ext ecosystem, author of published peer-reviewed distributed algorithms, designer of the Aegis-Filter aerospace state estimation engine, and upstream contributor to Linus Torvalds' Subsurface project and NASA F Prime flight software.
             </p>
             <div style="display: flex; gap: 14px; flex-wrap: wrap;">
               <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 13px;">
@@ -1811,9 +1811,9 @@
           <h5>Aerospace &amp; Kernel</h5>
           <ul class="footer-links">
             <a href="#aerospace">Aegis-Filter GNC</a>
-            <a href="#sched-ext">scx_intent Linux Scheduler</a>
-            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (PR #3845)</a>
-            <a href="https://crates.io/crates/aegis-filter" target="_blank" rel="noopener">Crates.io Release</a>
+            <a href="https://crates.io/crates/aegis-filter" target="_blank" rel="noopener">Aegis-Filter (Crates.io)</a>
+            <a href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener">XDP-Guard (Crates.io)</a>
+            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (Kernel PR #3845)</a>
           </ul>
         </div>
 
