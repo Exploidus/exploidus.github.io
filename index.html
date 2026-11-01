@@ -2169,6 +2169,58 @@
         </div>
 
         <div class="products-grid">
+          <!-- CARD: CFS-ON-EXPLOIDUS (FEATURED) -->
+          <div class="product-card featured" id="cfs-on-exploidus">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge" style="background: rgba(0, 242, 254, 0.1); color: var(--cyan); border-color: rgba(0, 242, 254, 0.3);">NASA FLIGHT SOFTWARE PORT</span>
+                <a href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">v0.3.0 QUALIFIED &rarr;</a>
+              </div>
+              <h3 class="product-name">cfs-on-exploidus</h3>
+              <div class="product-tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</div>
+              <p class="product-desc">
+                Mission-qualified native Exploidus OS port of the NASA Core Flight Executive (cFE) and Core Flight System (cFS). Features capability-gated Software Bus routing, microsecond-accurate MET/TAI/UTC mission clocks, atomic double-buffered parameter hot-reloading (TBL), deterministic 100Hz scheduler dispatch (SCH), and autonomous Single Event Upset (SEU) bit-flip containment. Fully qualified across Milestones 1, 2, and 3.
+              </p>
+              <div class="card-tags">
+                <span class="tag-pill cyan">NASA cFS Stack</span>
+                <span class="tag-pill emerald">BLAKE3 Capability Gate</span>
+                <span class="tag-pill">Atomic TBL Hot-Reload</span>
+                <span class="tag-pill">SEU Bit-Flip Isolation</span>
+                <span class="tag-pill">Zero Kernel Panic</span>
+              </div>
+            </div>
+            <div class="code-box">
+              <code>git clone https://github.com/Exploidus/cfs-on-exploidus.git &amp;&amp; ./run_demo.sh</code>
+              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/Exploidus/cfs-on-exploidus.git && ./run_demo.sh')">Copy</button>
+            </div>
+          </div>
+
+          <!-- CARD: CFS-ADVERSARIAL-TESTBED -->
+          <div class="product-card" id="cfs-adversarial-testbed">
+            <div class="product-top">
+              <div class="product-category">
+                <span class="cat-badge" style="background: rgba(16, 185, 129, 0.1); color: var(--emerald); border-color: rgba(16, 185, 129, 0.3);">ZERO-TRUST MISSION ASSURANCE</span>
+                <a href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.1.0 BASELINE &rarr;</a>
+              </div>
+              <h3 class="product-name">cfs-adversarial-testbed</h3>
+              <div class="product-tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</div>
+              <p class="product-desc">
+                Freestanding eBPF security testbed and formal invariant contract for the NASA Core Flight System. Implements non-intrusive tracepoint observation, 4-tier effect completion verification (invocation to destination state transition), decoupled ringbuffer accounting, and anti-replay protection. Co-reviewed and baselined under NASA cFS Community RFCs.
+              </p>
+              <div class="card-tags">
+                <span class="tag-pill cyan">6 Formal Invariants</span>
+                <span class="tag-pill emerald">eBPF Kernel Probes</span>
+                <span class="tag-pill">Decoupled Ringbuffer</span>
+                <span class="tag-pill">Adversarial Injection</span>
+                <span class="tag-pill">NASA cFS RFC #1168</span>
+              </div>
+            </div>
+            <div class="code-box">
+              <code>git clone https://github.com/Exploidus/cfs-adversarial-testbed.git &amp;&amp; ./run_tests.sh</code>
+              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/Exploidus/cfs-adversarial-testbed.git && ./run_tests.sh')">Copy</button>
+            </div>
+          </div>
+
           <!-- CARD 1: AEGIS-FILTER (FEATURED) -->
           <div class="product-card featured" id="aegis-filter">
             <div class="product-top">
@@ -2432,6 +2484,12 @@
               Authored by Rahad Bhuiya, this research presents an adaptive mathematical model for node clustering based on thermodynamics in extreme environments. Indexed on both Zenodo and figshare with permanent Digital Object Identifiers, cross-listed across global scholarly databases.
             </p>
             <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="https://github.com/Exploidus/cfs-adversarial-testbed/releases/tag/v0.1.0" target="_blank" rel="noopener" class="btn btn-secondary">
+                NASA cFS Security Contract v0.1 &rarr;
+              </a>
+              <a href="https://github.com/Exploidus/cfs-on-exploidus/releases/tag/v0.3.0" target="_blank" rel="noopener" class="btn btn-secondary">
+                cFS Exploidus Port v0.3.0 &rarr;
+              </a>
               <a href="https://doi.org/10.5281/zenodo.20348019" target="_blank" rel="noopener" class="btn btn-secondary">
                 HuddleCluster Zenodo &rarr;
               </a>
