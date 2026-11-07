@@ -12,7 +12,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
   <meta name="publisher" content="Exploidus">
-  <meta name="theme-color" content="#07080B">
+  <meta name="theme-color" content="#EFECE4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F0E0B" media="(prefers-color-scheme: dark)">
 
   <!-- Open Graph / Social SEO -->
   <meta property="og:type" content="website">
@@ -29,7 +30,7 @@
   <meta name="twitter:title" content="Exploidus | Sovereign Systems, Aerospace GNC & Cyber Defense Architecture">
   <meta name="twitter:description" content="Exploidus engineers deterministic 4.07ns zero-allocation aerospace state estimation, 100 Gbps line-rate eBPF DDoS cyber defense, and sovereign kernel computing in memory-safe Rust.">
 
-  <!-- JSON-LD Structured Data for Google Search Engine Knowledge Graph -->
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -137,1719 +138,30 @@
   }
   </script>
 
-  <!-- Fonts & Favicon -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090C'/><path d='M50 15 L82 30 V55 C82 72 50 85 50 85 C50 85 18 72 18 55 V30 Z' fill='none' stroke='%2300F2FE' stroke-width='6'/><circle cx='50' cy='48' r='12' fill='%2300F2FE'/></svg>">
-
-  <style>
-    :root {
-      --bg: #07080B;
-      --bg-alt: #0D1017;
-      --panel: #121722;
-      --panel-hover: #171E2C;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(0, 242, 254, 0.4);
-      --border-subtle: rgba(255, 255, 255, 0.04);
-      --cyan: #00F2FE;
-      --cyan-glow: rgba(0, 242, 254, 0.25);
-      --blue: #3B82F6;
-      --emerald: #10B981;
-      --emerald-glow: rgba(16, 185, 129, 0.2);
-      --amber: #F59E0B;
-      --rose: #F43F5E;
-      --text: #F8FAFC;
-      --text-muted: #94A3B8;
-      --text-dim: #64748B;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      --max-width: 1240px;
-      --radius: 10px;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      color-scheme: dark;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 10% 0%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.04) 0%, transparent 45%),
-        radial-gradient(circle at 50% 60%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
-    }
-
-    
-    /* Sleek Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #07080B;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--cyan);
-    }
-
-    ::selection {
-      background: var(--cyan);
-      color: #000;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Grid background pattern */
-    .bg-grid {
-      position: absolute;
-      inset: 0;
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-    }
-
-    /* Top Banner */
-    .top-pill-bar {
-      background: rgba(13, 16, 23, 0.95);
-      border-bottom: 1px solid var(--border-subtle);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 8px 0;
-      text-align: center;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 60;
-    }
-    .top-pill-bar span {
-      color: var(--cyan);
-      font-weight: 600;
-    }
-    .top-pill-bar a {
-      color: var(--text);
-      text-decoration: underline;
-      margin-left: 8px;
-    }
-
-    /* Navbar */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(7, 8, 11, 0.85);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.2s ease;
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 19px;
-      letter-spacing: -0.02em;
-    }
-    
-    .brand-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      color: var(--cyan);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-    .nav-links a:hover {
-      color: var(--text);
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 13.5px;
-      font-weight: 600;
-      padding: 9px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      font-family: var(--font-sans);
-      border: 1px solid transparent;
-      white-space: nowrap;
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      border-color: var(--border);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .btn-primary {
-      background: var(--cyan);
-      color: #07080B;
-      box-shadow: 0 0 20px var(--cyan-glow);
-      font-weight: 700;
-    }
-    .btn-primary:hover {
-      background: #38f8ff;
-      transform: translateY(-1px);
-      box-shadow: 0 0 28px rgba(0, 242, 254, 0.45);
-    }
-    .btn-emerald {
-      background: var(--emerald);
-      color: #07080B;
-      box-shadow: 0 0 20px var(--emerald-glow);
-      font-weight: 700;
-    }
-    .btn-emerald:hover {
-      background: #34d399;
-      transform: translateY(-1px);
-    }
-
-    .menu-toggle {
-      display: none;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 42px;
-      height: 42px;
-      cursor: pointer;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 0;
-      transition: all 0.2s ease;
-      z-index: 60;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .menu-toggle:hover {
-      border-color: var(--cyan);
-      background: rgba(0, 242, 254, 0.08);
-    }
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-      background: var(--cyan);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-      background: var(--cyan);
-    }
-
-    /* Mobile Nav Drawer */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 72px;
-      left: 0;
-      right: 0;
-      background: rgba(7, 8, 11, 0.97);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border-focus);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
-      padding: 20px 24px 28px;
-      z-index: 49;
-      flex-direction: column;
-      gap: 4px;
-      max-height: calc(100vh - 72px);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      transform: translateY(-8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .mobile-nav.active {
-      display: flex;
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .mobile-nav-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 12px;
-      margin-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-nav-title {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-    .mobile-nav a {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-muted);
-      padding: 11px 0;
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.15s ease;
-    }
-    .mobile-nav a span {
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      transition: all 0.15s ease;
-    }
-    .mobile-nav a:hover {
-      color: var(--cyan);
-      padding-left: 6px;
-    }
-    .mobile-nav a:hover span {
-      color: var(--cyan);
-      transform: translateX(4px);
-    }
-    .mobile-nav-actions {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* Hero Section */
-    
-    /* Canvas Particle Constellation Background */
-    .hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.65;
-    }
-
-    /* Interactive Simulation Trigger Bar */
-    .sim-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.45);
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px;
-    }
-    .sim-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      color: var(--cyan);
-      padding: 5px 12px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-family: var(--font-mono);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-    .sim-btn:hover {
-      background: rgba(0, 242, 254, 0.2);
-      border-color: var(--cyan);
-      box-shadow: 0 0 12px var(--cyan-glow);
-      transform: translateY(-1px);
-    }
-    .sim-btn:active {
-      transform: translateY(0);
-    }
-    .sim-hint {
-      color: var(--text-dim);
-      font-size: 10.5px;
-    }
-
-    .hero {
-      position: relative;
-      padding: 80px 0 60px;
-      overflow: hidden;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      background: rgba(0, 242, 254, 0.06);
-      border: 1px solid rgba(0, 242, 254, 0.25);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--cyan);
-      margin-bottom: 24px;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 242, 254, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
-    }
-
-    .hero-title {
-      font-size: clamp(38px, 5.2vw, 58px);
-      line-height: 1.08;
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      margin-bottom: 24px;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #FFFFFF 20%, #A5F3FC 60%, #00F2FE 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gradient-emerald {
-      background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 17px;
-      line-height: 1.65;
-      color: var(--text-muted);
-      max-width: 620px;
-      margin-bottom: 36px;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 40px;
-    }
-
-    .hero-badges {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 12.5px;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-    .hero-badges span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .hero-badges svg {
-      color: var(--emerald);
-    }
-
-    /* Live Telemetry Panel (Right Column) */
-    .telemetry-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      position: relative;
-    }
-    .telemetry-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    }
-    .telemetry-header {
-      background: rgba(13, 16, 23, 0.95);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .telemetry-tabs {
-      display: flex;
-      gap: 6px;
-    }
-    .telemetry-tab {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .telemetry-tab:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-    }
-    .telemetry-tab.active {
-      color: var(--cyan);
-      background: rgba(0, 242, 254, 0.08);
-      border-color: rgba(0, 242, 254, 0.25);
-      font-weight: 600;
-    }
-    .telemetry-body {
-      padding: 20px;
-      min-height: 340px;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-    }
-    .telemetry-pane {
-      display: none;
-    }
-    .telemetry-pane.active {
-      display: block;
-      animation: fadeIn 0.25s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .telemetry-stat-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .stat-pill {
-      background: rgba(7, 8, 11, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 14px;
-    }
-    .stat-pill-label {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .stat-pill-value {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .stat-pill-value.cyan { color: var(--cyan); }
-    .stat-pill-value.emerald { color: var(--emerald); }
-    .stat-pill-value.rose { color: var(--rose); }
-
-    .terminal-trace {
-      background: #060709;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px;
-      font-size: 11.5px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      height: 170px;
-      overflow-y: hidden;
-      position: relative;
-    }
-    .trace-line {
-      display: flex;
-      justify-content: space-between;
-    }
-    .trace-tag {
-      color: var(--cyan);
-    }
-    .trace-ok {
-      color: var(--emerald);
-    }
-    .trace-drop {
-      color: var(--rose);
-      font-weight: 600;
-    }
-
-    /* Hard Metrics Bar */
-    .metrics-bar {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(13, 16, 23, 0.6);
-      padding: 38px 0;
-      margin-top: 40px;
-    }
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 24px;
-    }
-    .metric-item {
-      text-align: left;
-    }
-    .metric-val {
-      font-family: var(--font-mono);
-      font-size: clamp(28px, 3vw, 36px);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 6px;
-      letter-spacing: -0.03em;
-    }
-    .metric-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* Section Styling */
-    .section {
-      padding: 100px 0;
-      position: relative;
-    }
-    .section-header {
-      max-width: 780px;
-      margin-bottom: 56px;
-    }
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .section-title {
-      font-size: clamp(30px, 3.8vw, 42px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-    .section-desc {
-      font-size: 16.5px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Division Layout */
-    .division-banner {
-      background: linear-gradient(90deg, rgba(0, 242, 254, 0.08), rgba(59, 130, 246, 0.02));
-      border: 1px solid rgba(0, 242, 254, 0.2);
-      border-radius: var(--radius);
-      padding: 24px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 36px;
-    }
-    .division-meta h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .division-meta p {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    .division-code {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--cyan);
-      background: rgba(0, 0, 0, 0.4);
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-    }
-
-    /* Product Cards Grid */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-bottom: 50px;
-    }
-    .product-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-    .product-card:hover {
-      border-color: var(--border-focus);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-    }
-    .product-card.featured {
-      grid-column: span 2;
-      background: linear-gradient(145deg, #121722, #0D1118);
-      border-color: rgba(0, 242, 254, 0.3);
-    }
-    .product-top {
-      margin-bottom: 24px;
-    }
-    .product-category {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .cat-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-    .product-name {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .product-tagline {
-      font-size: 15px;
-      color: var(--cyan);
-      font-family: var(--font-mono);
-      margin-bottom: 16px;
-    }
-    .product-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    
-    /* Sleek Card Tags (Replacing bullet lists) */
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-    .tag-pill {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-    .tag-pill.cyan {
-      color: var(--cyan);
-      border-color: rgba(0, 242, 254, 0.25);
-      background: rgba(0, 242, 254, 0.06);
-    }
-    .tag-pill.emerald {
-      color: var(--emerald);
-      border-color: rgba(16, 185, 129, 0.25);
-      background: rgba(16, 185, 129, 0.06);
-    }
-
-    /* Upstream Track Record Banner */
-    .upstream-banner {
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.08), rgba(16, 185, 129, 0.04));
-      border: 1px solid rgba(0, 242, 254, 0.25);
-      border-radius: var(--radius);
-      padding: 36px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      margin-top: 20px;
-    }
-
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-    .feature-list li {
-      font-size: 13.5px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .feature-list li svg {
-      color: var(--emerald);
-      flex-shrink: 0;
-    }
-
-    .code-box {
-      background: #07080B;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: auto;
-    }
-    .copy-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-dim);
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      transition: all 0.15s ease;
-    }
-    .copy-btn:hover {
-      color: var(--cyan);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    /* Architecture Interactive Topology */
-    .arch-container {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    .arch-flow {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      position: relative;
-    }
-    .arch-node {
-      background: #0B0E14;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 20px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      position: relative;
-    }
-    .arch-node:hover, .arch-node.active {
-      border-color: var(--cyan);
-      box-shadow: 0 0 24px var(--cyan-glow);
-      transform: translateY(-2px);
-    }
-    .arch-node-step {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--cyan);
-      margin-bottom: 8px;
-    }
-    .arch-node-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .arch-node-desc {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .arch-details {
-      margin-top: 32px;
-      background: #07080B;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Licensing / Business Model Grid */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .pricing-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 30px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-    .pricing-card.highlight {
-      border-color: var(--cyan);
-      box-shadow: 0 0 32px rgba(0, 242, 254, 0.15);
-      background: linear-gradient(180deg, #151C28, #0F131C);
-    }
-    .pricing-tier {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .pricing-title {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .pricing-target {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      min-height: 40px;
-    }
-    .pricing-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 36px;
-      flex-grow: 1;
-    }
-    .pricing-list li {
-      font-size: 13.5px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* Peer-Reviewed & Research Box */
-    .research-card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(59, 130, 246, 0.03));
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      border-radius: var(--radius);
-      padding: 36px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 36px;
-      align-items: center;
-    }
-    .research-meta {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--emerald);
-      margin-bottom: 12px;
-    }
-    .research-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .research-desc {
-      font-size: 14.5px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    
-
-    /* Enterprise Contact Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-content {
-      background: var(--panel);
-      border: 1px solid var(--border-focus);
-      box-shadow: 0 24px 60px rgba(0, 242, 254, 0.2);
-      border-radius: var(--radius);
-      max-width: 580px;
-      width: 100%;
-      padding: 36px;
-      position: relative;
-      animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .modal-close:hover {
-      color: var(--text);
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-    .form-input, .form-textarea, .form-select {
-      width: 100%;
-      background: #07080B;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 11px 14px;
-      font-size: 14px;
-      color: var(--text);
-      font-family: var(--font-sans);
-      outline: none;
-      transition: border-color 0.15s ease;
-    }
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan-glow);
-    }
-    .form-textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    /* Footer */
-    .footer {
-      border-top: 1px solid var(--border);
-      background: #050608;
-      padding: 80px 0 40px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
-      gap: 48px;
-      margin-bottom: 60px;
-    }
-    .footer-brand h4 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .footer-brand p {
-      line-height: 1.6;
-      max-width: 320px;
-      margin-bottom: 20px;
-    }
-    .footer-col h5 {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 18px;
-    }
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .footer-links a:hover {
-      color: var(--cyan);
-    }
-    .footer-bottom {
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-
-    /* =========================================================================
-       COMPREHENSIVE RESPONSIVE ENGINE (MOBILE, TABLET, DESKTOP)
-       ========================================================================= */
-
-    /* Large Tablets / Small Laptops */
-    @media (max-width: 1024px) {
-      .container {
-        padding: 0 20px;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .hero-subtitle {
-        max-width: 100%;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-      }
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-      .product-card.featured {
-        grid-column: span 1;
-      }
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 580px;
-        margin: 0 auto;
-      }
-      .arch-flow {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 36px;
-      }
-    }
-
-    /* Tablets & Standard Mobile Viewports */
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 18px;
-      }
-      .top-pill-bar {
-        font-size: 11px;
-        padding: 6px 12px;
-        line-height: 1.45;
-      }
-      .nav-inner {
-        height: 64px;
-      }
-      .mobile-nav {
-        top: 64px;
-        max-height: calc(100vh - 64px);
-      }
-      .nav-links, .nav-actions .btn-secondary {
-        display: none;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-      
-    /* Canvas Particle Constellation Background */
-    .hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.65;
-    }
-
-    /* Interactive Simulation Trigger Bar */
-    .sim-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.45);
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px;
-    }
-    .sim-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      color: var(--cyan);
-      padding: 5px 12px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-family: var(--font-mono);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-    .sim-btn:hover {
-      background: rgba(0, 242, 254, 0.2);
-      border-color: var(--cyan);
-      box-shadow: 0 0 12px var(--cyan-glow);
-      transform: translateY(-1px);
-    }
-    .sim-btn:active {
-      transform: translateY(0);
-    }
-    .sim-hint {
-      color: var(--text-dim);
-      font-size: 10.5px;
-    }
-
-    .hero {
-        padding: 44px 0 32px;
-      }
-      .hero-eyebrow {
-        font-size: 11px;
-        padding: 5px 12px;
-        margin-bottom: 18px;
-      }
-      .hero-title {
-        font-size: clamp(30px, 7vw, 42px);
-        margin-bottom: 18px;
-      }
-      .hero-subtitle {
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 26px;
-      }
-      .hero-badges {
-        flex-wrap: wrap;
-        gap: 10px 16px;
-        font-size: 12px;
-      }
-
-      /* Telemetry Card Polish */
-      .telemetry-card {
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-      }
-      .telemetry-header {
-        padding: 10px 14px;
-      }
-      .telemetry-tabs {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 2px;
-      }
-      .telemetry-tab {
-        padding: 6px 10px;
-        font-size: 11px;
-        white-space: nowrap;
-      }
-      .telemetry-body {
-        padding: 16px;
-        min-height: auto;
-      }
-      .terminal-trace {
-        height: 155px;
-        font-size: 11px;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      /* Metrics Bar */
-      .metrics-bar {
-        padding: 28px 0;
-        margin-top: 24px;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-      }
-      .metric-item:last-child {
-        grid-column: span 2;
-        text-align: center;
-      }
-      .metric-val {
-        font-size: 28px;
-      }
-
-      /* Sections & Division Banners */
-      .section {
-        padding: 64px 0;
-      }
-      .section-header {
-        margin-bottom: 36px;
-      }
-      .section-title {
-        font-size: clamp(26px, 6vw, 34px);
-      }
-      .division-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 18px 20px;
-        margin-bottom: 24px;
-      }
-      .division-meta h3 {
-        font-size: 18px;
-      }
-      .division-meta p {
-        font-size: 13px;
-      }
-      .division-code {
-        font-size: 11px;
-        align-self: flex-start;
-        word-break: break-all;
-      }
-
-      /* Products & Cards */
-      .product-card {
-        padding: 28px 20px;
-      }
-      .product-name {
-        font-size: 23px;
-      }
-      .code-box {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        padding: 12px 14px;
-      }
-      .code-box code {
-        overflow-x: auto;
-        white-space: nowrap;
-        display: block;
-        padding-bottom: 2px;
-        font-size: 11.5px;
-        -webkit-overflow-scrolling: touch;
-      }
-      .copy-btn {
-        align-self: flex-end;
-        padding: 5px 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border);
-      }
-
-      /* Architecture Topology */
-      .arch-container {
-        padding: 24px 18px;
-      }
-      .arch-flow {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .arch-node {
-        padding: 18px 16px;
-      }
-      .arch-details {
-        padding: 18px 16px;
-        font-size: 12px;
-        overflow-x: auto;
-      }
-
-      /* Founder & Research */
-      
-      .research-card {
-        grid-template-columns: 1fr;
-        padding: 26px 20px;
-        gap: 20px;
-      }
-      .research-title {
-        font-size: 20px;
-      }
-
-      /* Footer */
-      .footer {
-        padding: 50px 0 30px;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 14px;
-        text-align: center;
-      }
-    }
-
-    /* Small Mobile Devices (<= 640px) */
-    @media (max-width: 640px) {
-      .container {
-        padding: 0 16px;
-      }
-      .nav-actions .nav-pilot-btn {
-        display: none;
-      }
-      .hero-cta-group {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-      .hero-cta-group .btn {
-        width: 100%;
-        justify-content: center;
-        padding: 13px 18px;
-        font-size: 14px;
-      }
-      .pricing-card {
-        padding: 26px 18px;
-      }
-      .pricing-title {
-        font-size: 22px;
-      }
-      .pricing-target {
-        min-height: auto;
-        margin-bottom: 16px;
-      }
-
-      /* Pilot Modal Sheet on Mobile */
-      .modal-overlay {
-        padding: 10px;
-        align-items: flex-end;
-      }
-      .modal-content {
-        padding: 24px 18px 22px;
-        border-radius: 14px 14px 10px 10px;
-        max-height: 86vh;
-        overflow-y: auto;
-      }
-      .modal-content h3 {
-        font-size: 20px;
-      }
-      .form-input, .form-textarea, .form-select {
-        font-size: 16px; /* Prevents auto-zoom on iOS */
-        padding: 10px 12px;
-        min-height: 44px;
-      }
-      .modal-close {
-        top: 14px;
-        right: 14px;
-        width: 36px;
-        height: 36px;
-        font-size: 28px;
-      }
-    }
-
-    /* Ultra-Compact Screens (<= 480px, e.g. iPhone SE, Galaxy, Pixel) */
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 14px;
-      }
-      .brand-tag {
-        display: none;
-      }
-      .brand {
-        font-size: 17px;
-        gap: 8px;
-      }
-
-      .top-pill-bar {
-        font-size: 10.5px;
-        padding: 5px 8px;
-      }
-      .top-pill-bar a {
-        display: inline-block;
-        margin-left: 4px;
-      }
-      .hero-title {
-        font-size: 28px;
-      }
-      .hero-badges span {
-        font-size: 11px;
-      }
-      .telemetry-header > div:last-child {
-        display: none;
-      }
-      .telemetry-stat-row {
-        gap: 8px;
-      }
-      .stat-pill {
-        padding: 8px 10px;
-      }
-      .stat-pill-label {
-        font-size: 9.5px;
-      }
-      .stat-pill-value {
-        font-size: 14px;
-      }
-      .terminal-trace {
-        font-size: 10px;
-        padding: 8px;
-      }
-      .metrics-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-      .metric-val {
-        font-size: 24px;
-      }
-      .metric-desc {
-        font-size: 11.5px;
-      }
-      .product-card {
-        padding: 22px 16px;
-      }
-      .product-name {
-        font-size: 20px;
-      }
-      .product-tagline {
-        font-size: 13px;
-      }
-      .product-desc {
-        font-size: 13px;
-      }
-    }
-  
-    /* HIGH-STAKES CAPABILITIES & INDUSTRIAL INTEGRATION */
-    .capabilities-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .capability-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-
-    .capability-card:hover {
-      border-color: var(--border-focus);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-    }
-
-    .capability-card.highlight {
-      border-color: rgba(0, 242, 254, 0.35);
-      background: linear-gradient(145deg, #121722, #0D1118);
-    }
-
-    .capability-target {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .capability-title {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-      color: var(--text);
-    }
-
-    .capability-desc {
-      font-size: 14.5px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .capability-action {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .card-footer-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    @media (max-width: 900px) {
-      .capabilities-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .upstream-banner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-  
-    /* COMPANY & INSTITUTIONAL LAB SECTION */
-    .company-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .company-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 38px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.25s ease;
-    }
-
-    .company-card:hover {
-      border-color: var(--border-focus);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-    }
-
-    .company-card.highlight {
-      border-color: rgba(0, 242, 254, 0.3);
-      background: linear-gradient(145deg, #121722, #0D1118);
-    }
-
-    .company-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .company-heading {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-      color: var(--text);
-    }
-
-    .company-text {
-      font-size: 14.5px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    @media (max-width: 900px) {
-      .company-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-    }
-
-  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2314130F'/><path d='M7 8h18M7 24h18' stroke='%23EDE9DE' stroke-width='4'/><path d='M7 16h11' stroke='%23FF6B3D' stroke-width='4'/></svg>">
+  <link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>try{var t=localStorage.getItem('exploidus-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Background decorative grid -->
-  <div class="bg-grid"></div>
-
-  <!-- Top Notification Bar -->
-  <div class="top-pill-bar">
-    <div class="container">
-      <span>ANNOUNCEMENT:</span> Aegis-Filter 4.07ns zero-allocation GNC engine released &amp; scx_intent v2 pure BPF scheduler available. 
-      <a href="#research">Read Technical Briefings &rarr;</a>
+  <div class="bar">
+    <div class="wrap">
+      <b>ANNOUNCEMENT</b>
+      <span>Aegis-Filter 4.07ns zero-allocation GNC engine released &amp; scx_intent v2 pure BPF scheduler available.</span>
+      <a href="#research">Read Technical Briefings</a>
     </div>
   </div>
 
-  <!-- Main Navigation -->
   <header class="nav">
-    <div class="container nav-inner">
-      <a href="#" class="brand">
-        <span>EXPLOIDUS</span>
-        <span class="brand-tag">LABS</span>
+    <div class="wrap nav-in">
+      <a href="#top" class="brand" aria-label="Exploidus home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 5h28M2 27h28" stroke="currentColor" stroke-width="5"/><path d="M2 16h17" stroke="var(--accent)" stroke-width="5"/></svg>
+        Exploidus <small>LABS</small>
       </a>
-
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Primary">
         <a href="#capabilities">Capabilities</a>
         <a href="#native-systems">Platforms</a>
         <a href="#architecture">Architecture</a>
@@ -1857,807 +169,494 @@
         <a href="#company">Company</a>
         <a href="#licensing">Enterprise</a>
       </nav>
-
-      <div class="nav-actions">
-        <a href="https://github.com/Exploidus" target="_blank" rel="noopener" class="btn btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          Open Core
-        </a>
-        <button onclick="openPilotModal()" class="btn btn-primary nav-pilot-btn">Enterprise Pilot</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
+      <div class="nav-act">
+        <a class="btn sm gh" href="https://github.com/Exploidus" target="_blank" rel="noopener">Open Core <i class="arr ne"></i></a>
+        <button class="btn sm pri" type="button" data-pilot="custom">Enterprise Pilot</button>
+        <button class="icon-btn" type="button" id="themeBtn" aria-label="Toggle light / dark theme">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="6.5"/><path d="M10 3.5v13" /><path d="M10 3.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" type="button" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h14M3 14h14"/></svg>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-nav" id="mobileNav">
-    <div class="mobile-nav-header">
-      <span class="mobile-nav-title">EXPLOIDUS LABS</span>
-      <span class="brand-tag">v0.4.0 VERIFIED</span>
-    </div>
-    <a href="#capabilities" onclick="closeMobileNav()">Industrial Capabilities <span>&rarr;</span></a>
-    <a href="#native-systems" onclick="closeMobileNav()">Sovereign Platforms <span>&rarr;</span></a>
-    <a href="#architecture" onclick="closeMobileNav()">System Architecture <span>&rarr;</span></a>
-    <a href="contributions.html">Upstream Record <span>&rarr;</span></a>
-    <a href="#company" onclick="closeMobileNav()">Company &amp; Lab <span>&rarr;</span></a>
-    <a href="#licensing" onclick="closeMobileNav()">Enterprise Licensing <span>&rarr;</span></a>
-    <a href="https://github.com/Exploidus" target="_blank" rel="noopener" style="color: var(--cyan);">GitHub Sovereign Core <span>&rarr;</span></a>
-    <div class="mobile-nav-actions">
-      <button onclick="closeMobileNav(); openPilotModal();" class="btn btn-primary" style="width: 100%; padding: 13px;">Request Enterprise Pilot</button>
-    </div>
+  <div class="mnav" id="mnav">
+    <a class="big" href="#capabilities">Capabilities <i class="arr"></i></a>
+    <a class="big" href="#native-systems">Platforms <i class="arr"></i></a>
+    <a class="big" href="#architecture">Architecture <i class="arr"></i></a>
+    <a class="big" href="contributions.html">Upstream Record <i class="arr"></i></a>
+    <a class="big" href="#company">Company <i class="arr"></i></a>
+    <a class="big" href="#licensing">Enterprise <i class="arr"></i></a>
+    <a class="big" href="https://github.com/Exploidus" target="_blank" rel="noopener">GitHub <i class="arr ne"></i></a>
+    <button class="btn pri block" type="button" data-pilot="custom">Request Enterprise Pilot</button>
   </div>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <canvas id="heroCanvas" class="hero-canvas"></canvas>
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="hero-eyebrow">
-            <div class="pulse-dot"></div>
-            SOVEREIGN HIGH-INTEGRITY SYSTEMS &amp; CYBER DEFENSE
-          </div>
-          
-          <h1 class="hero-title">
-            Deterministic Foundations for <span class="gradient-text">Mission-Critical Computing</span>
-          </h1>
+  <main id="main">
 
-          <p class="hero-subtitle">
-            Exploidus engineers zero-allocation state estimation, line-rate eBPF cyber defense, and deterministic kernel scheduling for aerospace, defense, and sovereign cloud infrastructure. Built from first principles in memory-safe Rust.
-          </p>
-
-          <div class="hero-cta-group">
-            <button onclick="openPilotModal()" class="btn btn-primary">Request Enterprise Briefing</button>
-            <a href="#products" class="btn btn-secondary">Explore Capabilities &darr;</a>
-            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" class="btn btn-secondary">scx_intent BPF</a>
-          </div>
-
-          <div class="hero-badges">
-            <span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Zero Dynamic Allocation
-            </span>
-            <span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Pure In-Kernel eBPF
-            </span>
-            <span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              DO-178C Architecture
-            </span>
-          </div>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-meta">
+          <span class="lbl">Sovereign High-Integrity Systems &amp; Cyber Defense</span>
+          <span class="lbl">Rust · eBPF · no_std · v0.4.0 verified</span>
         </div>
 
-        <!-- Interactive Telemetry Dashboard -->
-        <div class="telemetry-card">
-          <div class="telemetry-header">
-            <div class="telemetry-tabs">
-              <button class="telemetry-tab active" data-tab="aegis" onclick="switchTelemetry(event, 'aegis')">Aegis-Filter GNC</button>
-              <button class="telemetry-tab" data-tab="xdp" onclick="switchTelemetry(event, 'xdp')">XDP-Guard 100G</button>
-              <button class="telemetry-tab" data-tab="scx" onclick="switchTelemetry(event, 'scx')">scx_intent BPF</button>
+
+
+        <div class="hero-grid">
+          <div class="hero-left">
+            <h1>
+              <span class="ln">Deterministic</span>
+              <span class="ln">foundations for</span>
+              <span class="ln"><em>mission-critical</em></span>
+              <span class="ln">computing.</span>
+            </h1>
+
+            <div class="ruler" aria-hidden="true"><span>4.07 ns</span><span>16 cycles @ 4 GHz</span></div>
+            <p class="hero-sub">Exploidus engineers zero-allocation state estimation, line-rate eBPF cyber defense, and deterministic kernel scheduling for aerospace, defense, and sovereign cloud infrastructure. Built from first principles in memory-safe Rust.</p>
+            <div class="cta">
+              <button class="btn pri" type="button" data-pilot="custom">Request Enterprise Briefing <i class="arr"></i></button>
+              <a class="btn" href="#native-systems">Explore Capabilities <i class="arr d"></i></a>
+              <a class="btn" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent BPF <i class="arr ne"></i></a>
             </div>
-            <div class="telemetry-live-badge" style="font-family: var(--font-mono); font-size: 11px; color: var(--emerald); display: flex; align-items: center; gap: 6px;"><span class="pulse-dot" style="background: var(--emerald); box-shadow: 0 0 10px var(--emerald);"></span> LIVE ENGINE</div>
+            <ul class="checks">
+              <li><i class="chk"></i>Zero Dynamic Allocation</li>
+              <li><i class="chk"></i>Pure In-Kernel eBPF</li>
+              <li><i class="chk"></i>DO-178C Architecture</li>
+            </ul>
           </div>
 
-          <div class="telemetry-body">
-            <!-- TAB 1: AEGIS-FILTER -->
-            <div class="telemetry-pane active" id="pane-aegis">
-              <div class="telemetry-stat-row">
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Execution Latency</div>
-                  <div class="stat-pill-value cyan" id="aegis-latency">4.07 ns</div>
-                </div>
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Covariance Status</div>
-                  <div class="stat-pill-value emerald" id="aegis-status">JOSEPH STABLE</div>
-                </div>
+          <!-- Instrument -->
+          <div class="inst" id="inst">
+            <div class="inst-head">
+              <div class="inst-tabs" role="tablist" aria-label="Engine simulations">
+                <button class="inst-tab" role="tab" id="tab-aegis" aria-selected="true" aria-controls="pane-aegis" data-tab="aegis"><span>01</span>Aegis-Filter</button>
+                <button class="inst-tab" role="tab" id="tab-xdp" aria-selected="false" aria-controls="pane-xdp" data-tab="xdp" tabindex="-1"><span>02</span>XDP-Guard</button>
+                <button class="inst-tab" role="tab" id="tab-scx" aria-selected="false" aria-controls="pane-scx" data-tab="scx" tabindex="-1"><span>03</span>scx_intent</button>
               </div>
-              <div class="terminal-trace" id="aegis-trace">
-                <!-- Dynamically updated via JS -->
+              <div class="inst-badge">SIMULATION</div>
+            </div>
+
+            <div class="inst-body">
+              <div class="pane" id="pane-aegis" role="tabpanel" aria-labelledby="tab-aegis">
+                <dl class="stats">
+                  <div class="stat"><dt>Execution Latency</dt><dd class="a">4.07 ns</dd></div>
+                  <div class="stat"><dt>Covariance Status</dt><dd class="g">JOSEPH STABLE</dd></div>
+                  <div class="stat"><dt>Innovation</dt><dd id="aegis-nis">0.0 σ</dd></div>
+                </dl>
+                <div class="plot"><span class="pcap">Position estimate · 1-D constant-velocity KF</span><span class="pcap r">○ raw · — estimate · ▒ 2σ</span><canvas id="cv-aegis" aria-label="Kalman filter tracking a noisy sensor signal"></canvas></div>
+                <div class="trace" id="trace-aegis" aria-hidden="true"></div>
+              </div>
+
+              <div class="pane" id="pane-xdp" role="tabpanel" aria-labelledby="tab-xdp" hidden>
+                <dl class="stats">
+                  <div class="stat"><dt>Ingress Throughput</dt><dd class="a" id="xdp-pps">84.2 Mpps</dd></div>
+                  <div class="stat"><dt>Mitigation Action</dt><dd class="r">XDP_DROP</dd></div>
+                  <div class="stat"><dt>Per-Packet</dt><dd>&lt;82 ns</dd></div>
+                </dl>
+                <div class="plot"><span class="pcap">Ingress per 100 ms</span><span class="pcap r">▮ passed · ▮ dropped</span><canvas id="cv-xdp" aria-label="Stacked bars of passed and dropped packets"></canvas></div>
+                <div class="trace" id="trace-xdp" aria-hidden="true"></div>
+              </div>
+
+              <div class="pane" id="pane-scx" role="tabpanel" aria-labelledby="tab-scx" hidden>
+                <dl class="stats">
+                  <div class="stat"><dt>Active DSQ Tiers</dt><dd class="a">5 In-Kernel</dd></div>
+                  <div class="stat"><dt>Starvation Relief</dt><dd class="g">0% DROP</dd></div>
+                  <div class="stat"><dt>Wake Jitter</dt><dd>0</dd></div>
+                </dl>
+                <div class="plot"><span class="pcap">Dispatch queues</span><span class="pcap r">→ CPU</span><canvas id="cv-scx" aria-label="Five dispatch queues feeding a CPU"></canvas></div>
+                <div class="trace" id="trace-scx" aria-hidden="true"></div>
               </div>
             </div>
 
-            <!-- TAB 2: XDP-GUARD -->
-            <div class="telemetry-pane" id="pane-xdp">
-              <div class="telemetry-stat-row">
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Ingress Throughput</div>
-                  <div class="stat-pill-value cyan" id="xdp-pps">84.2 Mpps</div>
-                </div>
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Mitigation Action</div>
-                  <div class="stat-pill-value rose">XDP_DROP (&lt;82ns)</div>
-                </div>
-              </div>
-              <div class="terminal-trace" id="xdp-trace">
-                <!-- Dynamically updated via JS -->
-              </div>
-            </div>
-
-            <!-- TAB 3: SCX_INTENT -->
-            <div class="telemetry-pane" id="pane-scx">
-              <div class="telemetry-stat-row">
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Active DSQ Tiers</div>
-                  <div class="stat-pill-value cyan">5 In-Kernel DSQs</div>
-                </div>
-                <div class="stat-pill">
-                  <div class="stat-pill-label">Starvation Relief</div>
-                  <div class="stat-pill-value emerald">0% DROP / 0 JITTER</div>
-                </div>
-              </div>
-              <div class="terminal-trace" id="scx-trace">
-                <!-- Dynamically updated via JS -->
-              </div>
+            <div class="inst-foot">
+              <button class="inst-btn" type="button" id="injectBtn"><span id="injectLbl">Inject sensor anomaly</span></button>
+              <span id="injectHint">Illustrative simulation, not live engine output</span>
             </div>
           </div>
-            <div class="sim-bar">
-              <button class="sim-btn" id="simInjectBtn" onclick="injectSimulationGlitch()">
-                <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
-                <span id="simBtnLabel">Inject Sensor Anomaly / Attack</span>
-              </button>
-              <span class="sim-hint" id="simHintText">Click to trigger fail-closed rejection</span>
-            </div>
-
         </div>
       </div>
     </section>
 
-    <!-- PROOF METRICS BAR -->
-    <section class="metrics-bar">
-      <div class="container metrics-grid">
-        <div class="metric-item">
-          <div class="metric-val gradient-text">4.07 ns</div>
-          <div class="metric-desc">Kalman filter scalar loop execution (16 CPU cycles at 4GHz)</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val gradient-text">100 Gbps</div>
-          <div class="metric-desc">Line-rate eBPF/XDP hardware ingress DDoS mitigation</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val gradient-emerald">0 Alloc</div>
-          <div class="metric-desc">Pure #![no_std] zero-heap aerospace memory guarantees</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val gradient-text">5 DSQ</div>
-          <div class="metric-desc">Intent-driven preemptive Linux kernel scheduler queues</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-val gradient-emerald">3x DOI</div>
-          <div class="metric-desc">Zenodo &amp; figshare indexed publications (HuddleCluster &amp; XDP-Guard)</div>
-        </div>
+    <!-- ============ KEY FIGURES ============ -->
+    <section class="figs" aria-label="Key figures">
+      <div class="wrap figs-grid">
+        <div class="fig rv"><div class="fig-v">4.07<small>ns</small></div><p class="fig-d">Kalman filter scalar loop execution (16 CPU cycles at 4GHz)</p></div>
+        <div class="fig rv"><div class="fig-v">100<small>Gbps</small></div><p class="fig-d">Line-rate eBPF/XDP hardware ingress DDoS mitigation</p></div>
+        <div class="fig rv"><div class="fig-v">0<small>alloc</small></div><p class="fig-d">Pure #![no_std] zero-heap aerospace memory guarantees</p></div>
+        <div class="fig rv"><div class="fig-v">5<small>DSQ</small></div><p class="fig-d">Intent-driven preemptive Linux kernel scheduler queues</p></div>
+        <div class="fig rv"><div class="fig-v">3<small>× DOI</small></div><p class="fig-d">Zenodo &amp; figshare indexed publications (HuddleCluster &amp; XDP-Guard)</p></div>
       </div>
     </section>
 
-    <!-- HIGH-STAKES CAPABILITIES & COMMERCIAL SOLUTIONS -->
-    <section class="section" id="capabilities">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">High-Stakes Engineering</span>
-          <h2 class="section-title">Mission Solutions &amp; Bespoke Systems</h2>
-          <p class="section-desc">
-            Exploidus partners with aerospace contractors, cloud infrastructure operators, and sovereign defense programs to solve deterministic flight safety, wire-speed cyber defense, and kernel latency bottlenecks.
-          </p>
-        </div>
-
-        <div class="capabilities-grid">
-          <!-- SOLUTION 1: MISSION GNC -->
-          <div class="capability-card highlight">
-            <div>
-              <div class="capability-target">Aerospace, Defense &amp; Autonomous UAVs</div>
-              <h3 class="capability-title">Mission GNC &amp; Flight Software Integration</h3>
-              <p class="capability-desc">
-                Custom state estimation architectures engineered under strict zero-heap constraints. We adapt our 4.07 ns Joseph-stabilized filtering algorithms to your proprietary IMU, Barometer, and LiDAR sensor suites to prevent divergence during GPS-denied navigation. DO-178C pre-audit architecture ready for flight computers across ARM Cortex-M, RISC-V, and RTEMS.
-              </p>
-              <div class="card-tags" style="margin-bottom: 24px;">
-                <span class="tag-pill cyan">Zero-Allocation #![no_std]</span>
-                <span class="tag-pill emerald">4.07 ns Sensor Loop</span>
-                <span class="tag-pill">DO-178C Pre-Audit</span>
-                <span class="tag-pill">GPS-Denied Resiliency</span>
-              </div>
-            </div>
-            <div class="capability-action">
-              <button onclick="openPilotModal('Mission GNC Integration')" class="btn btn-primary" style="width: 100%;">Consult on Flight Integration &rarr;</button>
-            </div>
-          </div>
-
-          <!-- SOLUTION 2: 100G EBPF DEFENSE -->
-          <div class="capability-card">
-            <div>
-              <div class="capability-target">Datacenters, Cloud Backbones &amp; Fintech</div>
-              <h3 class="capability-title">Line-Rate eBPF Ingress &amp; Cyber Defense</h3>
-              <p class="capability-desc">
-                High-speed kernel security hooks running directly at network interface card driver DMA rings. Evaluates incoming packet headers and executes XDP_DROP mitigations within 80 nanoseconds, dropping multi-vector SYN floods and UDP amplification traffic before Linux socket buffers or iptables collapse under memory exhaustion.
-              </p>
-              <div class="card-tags" style="margin-bottom: 24px;">
-                <span class="tag-pill cyan">100 Gbps Line-Rate</span>
-                <span class="tag-pill emerald">Sub-80ns Mitigation</span>
-                <span class="tag-pill">NIC Driver Hook</span>
-                <span class="tag-pill">Aya Rust Framework</span>
-              </div>
-            </div>
-            <div class="capability-action">
-              <button onclick="openPilotModal('100G eBPF Cyber Defense')" class="btn btn-secondary" style="width: 100%;">Consult on Ingress Defense &rarr;</button>
-            </div>
-          </div>
-
-          <!-- SOLUTION 3: KERNEL SCHEDULING -->
-          <div class="capability-card">
-            <div>
-              <div class="capability-target">HFT Networks, Robotics &amp; Low-Latency Compute</div>
-              <h3 class="capability-title">Deterministic Kernel Scheduling &amp; RTOS Tuning</h3>
-              <p class="capability-desc">
-                Bespoke Linux CPU schedulers authored using in-kernel eBPF sched-ext architecture. Dynamically partitions execution pipelines across dedicated kernel dispatch queues to isolate time-critical workloads from background compute, eliminating audio buffer underruns, compositor micro-stutter, and priority inversion without multi-cgroup overhead.
-              </p>
-              <div class="card-tags" style="margin-bottom: 24px;">
-                <span class="tag-pill cyan">Linux 6.12+ sched-ext</span>
-                <span class="tag-pill emerald">5 Isolated DSQs</span>
-                <span class="tag-pill">Anti-Starvation Watchdog</span>
-                <span class="tag-pill">Sub-Microsecond Wakeup</span>
-              </div>
-            </div>
-            <div class="capability-action">
-              <button onclick="openPilotModal('Kernel CPU Scheduling')" class="btn btn-secondary" style="width: 100%;">Consult on Scheduler Architecture &rarr;</button>
-            </div>
-          </div>
-
-          <!-- SOLUTION 4: PROTOCOL AUDITING -->
-          <div class="capability-card">
-            <div>
-              <div class="capability-target">Mission-Critical Systems &amp; Space Flight Frameworks</div>
-              <h3 class="capability-title">Deep Systems Auditing &amp; Upstream Patching</h3>
-              <p class="capability-desc">
-                Exhaustive edge-case root-cause investigations, memory-safety verification, and protocol standard alignment for mission-critical software. Proven track record identifying and submitting accepted upstream patches to NASA F Prime flight software, Microsoft VS Code core CLI, Subsurface dive models, and the Linux kernel.
-              </p>
-              <div class="card-tags" style="margin-bottom: 24px;">
-                <span class="tag-pill emerald">NASA F Prime 2x Merged</span>
-                <span class="tag-pill emerald">Microsoft VS Code Merged</span>
-                <span class="tag-pill">CCSDS Protocol Fixes</span>
-                <span class="tag-pill">35 Multi-Platform CI Passes</span>
-              </div>
-            </div>
-            <div class="capability-action">
-              <a href="contributions.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Review Upstream Case Studies &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- UPSTREAM TRUST RECORD BANNER -->
-        <div class="upstream-banner" style="margin-top: 50px;">
+    <!-- ============ CAPABILITIES ============ -->
+    <section class="sec" id="capabilities" style="border-top:0">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <span class="lbl"><b>§ 01</b> &nbsp;High-Stakes Engineering</span>
           <div>
-            <span class="cat-badge" style="background: rgba(16, 185, 129, 0.1); color: var(--emerald); border-color: rgba(16, 185, 129, 0.3); margin-bottom: 12px; display: inline-block;">PROVEN FLIGHT &amp; KERNEL CREDENTIALS</span>
-            <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Upstream Engineering Track Record</h3>
-            <p style="color: var(--text-muted); font-size: 14.5px; max-width: 680px; line-height: 1.65;">
-              We do not engineer in isolation. Exploidus actively audits, debugs, and submits production patches to foundational software stacks trusted by NASA space missions, Microsoft, Subsurface, and the Linux kernel community.
-            </p>
-            <div class="card-tags" style="margin-top: 16px;">
-              <span class="tag-pill emerald">NASA F Prime 2x Merged (PR #6226 &amp; #6143)</span>
-              <span class="tag-pill emerald">Microsoft VS Code PR #341565 Merged</span>
-              <span class="tag-pill emerald">Subsurface PR #5071 &amp; #5055 Merged</span>
-              <span class="tag-pill cyan">Linux Sched-Ext PR #3845 RFC</span>
-            </div>
-          </div>
-          <div>
-            <a href="contributions.html" class="btn btn-primary" style="white-space: nowrap; padding: 14px 24px;">Inspect Case Studies &rarr;</a>
+            <h2>Mission solutions &amp; <em>bespoke</em> systems</h2>
+            <p>Exploidus partners with aerospace contractors, cloud infrastructure operators, and sovereign defense programs to solve deterministic flight safety, wire-speed cyber defense, and kernel latency bottlenecks.</p>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- EXPLOIDUS NATIVE SYSTEMS -->
-    <section class="section" id="native-systems">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Sovereign Technology Platforms</span>
-          <h2 class="section-title">Proprietary Foundations &amp; Native Platforms</h2>
-          <p class="section-desc">
-            Proprietary Foundations and Sovereign Capabilities Available for Custom Enterprise Integration. Each platform is engineered from first principles, battle-tested in-house, and available for tailored hardware integration, commercial licensing, and mission-critical deployment.
-          </p>
-        </div>
-
-        <div class="products-grid">
-          <!-- CARD: CFS-ON-EXPLOIDUS (FEATURED) -->
-          <div class="product-card featured" id="cfs-on-exploidus">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge" style="background: rgba(0, 242, 254, 0.1); color: var(--cyan); border-color: rgba(0, 242, 254, 0.3);">NASA FLIGHT SOFTWARE PORT</span>
-                <a href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">v0.3.0 QUALIFIED &rarr;</a>
-              </div>
-              <h3 class="product-name">cfs-on-exploidus</h3>
-              <div class="product-tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</div>
-              <p class="product-desc">
-                Mission-qualified native Exploidus OS port of the NASA Core Flight Executive (cFE) and Core Flight System (cFS). Features capability-gated Software Bus routing, microsecond-accurate MET/TAI/UTC mission clocks, atomic double-buffered parameter hot-reloading (TBL), deterministic 100Hz scheduler dispatch (SCH), and autonomous Single Event Upset (SEU) bit-flip containment. Fully qualified across Milestones 1, 2, and 3.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">NASA cFS Stack</span>
-                <span class="tag-pill emerald">BLAKE3 Capability Gate</span>
-                <span class="tag-pill">Atomic TBL Hot-Reload</span>
-                <span class="tag-pill">SEU Bit-Flip Isolation</span>
-                <span class="tag-pill">Zero Kernel Panic</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>git clone https://github.com/Exploidus/cfs-on-exploidus.git &amp;&amp; ./run_demo.sh</code>
-              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/Exploidus/cfs-on-exploidus.git && ./run_demo.sh')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD: CFS-ADVERSARIAL-TESTBED -->
-          <div class="product-card" id="cfs-adversarial-testbed">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge" style="background: rgba(16, 185, 129, 0.1); color: var(--emerald); border-color: rgba(16, 185, 129, 0.3);">ZERO-TRUST MISSION ASSURANCE</span>
-                <a href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.1.0 BASELINE &rarr;</a>
-              </div>
-              <h3 class="product-name">cfs-adversarial-testbed</h3>
-              <div class="product-tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</div>
-              <p class="product-desc">
-                Freestanding eBPF security testbed and formal invariant contract for the NASA Core Flight System. Implements non-intrusive tracepoint observation, 4-tier effect completion verification (invocation to destination state transition), decoupled ringbuffer accounting, and anti-replay protection. Co-reviewed and baselined under NASA cFS Community RFCs.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">6 Formal Invariants</span>
-                <span class="tag-pill emerald">eBPF Kernel Probes</span>
-                <span class="tag-pill">Decoupled Ringbuffer</span>
-                <span class="tag-pill">Adversarial Injection</span>
-                <span class="tag-pill">NASA cFS RFC #1168</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>git clone https://github.com/Exploidus/cfs-adversarial-testbed.git &amp;&amp; ./run_tests.sh</code>
-              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/Exploidus/cfs-adversarial-testbed.git && ./run_tests.sh')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 1: AEGIS-FILTER (FEATURED) -->
-          <div class="product-card featured" id="aegis-filter">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">AEROSPACE GNC &amp; ROBOTICS</span>
-                <a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">v0.4.0 VERIFIED &rarr;</a>
-              </div>
-              <h3 class="product-name">aegis-filter</h3>
-              <div class="product-tagline">4.07 ns Zero-Allocation State Estimation and Fault Isolation</div>
-              <p class="product-desc">
-                High-integrity state estimation engine implementing Unscented Kalman Filtering, continuous-discrete extended filters, and Joseph-form covariance stabilization in pure Rust. Built under strict zero-heap constraints to eliminate dynamic allocations and page faults in critical flight control loops. Includes multi-sensor fault detection, divergence isolation, and fail-closed innovation gating.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">4.07 ns Latency</span>
-                <span class="tag-pill emerald">Pure #![no_std]</span>
-                <span class="tag-pill">Joseph Covariance</span>
-                <span class="tag-pill">DO-178C Architecture</span>
-                <span class="tag-pill">NASA F Prime Adapter</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>cargo add aegis-filter --no-default-features</code>
-              <button class="copy-btn" onclick="copyCode(this, 'cargo add aegis-filter --no-default-features')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 2: SCX_INTENT -->
-          <div class="product-card" id="scx_intent">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge" style="background: rgba(0, 242, 254, 0.1); color: var(--cyan); border-color: rgba(0, 242, 254, 0.3);">EXPLOIDUS NATIVE SCHEDULER</span>
-                <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">UPSTREAM PR #3845 &rarr;</a>
-              </div>
-              <h3 class="product-name">scx_intent</h3>
-              <div class="product-tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</div>
-              <p class="product-desc">
-                Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Linux 6.12+ Compatible</span>
-                <span class="tag-pill emerald">Pure in-Kernel eBPF</span>
-                <span class="tag-pill">5 Dedicated DSQs</span>
-                <span class="tag-pill">Anti-Starvation Watchdog</span>
-                <span class="tag-pill">Exploidus Native</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>scx_intent --preset desktop --starvation-threshold 64</code>
-              <button class="copy-btn" onclick="copyCode(this, 'scx_intent --preset desktop --starvation-threshold 64')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 3: XDP-GUARD -->
-          <div class="product-card" id="xdp-guard">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">HIGH-SPEED CYBER DEFENSE</span>
-                <a href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--rose); text-decoration: underline;">v0.4.0 ON CRATES.IO &rarr;</a>
-              </div>
-              <h3 class="product-name">xdp-guard</h3>
-              <div class="product-tagline">100 Gbps Line-Rate Driver-Hook eBPF DDoS Shield</div>
-              <p class="product-desc">
-                High-performance eBPF network defense engine running directly at the network interface card driver DMA layer. Evaluates SYN flood patterns, oversized UDP amplification vectors, and malicious traffic within 80 nanoseconds. Drops invalid packets before Linux socket memory allocation takes place, protecting host operating systems from resource exhaustion.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Line-Rate 100 Gbps</span>
-                <span class="tag-pill emerald">Aya Rust Framework</span>
-                <span class="tag-pill">Prometheus Exporter</span>
-                <span class="tag-pill">Kubernetes DaemonSet</span>
-                <span class="tag-pill">Zenodo DOI: 10.5281/zenodo.23120995</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>xdp-guard --iface eth0 --mode drv --rules /etc/xdp/</code>
-              <button class="copy-btn" onclick="copyCode(this, 'xdp-guard --iface eth0 --mode drv --rules /etc/xdp/')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 4: EXPLOIDUS -->
-          <div class="product-card" id="exploidus">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">SOVEREIGN OPERATING SYSTEM</span>
-                <a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">GITHUB CORE &rarr;</a>
-              </div>
-              <h3 class="product-name">Exploidus</h3>
-              <div class="product-tagline">Security-Oriented Experimental Operating System in C</div>
-              <p class="product-desc">
-                Sovereign experimental operating system developed from hardware reset in ANSI C and assembly. Features custom boot stages, protected-mode segmentation, kernel memory allocators, hardware interrupt handlers, and strict memory isolation boundaries between kernel space and user processes.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">x86 Architecture</span>
-                <span class="tag-pill emerald">Pure ANSI C</span>
-                <span class="tag-pill">Kernel Memory</span>
-                <span class="tag-pill">Hardware Isolation</span>
-                <span class="tag-pill">Custom Boot Loader</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>git clone https://github.com/rahadbhuiya/Exploidus.git</code>
-              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/rahadbhuiya/Exploidus.git')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 5: BROWSER_ENGINE -->
-          <div class="product-card" id="browser_engine">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">SOVEREIGN WEB RUNTIME</span>
-                <a href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">GITHUB CORE &rarr;</a>
-              </div>
-              <h3 class="product-name">browser_engine</h3>
-              <div class="product-tagline">Modular Memory-Safe Web Rendering Engine in Pure Rust</div>
-              <p class="product-desc">
-                High-performance web browser engine built from first principles in Rust. Implements an explicit document object model tree, a CSSOM style cascade resolver, RFC 6265 cookie state machine, and a hardware-accelerated GPU compositor using wgpu. Designed for isolated embedded web views, secure sandboxed execution, and kernel-audited HTTP networking.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Pure Rust</span>
-                <span class="tag-pill emerald">Custom DOM &amp; CSSOM</span>
-                <span class="tag-pill">wgpu Hardware Compositor</span>
-                <span class="tag-pill">Embedded Web Runtime</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>git clone https://github.com/rahadbhuiya/browser_engine.git</code>
-              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/rahadbhuiya/browser_engine.git')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 6: YOLISH -->
-          <div class="product-card" id="yolish">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">PROGRAMMING SYSTEMS</span>
-                <a href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-decoration: underline;">GITHUB CORE &rarr;</a>
-              </div>
-              <h3 class="product-name">Yolish</h3>
-              <div class="product-tagline">Custom Interpreted Systems Language and AST Runtime in Pure C</div>
-              <p class="product-desc">
-                Lightweight, security-oriented programming language designed and implemented from scratch in ANSI C. Features an independent tokenizer, recursive-descent grammar parser, and an abstract syntax tree evaluator. Powers native security audit automation scripts and systems verification tools with minimal memory footprints.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Pure ANSI C</span>
-                <span class="tag-pill emerald">Handwritten Lexer &amp; Parser</span>
-                <span class="tag-pill">AST Evaluation Engine</span>
-                <span class="tag-pill">Security Audit Runtime</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>git clone https://github.com/rahadbhuiya/Yolish.git</code>
-              <button class="copy-btn" onclick="copyCode(this, 'git clone https://github.com/rahadbhuiya/Yolish.git')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 7: HUDDLECLUSTER -->
-          <div class="product-card" id="huddlecluster">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">BIO-MIMETIC CLUSTERING</span>
-                <a href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">GITHUB &amp; 2x DOI &rarr;</a>
-              </div>
-              <h3 class="product-name">HuddleCluster</h3>
-              <div class="product-tagline">Thermal-Aware Self-Organizing Distributed Balancer</div>
-              <p class="product-desc">
-                Bio-mimetic thermodynamic workload balancer modeling core-to-periphery heat redistribution physics. Automatically balances high-throughput request flows away from thermally saturated compute nodes. Features self-healing peer gossip discovery without single points of failure.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Biomimetic Thermodynamics</span>
-                <span class="tag-pill emerald">Peer Gossip Mesh</span>
-                <span class="tag-pill">PyPI Published</span>
-                <span class="tag-pill">Zenodo DOI: 10.5281/zenodo.20348019</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>pip install huddle-cluster</code>
-              <button class="copy-btn" onclick="copyCode(this, 'pip install huddle-cluster')">Copy</button>
-            </div>
-          </div>
-
-          <!-- CARD 8: CNSL -->
-          <div class="product-card" id="cnsl">
-            <div class="product-top">
-              <div class="product-category">
-                <span class="cat-badge">THREAT INTELLIGENCE</span>
-                <a href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 12px; color: var(--emerald); text-decoration: underline;">GITHUB &amp; PYPI &rarr;</a>
-              </div>
-              <h3 class="product-name">cnsl</h3>
-              <div class="product-tagline">Correlated Network Security Layer and Incident Automation</div>
-              <p class="product-desc">
-                Lightweight, self-hosted security log intelligence and cross-vector correlation engine. Tracks multi-stage attack velocity across distributed services, ingests high-volume Kafka event topics, and executes automated host-level firewall quarantines before systemic lateral breach occurs.
-              </p>
-              <div class="card-tags">
-                <span class="tag-pill cyan">Cross-Vector Correlation</span>
-                <span class="tag-pill emerald">Apache Kafka Streams</span>
-                <span class="tag-pill">Automated Firewall Quarantine</span>
-                <span class="tag-pill">PyPI Published</span>
-              </div>
-            </div>
-            <div class="code-box">
-              <code>pip install &quot;cnsl[full]&quot;</code>
-              <button class="copy-btn" onclick="copyCode(this, 'pip install &quot;cnsl[full]&quot;')">Copy</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTERACTIVE SYSTEM TOPOLOGY ARCHITECTURE -->
-    <section class="section" id="architecture" style="background: rgba(13, 16, 23, 0.4);">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">System Blueprints</span>
-          <h2 class="section-title">The Unified Exploidus Pipeline</h2>
-          <p class="section-desc">
-            How Exploidus modules integrate from the physical network wire up to autonomous aerospace control loops. Click any tier to inspect its technical specification.
-          </p>
-        </div>
-
-        <div class="arch-container">
-          <div class="arch-flow">
-            <div class="arch-node active" onclick="selectArch(0)">
-              <div class="arch-node-step">01 // INGRESS WIRE</div>
-              <h4 class="arch-node-title">XDP-Guard</h4>
-              <p class="arch-node-desc">NIC Driver DMA hook. Filters 100Gbps SYN/UDP floods in under 100ns.</p>
-            </div>
-            <div class="arch-node" onclick="selectArch(1)">
-              <div class="arch-node-step">02 // CLUSTER MESH</div>
-              <h4 class="arch-node-title">HuddleCluster</h4>
-              <p class="arch-node-desc">Thermal equilibrium balancing. Distributes load across healthy node topology.</p>
-            </div>
-            <div class="arch-node" onclick="selectArch(2)">
-              <div class="arch-node-step">03 // KERNEL RUNTIME</div>
-              <h4 class="arch-node-title">scx_intent</h4>
-              <p class="arch-node-desc">Preemptive eBPF scheduling across 5 DSQs. Zero starvation on critical threads.</p>
-            </div>
-            <div class="arch-node" onclick="selectArch(3)">
-              <div class="arch-node-step">04 // SENSOR LOOP</div>
-              <h4 class="arch-node-title">Aegis-Filter</h4>
-              <p class="arch-node-desc">4.07 ns zero-allocation Kalman/UKF. Guarantees deterministic state convergence.</p>
-            </div>
-          </div>
-
-          <div class="arch-details" id="archDetailBox">
-            <span style="color: var(--cyan); font-weight: 700;">SPECIFICATION // TIER 01: XDP-GUARD DRIVER HOOK</span><br>
-            Hook location: <span style="color: #fff;">XDP_DRV (Direct Network Interface Card DMA buffer)</span><br>
-            Action: Evaluates SYN cookies, ACK flood patterns, and reflection signatures via eBPF BPF_MAP_TYPE_LRU_HASH.<br>
-            Return: Emits XDP_DROP instantly, preventing Linux sk_buff memory allocations under volumetric attack.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESEARCH & ACADEMIC CREDENTIALS -->
-    <section class="section" id="research">
-      <div class="container">
-        <div class="research-card">
-          <div>
-            <div class="research-meta">PEER-REVIEWED PUBLICATION &amp; OPEN SCIENCE</div>
-            <h3 class="research-title">Bio-Mimetic Load Balancing Under Extreme Thermal Constraints</h3>
-            <p class="research-desc">
-              Authored by Rahad Bhuiya, this research presents an adaptive mathematical model for node clustering based on thermodynamics in extreme environments. Indexed on both Zenodo and figshare with permanent Digital Object Identifiers, cross-listed across global scholarly databases.
-            </p>
-            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-              <a href="https://github.com/Exploidus/cfs-adversarial-testbed/releases/tag/v0.1.0" target="_blank" rel="noopener" class="btn btn-secondary">
-                NASA cFS Security Contract v0.1 &rarr;
-              </a>
-              <a href="https://github.com/Exploidus/cfs-on-exploidus/releases/tag/v0.3.0" target="_blank" rel="noopener" class="btn btn-secondary">
-                cFS Exploidus Port v0.3.0 &rarr;
-              </a>
-              <a href="https://doi.org/10.5281/zenodo.20348019" target="_blank" rel="noopener" class="btn btn-secondary">
-                HuddleCluster Zenodo &rarr;
-              </a>
-              <a href="https://doi.org/10.6084/m9.figshare.32397180" target="_blank" rel="noopener" class="btn btn-secondary">
-                figshare DOI &rarr;
-              </a>
-              <a href="https://doi.org/10.5281/zenodo.23120995" target="_blank" rel="noopener" class="btn btn-secondary">
-                XDP-Guard Zenodo &rarr;
-              </a>
-              <a href="https://pypi.org/project/huddle-cluster/" target="_blank" rel="noopener" class="btn btn-secondary">
-                PyPI Release &rarr;
-              </a>
-            </div>
-          </div>
-
-          <div style="background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 8px; padding: 20px; font-family: var(--font-mono); font-size: 12px; max-height: 380px; overflow-y: auto;">
-            <div style="color: var(--emerald); margin-bottom: 8px;">// CITATIONS</div>
-            <div style="color: var(--text-muted); line-height: 1.8;">
-              @software{bhuiya_2025_huddle,<br>
-              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
-              &nbsp;&nbsp;title = {HuddleCluster},<br>
-              &nbsp;&nbsp;year = {2025},<br>
-              &nbsp;&nbsp;url = {https://github.com/rahadbhuiya/HuddleCluster}<br>
-              }<br><br>
-              @software{bhuiya_2026_zenodo,<br>
-              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
-              &nbsp;&nbsp;title = {HuddleCluster},<br>
-              &nbsp;&nbsp;doi = {10.5281/zenodo.20348019},<br>
-              &nbsp;&nbsp;year = {2026}<br>
-              }<br><br>
-              @article{bhuiya_2026_figshare,<br>
-              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
-              &nbsp;&nbsp;title = {HuddleCluster},<br>
-              &nbsp;&nbsp;doi = {10.6084/m9.figshare.32397180},<br>
-              &nbsp;&nbsp;year = {2026}<br>
-              }<br><br>
-              @software{bhuiya_xdp_guard_2026,<br>
-              &nbsp;&nbsp;author = {Bhuiya, Rahad},<br>
-              &nbsp;&nbsp;title = {xdp-guard: Memory-Safe In-Kernel XDP Firewall &amp; Per-IP Rate Limiter in Pure Rust},<br>
-              &nbsp;&nbsp;month = {oct},<br>
-              &nbsp;&nbsp;year = {2026},<br>
-              &nbsp;&nbsp;publisher = {Zenodo},<br>
-              &nbsp;&nbsp;version = {v0.1.0},<br>
-              &nbsp;&nbsp;doi = {10.5281/zenodo.23120995}<br>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMERCIAL & LICENSING MODEL -->
-    <section class="section" id="licensing">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Enterprise Engagement</span>
-          <h2 class="section-title">Open Core &amp; Commercial Pilots</h2>
-          <p class="section-desc">
-            We provide permissive open-source foundations alongside bespoke engineering, mission certifications, and dedicated enterprise SLAs.
-          </p>
-        </div>
-
-        <div class="pricing-grid">
-          <!-- TIER 1 -->
-          <div class="pricing-card">
-            <div class="pricing-tier">COMMUNITY EDITION</div>
-            <h3 class="pricing-title">Open Core</h3>
-            <p class="pricing-target">For independent researchers, systems engineers, and open-source contributors.</p>
-            <div class="card-tags" style="margin-bottom: 30px;">
-                <span class="tag-pill cyan">Permissive MIT &amp; Apache 2.0</span>
-                <span class="tag-pill emerald">Full GitHub Source Access</span>
-                <span class="tag-pill">Community Issue Tracking</span>
-                <span class="tag-pill">Public Benchmarks</span>
-              </div>
-            <a href="https://github.com/Exploidus" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%;">Access Repositories</a>
-          </div>
-
-          <!-- TIER 2 -->
-          <div class="pricing-card highlight">
-            <div class="pricing-tier" style="color: var(--cyan);">COMMERCIAL ENTERPRISE</div>
-            <h3 class="pricing-title">Enterprise Fleet</h3>
-            <p class="pricing-target">For data centers, cloud providers, and mission-critical network operators.</p>
-            <div class="card-tags" style="margin-bottom: 30px;">
-                <span class="tag-pill cyan">High-Availability 24/7 SLA</span>
-                <span class="tag-pill emerald">Custom eBPF Rulesets</span>
-                <span class="tag-pill">Enterprise Kubernetes Helm</span>
-                <span class="tag-pill">Kernel Porting &amp; Optimization</span>
-              </div>
-            <button onclick="openPilotModal('Enterprise Fleet')" class="btn btn-primary" style="width: 100%;">Request Fleet Pilot</button>
-          </div>
-
-          <!-- TIER 3 -->
-          <div class="pricing-card">
-            <div class="pricing-tier">DEFENSE &amp; AEROSPACE</div>
-            <h3 class="pricing-title">Mission GNC</h3>
-            <p class="pricing-target">For aerospace contractors, defense agencies, and autonomous robotics fleets.</p>
-            <div class="card-tags" style="margin-bottom: 30px;">
-                <span class="tag-pill cyan">DO-178C Verification Data</span>
-                <span class="tag-pill emerald">NASA F Prime Integration</span>
-                <span class="tag-pill">Hardware-in-the-Loop Tuning</span>
-                <span class="tag-pill">Principal Architect Advisory</span>
-              </div>
-            <button onclick="openPilotModal('Aerospace & Defense Mission')" class="btn btn-secondary" style="width: 100%;">Contact Principal Architect</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPANY & INSTITUTIONAL LAB -->
-    <section class="section" id="company" style="background: rgba(13, 16, 23, 0.4);">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Corporate Governance &amp; Research</span>
-          <h2 class="section-title">About Exploidus Labs</h2>
-          <p class="section-desc">
-            Exploidus is a sovereign deep-technology engineering organization dedicated to building deterministic computing foundations from the silicon up. We develop mission-critical aerospace mathematics, line-rate in-kernel cyber defense, and sovereign operating system runtimes.
-          </p>
-        </div>
-
-        <div class="company-grid">
-          <!-- PILLAR 1: MISSION & HERITAGE -->
-          <div class="company-card">
+        <div class="caps">
+          <article class="cap rv">
+            <span class="flag">FEATURED</span>
+            <div class="cap-n">01</div>
             <div>
-              <div class="company-badge">ENGINEERING MANDATE</div>
-              <h3 class="company-heading">Deterministic Integrity from Silicon to Orbit</h3>
-              <p class="company-text">
-                Modern enterprise and defense computing stacks are saturated with unpredictable latency spikes, unvetted dynamic allocations, and bloated abstraction layers. Exploidus operates on a first-principles mandate: software controlling flight computers, physical network wires, and CPU scheduling must be deterministic, zero-heap, and mathematically proven.
-              </p>
-              <div class="card-tags" style="margin-top: 20px;">
-                <span class="tag-pill cyan">Pure #![no_std]</span>
-                <span class="tag-pill emerald">Zero Heap Allocation</span>
-                <span class="tag-pill">DO-178C Pre-Audit</span>
-                <span class="tag-pill">Sovereign Architecture</span>
-              </div>
+              <span class="lbl">Aerospace, Defense &amp; Autonomous UAVs</span>
+              <h3>Mission GNC &amp; Flight Software Integration</h3>
             </div>
-            <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
-              <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);">Core Research Focus: Aerospace GNC, eBPF Wire-Speed Filtering, Preemptive Scheduling</span>
+            <div>
+              <p>Custom state estimation architectures engineered under strict zero-heap constraints. We adapt our 4.07 ns Joseph-stabilized filtering algorithms to your proprietary IMU, Barometer, and LiDAR sensor suites to prevent divergence during GPS-denied navigation. DO-178C pre-audit architecture ready for flight computers across ARM Cortex-M, RISC-V, and RTEMS.</p>
+              <div class="tags"><span class="tag a">Zero-Allocation #![no_std]</span><span class="tag ok">4.07 ns Sensor Loop</span><span class="tag">DO-178C Pre-Audit</span><span class="tag">GPS-Denied Resiliency</span></div>
+              <button class="btn pri" type="button" data-pilot="aegis">Consult on Flight Integration <i class="arr"></i></button>
             </div>
+          </article>
+
+          <article class="cap rv">
+            <div class="cap-n">02</div>
+            <div>
+              <span class="lbl">Datacenters, Cloud Backbones &amp; Fintech</span>
+              <h3>Line-Rate eBPF Ingress &amp; Cyber Defense</h3>
+            </div>
+            <div>
+              <p>High-speed kernel security hooks running directly at network interface card driver DMA rings. Evaluates incoming packet headers and executes XDP_DROP mitigations within 80 nanoseconds, dropping multi-vector SYN floods and UDP amplification traffic before Linux socket buffers or iptables collapse under memory exhaustion.</p>
+              <div class="tags"><span class="tag a">100 Gbps Line-Rate</span><span class="tag ok">Sub-80ns Mitigation</span><span class="tag">NIC Driver Hook</span><span class="tag">Aya Rust Framework</span></div>
+              <button class="btn" type="button" data-pilot="xdp">Consult on Ingress Defense <i class="arr"></i></button>
+            </div>
+          </article>
+
+          <article class="cap rv">
+            <div class="cap-n">03</div>
+            <div>
+              <span class="lbl">HFT Networks, Robotics &amp; Low-Latency Compute</span>
+              <h3>Deterministic Kernel Scheduling &amp; RTOS Tuning</h3>
+            </div>
+            <div>
+              <p>Bespoke Linux CPU schedulers authored using in-kernel eBPF sched-ext architecture. Dynamically partitions execution pipelines across dedicated kernel dispatch queues to isolate time-critical workloads from background compute, eliminating audio buffer underruns, compositor micro-stutter, and priority inversion without multi-cgroup overhead.</p>
+              <div class="tags"><span class="tag a">Linux 6.12+ sched-ext</span><span class="tag ok">5 Isolated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Sub-Microsecond Wakeup</span></div>
+              <button class="btn" type="button" data-pilot="scx">Consult on Scheduler Architecture <i class="arr"></i></button>
+            </div>
+          </article>
+
+          <article class="cap rv">
+            <div class="cap-n">04</div>
+            <div>
+              <span class="lbl">Mission-Critical Systems &amp; Space Flight Frameworks</span>
+              <h3>Deep Systems Auditing &amp; Upstream Patching</h3>
+            </div>
+            <div>
+              <p>Exhaustive edge-case root-cause investigations, memory-safety verification, and protocol standard alignment for mission-critical software. Proven track record identifying and submitting accepted upstream patches to NASA F Prime flight software, Microsoft VS Code core CLI, Subsurface dive models, and the Linux kernel.</p>
+              <div class="tags"><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">CCSDS Protocol Fixes</span><span class="tag">35 Multi-Platform CI Passes</span></div>
+              <a class="btn" href="contributions.html">Review Upstream Case Studies <i class="arr"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="band on-dark rv">
+        <div class="wrap band-grid">
+          <div>
+            <span class="lbl">Proven flight &amp; kernel credentials</span>
+            <h3>Upstream engineering track record</h3>
+            <p>We do not engineer in isolation. Exploidus actively audits, debugs, and submits production patches to foundational software stacks trusted by NASA space missions, Microsoft, Subsurface, and the Linux kernel community.</p>
+            <a class="btn pri" href="contributions.html">Inspect Case Studies <i class="arr"></i></a>
+          </div>
+          <ul class="prs">
+            <li><span>NASA F Prime PR #6226 &amp; #6143</span><span>2× Merged</span></li>
+            <li><span>Microsoft VS Code PR #341565</span><span>Merged</span></li>
+            <li><span>Subsurface PR #5071 &amp; #5055</span><span>Merged</span></li>
+            <li class="rfc"><span>Linux Sched-Ext PR #3845</span><span>RFC</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLATFORMS ============ -->
+    <section class="sec" id="native-systems">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <span class="lbl"><b>§ 02</b> &nbsp;Sovereign Technology Platforms</span>
+          <div>
+            <h2>Proprietary foundations &amp; <em>native</em> platforms</h2>
+            <p>Proprietary Foundations and Sovereign Capabilities Available for Custom Enterprise Integration. Each platform is engineered from first principles, battle-tested in-house, and available for tailored hardware integration, commercial licensing, and mission-critical deployment.</p>
+          </div>
+        </div>
+
+        <div class="chips" role="group" aria-label="Filter platforms">
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All<i>10</i></button>
+          <button class="chip" type="button" data-f="aero" aria-pressed="false">Aerospace<i>3</i></button>
+          <button class="chip" type="button" data-f="kernel" aria-pressed="false">Kernel &amp; Network<i>3</i></button>
+          <button class="chip" type="button" data-f="runtime" aria-pressed="false">Runtimes<i>2</i></button>
+          <button class="chip" type="button" data-f="dist" aria-pressed="false">Distributed &amp; Security<i>2</i></button>
+        </div>
+
+        <div class="register">
+          <article class="entry feat" id="cfs-on-exploidus" data-g="aero">
+            <div class="entry-side"><span class="idx">P—01</span><span class="cat">NASA Flight Software Port</span><a class="tlink" href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener">v0.3.0 Qualified <i class="arr"></i></a></div>
+            <div>
+              <h3>cfs-on-exploidus</h3>
+              <p class="tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</p>
+              <p class="d">Mission-qualified native Exploidus OS port of the NASA Core Flight Executive (cFE) and Core Flight System (cFS). Features capability-gated Software Bus routing, microsecond-accurate MET/TAI/UTC mission clocks, atomic double-buffered parameter hot-reloading (TBL), deterministic 100Hz scheduler dispatch (SCH), and autonomous Single Event Upset (SEU) bit-flip containment. Fully qualified across Milestones 1, 2, and 3.</p>
+              <div class="tags"><span class="tag a">NASA cFS Stack</span><span class="tag ok">BLAKE3 Capability Gate</span><span class="tag">Atomic TBL Hot-Reload</span><span class="tag">SEU Bit-Flip Isolation</span><span class="tag">Zero Kernel Panic</span></div>
+              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-on-exploidus.git &amp;&amp; ./run_demo.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-on-exploidus.git && ./run_demo.sh">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="cfs-adversarial-testbed" data-g="aero">
+            <div class="entry-side"><span class="idx">P—02</span><span class="cat">Zero-Trust Mission Assurance</span><a class="tlink" href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener">v0.1.0 Baseline <i class="arr"></i></a></div>
+            <div>
+              <h3>cfs-adversarial-testbed</h3>
+              <p class="tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</p>
+              <p class="d">Freestanding eBPF security testbed and formal invariant contract for the NASA Core Flight System. Implements non-intrusive tracepoint observation, 4-tier effect completion verification (invocation to destination state transition), decoupled ringbuffer accounting, and anti-replay protection. Co-reviewed and baselined under NASA cFS Community RFCs.</p>
+              <div class="tags"><span class="tag a">6 Formal Invariants</span><span class="tag ok">eBPF Kernel Probes</span><span class="tag">Decoupled Ringbuffer</span><span class="tag">Adversarial Injection</span><span class="tag">NASA cFS RFC #1168</span></div>
+              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-adversarial-testbed.git &amp;&amp; ./run_tests.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-adversarial-testbed.git && ./run_tests.sh">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry feat" id="aegis-filter" data-g="aero">
+            <div class="entry-side"><span class="idx">P—03</span><span class="cat">Aerospace GNC &amp; Robotics</span><a class="tlink" href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">v0.4.0 Verified <i class="arr"></i></a></div>
+            <div>
+              <h3>aegis-filter</h3>
+              <p class="tagline">4.07 ns Zero-Allocation State Estimation and Fault Isolation</p>
+              <p class="d">High-integrity state estimation engine implementing Unscented Kalman Filtering, continuous-discrete extended filters, and Joseph-form covariance stabilization in pure Rust. Built under strict zero-heap constraints to eliminate dynamic allocations and page faults in critical flight control loops. Includes multi-sensor fault detection, divergence isolation, and fail-closed innovation gating.</p>
+              <div class="tags"><span class="tag a">4.07 ns Latency</span><span class="tag ok">Pure #![no_std]</span><span class="tag">Joseph Covariance</span><span class="tag">DO-178C Architecture</span><span class="tag">NASA F Prime Adapter</span></div>
+              <div class="cmd"><code>cargo add aegis-filter --no-default-features</code><button type="button" data-copy="cargo add aegis-filter --no-default-features">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="scx_intent" data-g="kernel">
+            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">Upstream PR #3845 <i class="arr"></i></a></div>
+            <div>
+              <h3>scx_intent</h3>
+              <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
+              <p class="d">Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.</p>
+              <div class="tags"><span class="tag a">Linux 6.12+ Compatible</span><span class="tag ok">Pure in-Kernel eBPF</span><span class="tag">5 Dedicated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Exploidus Native</span></div>
+              <div class="cmd"><code>scx_intent --preset desktop --starvation-threshold 64</code><button type="button" data-copy="scx_intent --preset desktop --starvation-threshold 64">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="xdp-guard" data-g="kernel">
+            <div class="entry-side"><span class="idx">P—05</span><span class="cat">High-Speed Cyber Defense</span><a class="tlink" href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener">v0.4.0 on Crates.io <i class="arr"></i></a></div>
+            <div>
+              <h3>xdp-guard</h3>
+              <p class="tagline">100 Gbps Line-Rate Driver-Hook eBPF DDoS Shield</p>
+              <p class="d">High-performance eBPF network defense engine running directly at the network interface card driver DMA layer. Evaluates SYN flood patterns, oversized UDP amplification vectors, and malicious traffic within 80 nanoseconds. Drops invalid packets before Linux socket memory allocation takes place, protecting host operating systems from resource exhaustion.</p>
+              <div class="tags"><span class="tag a">Line-Rate 100 Gbps</span><span class="tag ok">Aya Rust Framework</span><span class="tag">Prometheus Exporter</span><span class="tag">Kubernetes DaemonSet</span><span class="tag">Zenodo DOI: 10.5281/zenodo.23120995</span></div>
+              <div class="cmd"><code>xdp-guard --iface eth0 --mode drv --rules /etc/xdp/</code><button type="button" data-copy="xdp-guard --iface eth0 --mode drv --rules /etc/xdp/">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="exploidus" data-g="kernel">
+            <div class="entry-side"><span class="idx">P—06</span><span class="cat">Sovereign Operating System</span><a class="tlink" href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">GitHub Core <i class="arr"></i></a></div>
+            <div>
+              <h3>Exploidus</h3>
+              <p class="tagline">Security-Oriented Experimental Operating System in C</p>
+              <p class="d">Sovereign experimental operating system developed from hardware reset in ANSI C and assembly. Features custom boot stages, protected-mode segmentation, kernel memory allocators, hardware interrupt handlers, and strict memory isolation boundaries between kernel space and user processes.</p>
+              <div class="tags"><span class="tag a">x86 Architecture</span><span class="tag ok">Pure ANSI C</span><span class="tag">Kernel Memory</span><span class="tag">Hardware Isolation</span><span class="tag">Custom Boot Loader</span></div>
+              <div class="cmd"><code>git clone https://github.com/rahadbhuiya/Exploidus.git</code><button type="button" data-copy="git clone https://github.com/rahadbhuiya/Exploidus.git">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="browser_engine" data-g="runtime">
+            <div class="entry-side"><span class="idx">P—07</span><span class="cat">Sovereign Web Runtime</span><a class="tlink" href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">GitHub Core <i class="arr"></i></a></div>
+            <div>
+              <h3>browser_engine</h3>
+              <p class="tagline">Modular Memory-Safe Web Rendering Engine in Pure Rust</p>
+              <p class="d">High-performance web browser engine built from first principles in Rust. Implements an explicit document object model tree, a CSSOM style cascade resolver, RFC 6265 cookie state machine, and a hardware-accelerated GPU compositor using wgpu. Designed for isolated embedded web views, secure sandboxed execution, and kernel-audited HTTP networking.</p>
+              <div class="tags"><span class="tag a">Pure Rust</span><span class="tag ok">Custom DOM &amp; CSSOM</span><span class="tag">wgpu Hardware Compositor</span><span class="tag">Embedded Web Runtime</span></div>
+              <div class="cmd"><code>git clone https://github.com/rahadbhuiya/browser_engine.git</code><button type="button" data-copy="git clone https://github.com/rahadbhuiya/browser_engine.git">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="yolish" data-g="runtime">
+            <div class="entry-side"><span class="idx">P—08</span><span class="cat">Programming Systems</span><a class="tlink" href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">GitHub Core <i class="arr"></i></a></div>
+            <div>
+              <h3>Yolish</h3>
+              <p class="tagline">Custom Interpreted Systems Language and AST Runtime in Pure C</p>
+              <p class="d">Lightweight, security-oriented programming language designed and implemented from scratch in ANSI C. Features an independent tokenizer, recursive-descent grammar parser, and an abstract syntax tree evaluator. Powers native security audit automation scripts and systems verification tools with minimal memory footprints.</p>
+              <div class="tags"><span class="tag a">Pure ANSI C</span><span class="tag ok">Handwritten Lexer &amp; Parser</span><span class="tag">AST Evaluation Engine</span><span class="tag">Security Audit Runtime</span></div>
+              <div class="cmd"><code>git clone https://github.com/rahadbhuiya/Yolish.git</code><button type="button" data-copy="git clone https://github.com/rahadbhuiya/Yolish.git">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="huddlecluster" data-g="dist">
+            <div class="entry-side"><span class="idx">P—09</span><span class="cat">Bio-Mimetic Clustering</span><a class="tlink" href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">GitHub &amp; 2x DOI <i class="arr"></i></a></div>
+            <div>
+              <h3>HuddleCluster</h3>
+              <p class="tagline">Thermal-Aware Self-Organizing Distributed Balancer</p>
+              <p class="d">Bio-mimetic thermodynamic workload balancer modeling core-to-periphery heat redistribution physics. Automatically balances high-throughput request flows away from thermally saturated compute nodes. Features self-healing peer gossip discovery without single points of failure.</p>
+              <div class="tags"><span class="tag a">Biomimetic Thermodynamics</span><span class="tag ok">Peer Gossip Mesh</span><span class="tag">PyPI Published</span><span class="tag">Zenodo DOI: 10.5281/zenodo.20348019</span></div>
+              <div class="cmd"><code>pip install huddle-cluster</code><button type="button" data-copy="pip install huddle-cluster">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="cnsl" data-g="dist">
+            <div class="entry-side"><span class="idx">P—10</span><span class="cat">Threat Intelligence</span><a class="tlink" href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">GitHub &amp; PyPI <i class="arr"></i></a></div>
+            <div>
+              <h3>cnsl</h3>
+              <p class="tagline">Correlated Network Security Layer and Incident Automation</p>
+              <p class="d">Lightweight, self-hosted security log intelligence and cross-vector correlation engine. Tracks multi-stage attack velocity across distributed services, ingests high-volume Kafka event topics, and executes automated host-level firewall quarantines before systemic lateral breach occurs.</p>
+              <div class="tags"><span class="tag a">Cross-Vector Correlation</span><span class="tag ok">Apache Kafka Streams</span><span class="tag">Automated Firewall Quarantine</span><span class="tag">PyPI Published</span></div>
+              <div class="cmd"><code>pip install "cnsl[full]"</code><button type="button" data-copy='pip install "cnsl[full]"'>Copy</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARCHITECTURE ============ -->
+    <section class="sec alt" id="architecture">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <span class="lbl"><b>§ 03</b> &nbsp;System Blueprints</span>
+          <div>
+            <h2>The unified <em>Exploidus</em> pipeline</h2>
+            <p>How Exploidus modules integrate from the physical network wire up to autonomous aerospace control loops. Select any tier to inspect its technical specification.</p>
+          </div>
+        </div>
+
+        <div class="pipe rv" role="tablist" aria-label="Pipeline tiers">
+          <button class="stage" role="tab" id="arch-0" aria-selected="true" aria-controls="archPanel" type="button"><span class="dot">01</span><span class="txt"><span class="st">Ingress wire</span><br><strong>XDP-Guard</strong><br><span class="sd">NIC Driver DMA hook. Filters 100Gbps SYN/UDP floods in under 100ns.</span></span></button>
+          <button class="stage" role="tab" id="arch-1" aria-selected="false" aria-controls="archPanel" type="button" tabindex="-1"><span class="dot">02</span><span class="txt"><span class="st">Cluster mesh</span><br><strong>HuddleCluster</strong><br><span class="sd">Thermal equilibrium balancing. Distributes load across healthy node topology.</span></span></button>
+          <button class="stage" role="tab" id="arch-2" aria-selected="false" aria-controls="archPanel" type="button" tabindex="-1"><span class="dot">03</span><span class="txt"><span class="st">Kernel runtime</span><br><strong>scx_intent</strong><br><span class="sd">Preemptive eBPF scheduling across 5 DSQs. Zero starvation on critical threads.</span></span></button>
+          <button class="stage" role="tab" id="arch-3" aria-selected="false" aria-controls="archPanel" type="button" tabindex="-1"><span class="dot">04</span><span class="txt"><span class="st">Sensor loop</span><br><strong>Aegis-Filter</strong><br><span class="sd">4.07 ns zero-allocation Kalman/UKF. Guarantees deterministic state convergence.</span></span></button>
+        </div>
+
+        <div class="spec" id="archPanel" role="tabpanel" aria-labelledby="arch-0" aria-live="polite">
+          <div><span class="lbl">Specification // Tier 01</span><h4>XDP-Guard driver hook</h4></div>
+          <dl>
+            <dt>Hook location</dt><dd>XDP_DRV (Direct Network Interface Card DMA buffer)</dd>
+            <dt>Action</dt><dd>Evaluates SYN cookies, ACK flood patterns, and reflection signatures via eBPF LRU hash maps.</dd>
+            <dt>Return</dt><dd>Emits XDP_DROP instantly (&lt;100 ns), preventing Linux sk_buff memory allocations under volumetric attack.</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="sec" id="research">
+      <div class="wrap res">
+        <div class="rv">
+          <span class="lbl k">Peer-reviewed publication &amp; open science</span>
+          <h3>Bio-mimetic load balancing under extreme thermal constraints</h3>
+          <p>Authored by Rahad Bhuiya, this research presents an adaptive mathematical model for node clustering based on thermodynamics in extreme environments. Indexed on both Zenodo and figshare with permanent Digital Object Identifiers, cross-listed across global scholarly databases.</p>
+          <ul class="rlinks">
+            <li><a href="https://github.com/Exploidus/cfs-adversarial-testbed/releases/tag/v0.1.0" target="_blank" rel="noopener">NASA cFS Security Contract v0.1 <i class="arr"></i></a></li>
+            <li><a href="https://github.com/Exploidus/cfs-on-exploidus/releases/tag/v0.3.0" target="_blank" rel="noopener">cFS Exploidus Port v0.3.0 <i class="arr"></i></a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.20348019" target="_blank" rel="noopener">HuddleCluster Zenodo <i class="arr"></i></a></li>
+            <li><a href="https://doi.org/10.6084/m9.figshare.32397180" target="_blank" rel="noopener">figshare DOI <i class="arr"></i></a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.23120995" target="_blank" rel="noopener">XDP-Guard Zenodo <i class="arr"></i></a></li>
+            <li><a href="https://pypi.org/project/huddle-cluster/" target="_blank" rel="noopener">PyPI Release <i class="arr"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="bib rv">
+          <div class="bib-h"><span class="lbl">// Citations · BibTeX</span><button type="button" data-copy-from="#bibtex">Copy</button></div>
+<pre id="bibtex">@software{bhuiya_2025_huddle,
+  author = {Bhuiya, Rahad},
+  title = {HuddleCluster},
+  year = {2025},
+  url = {https://github.com/rahadbhuiya/HuddleCluster}
+}
+
+@software{bhuiya_2026_zenodo,
+  author = {Bhuiya, Rahad},
+  title = {HuddleCluster},
+  doi = {10.5281/zenodo.20348019},
+  year = {2026}
+}
+
+@article{bhuiya_2026_figshare,
+  author = {Bhuiya, Rahad},
+  title = {HuddleCluster},
+  doi = {10.6084/m9.figshare.32397180},
+  year = {2026}
+}
+
+@software{bhuiya_xdp_guard_2026,
+  author = {Bhuiya, Rahad},
+  title = {xdp-guard: Memory-Safe In-Kernel XDP Firewall &amp; Per-IP Rate Limiter in Pure Rust},
+  month = {oct},
+  year = {2026},
+  publisher = {Zenodo},
+  version = {v0.1.0},
+  doi = {10.5281/zenodo.23120995}
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LICENSING ============ -->
+    <section class="sec alt" id="licensing">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <span class="lbl"><b>§ 04</b> &nbsp;Enterprise Engagement</span>
+          <div>
+            <h2>Open core &amp; <em>commercial</em> pilots</h2>
+            <p>We provide permissive open-source foundations alongside bespoke engineering, mission certifications, and dedicated enterprise SLAs.</p>
+          </div>
+        </div>
+
+        <div class="plans rv">
+          <div class="plan">
+            <span class="lbl">Community edition</span>
+            <h3>Open Core</h3>
+            <p class="tg">For independent researchers, systems engineers, and open-source contributors.</p>
+            <div class="tags"><span class="tag a">Permissive MIT &amp; Apache 2.0</span><span class="tag ok">Full GitHub Source Access</span><span class="tag">Community Issue Tracking</span><span class="tag">Public Benchmarks</span></div>
+            <a class="btn block" href="https://github.com/Exploidus" target="_blank" rel="noopener">Access Repositories <i class="arr ne"></i></a>
+          </div>
+          <div class="plan hl">
+            <span class="lbl">Commercial enterprise</span>
+            <h3>Enterprise Fleet</h3>
+            <p class="tg">For data centers, cloud providers, and mission-critical network operators.</p>
+            <div class="tags"><span class="tag a">High-Availability 24/7 SLA</span><span class="tag ok">Custom eBPF Rulesets</span><span class="tag">Enterprise Kubernetes Helm</span><span class="tag">Kernel Porting &amp; Optimization</span></div>
+            <button class="btn block" type="button" data-pilot="xdp">Request Fleet Pilot <i class="arr"></i></button>
+          </div>
+          <div class="plan">
+            <span class="lbl">Defense &amp; aerospace</span>
+            <h3>Mission GNC</h3>
+            <p class="tg">For aerospace contractors, defense agencies, and autonomous robotics fleets.</p>
+            <div class="tags"><span class="tag a">DO-178C Verification Data</span><span class="tag ok">NASA F Prime Integration</span><span class="tag">Hardware-in-the-Loop Tuning</span><span class="tag">Principal Architect Advisory</span></div>
+            <button class="btn block" type="button" data-pilot="aegis">Contact Principal Architect <i class="arr"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPANY ============ -->
+    <section class="sec" id="company">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <span class="lbl"><b>§ 05</b> &nbsp;Corporate Governance &amp; Research</span>
+          <div>
+            <h2>About Exploidus <em>Labs</em></h2>
+            <p>Exploidus is a sovereign deep-technology engineering organization dedicated to building deterministic computing foundations from the silicon up. We develop mission-critical aerospace mathematics, line-rate in-kernel cyber defense, and sovereign operating system runtimes.</p>
+          </div>
+        </div>
+
+        <div class="co">
+          <div class="rv">
+            <span class="lbl">Engineering mandate</span>
+            <p class="quote">Deterministic integrity <em>from silicon to orbit.</em></p>
+            <p>Modern enterprise and defense computing stacks are saturated with unpredictable latency spikes, unvetted dynamic allocations, and bloated abstraction layers. Exploidus operates on a first-principles mandate: software controlling flight computers, physical network wires, and CPU scheduling must be deterministic, zero-heap, and mathematically proven.</p>
+            <div class="tags"><span class="tag a">Pure #![no_std]</span><span class="tag ok">Zero Heap Allocation</span><span class="tag">DO-178C Pre-Audit</span><span class="tag">Sovereign Architecture</span></div>
+            <div class="foc">Core Research Focus: Aerospace GNC, eBPF Wire-Speed Filtering, Preemptive Scheduling</div>
           </div>
 
-          <!-- PILLAR 2: LEADERSHIP & CORE ARCHITECTURE -->
-          <div class="company-card highlight">
-            <div>
-              <div class="company-badge">EXECUTIVE LEADERSHIP</div>
-              <h3 class="company-heading">Principal Architecture</h3>
-              <p class="company-text">
-                Exploidus Labs was founded and is directed by Principal Systems Architect Rahad Bhuiya. Dedicated to low-level kernel development, aerospace state estimation, and eBPF network defense, the lab maintains an active upstream record contributing to NASA Jet Propulsion Laboratory flight software, Microsoft VS Code core CLI, and the Linux kernel.
-              </p>
-              <div class="card-tags" style="margin-top: 20px;">
-                <span class="tag-pill cyan">Principal Architect</span>
-                <span class="tag-pill emerald">NASA F Prime 2x Merged</span>
-                <span class="tag-pill emerald">Microsoft VS Code Merged</span>
-                <span class="tag-pill">Linux Kernel eBPF</span>
-              </div>
-            </div>
-            <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
-              <div>
-                <strong style="color: var(--text); font-size: 14.5px;">Rahad Bhuiya</strong><br>
-                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan);">Principal Systems Architect</span>
-              </div>
-              <div style="display: flex; gap: 10px;">
-                <a href="https://github.com/Exploidus" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 12px; padding: 8px 14px;">
-                  Organization GitHub &rarr;
-                </a>
-                <button onclick="openPilotModal('Corporate Inquiry')" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px;">
-                  Corporate Inquiry &rarr;
-                </button>
-              </div>
+          <div class="person rv">
+            <span class="lbl">Executive leadership</span>
+            <h3>Rahad Bhuiya</h3>
+            <div class="role">Principal Systems Architect</div>
+            <p>Exploidus Labs was founded and is directed by Principal Systems Architect Rahad Bhuiya. Dedicated to low-level kernel development, aerospace state estimation, and eBPF network defense, the lab maintains an active upstream record contributing to NASA Jet Propulsion Laboratory flight software, Microsoft VS Code core CLI, and the Linux kernel.</p>
+            <div class="tags"><span class="tag a">Principal Architect</span><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux Kernel eBPF</span></div>
+            <div class="cta">
+              <a class="btn sm" href="https://github.com/Exploidus" target="_blank" rel="noopener">Organization GitHub <i class="arr ne"></i></a>
+              <button class="btn sm pri" type="button" data-pilot="custom">Corporate Inquiry <i class="arr"></i></button>
             </div>
           </div>
         </div>
@@ -2665,394 +664,79 @@
     </section>
   </main>
 
-  <!-- ENTERPRISE PILOT MODAL -->
-  <div class="modal-overlay" id="pilotModal" onclick="closeModalOnOverlay(event)">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closePilotModal()">&times;</button>
-      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Request Enterprise Pilot</h3>
-      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
-        Connect directly with our engineering team for aerospace GNC contracts, 100Gbps network protection, or kernel scheduler deployments.
-      </p>
-
-      <form onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label class="form-label" for="pilotName">FULL NAME</label>
-          <input type="text" id="pilotName" class="form-input" placeholder="e.g. Dr. Alex Vance" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="pilotOrg">ORGANIZATION / COMPANY</label>
-          <input type="text" id="pilotOrg" class="form-input" placeholder="e.g. Orbital Systems / Cloud Infrastructure Corp" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="pilotEmail">WORK EMAIL</label>
-          <input type="email" id="pilotEmail" class="form-input" placeholder="alex@organization.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="pilotDivision">DOMAIN OF INTEREST</label>
-          <select id="pilotDivision" class="form-select">
-            <option value="aegis">Aegis-Filter (Aerospace / Autonomous GNC)</option>
-            <option value="scx">scx_intent (Linux Kernel CPU Scheduling)</option>
-            <option value="xdp">XDP-Guard (100Gbps Line-Rate DDoS Defense)</option>
-            <option value="huddle">HuddleCluster (Bio-Mimetic Load Balancer)</option>
-            <option value="custom">Custom High-Integrity Defense Contract</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="pilotMsg">MISSION OBJECTIVES</label>
-          <textarea id="pilotMsg" class="form-textarea" placeholder="Describe your throughput requirements, latency constraints, or mission goals..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Submit Pilot Request</button>
-      </form>
+  <!-- ============ PILOT DIALOG ============ -->
+  <dialog class="pilot" id="pilot" aria-labelledby="pilotTitle">
+    <div class="pilot-h">
+      <div><span class="lbl">Enterprise engagement</span><h3 id="pilotTitle">Request enterprise pilot</h3></div>
+      <button class="icon-btn" type="button" id="pilotClose" aria-label="Close"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l12 12M16 4 4 16"/></svg></button>
     </div>
-  </div>
+    <form id="pilotForm">
+      <p class="intro">Connect directly with our engineering team for aerospace GNC contracts, 100Gbps network protection, or kernel scheduler deployments.</p>
+      <div class="fld"><label for="pilotName">Full name</label><input type="text" id="pilotName" placeholder="e.g. Dr. Alex Vance" required autocomplete="name"></div>
+      <div class="fld"><label for="pilotOrg">Organization / company</label><input type="text" id="pilotOrg" placeholder="e.g. Orbital Systems / Cloud Infrastructure Corp" required autocomplete="organization"></div>
+      <div class="fld"><label for="pilotEmail">Work email</label><input type="email" id="pilotEmail" placeholder="alex@organization.com" required autocomplete="email"></div>
+      <div class="fld"><label for="pilotDivision">Domain of interest</label>
+        <select id="pilotDivision">
+          <option value="aegis">Aegis-Filter (Aerospace / Autonomous GNC)</option>
+          <option value="scx">scx_intent (Linux Kernel CPU Scheduling)</option>
+          <option value="xdp">XDP-Guard (100Gbps Line-Rate DDoS Defense)</option>
+          <option value="huddle">HuddleCluster (Bio-Mimetic Load Balancer)</option>
+          <option value="custom">Custom High-Integrity Defense Contract</option>
+        </select>
+      </div>
+      <div class="fld"><label for="pilotMsg">Mission objectives</label><textarea id="pilotMsg" placeholder="Describe your throughput requirements, latency constraints, or mission goals..."></textarea></div>
+      <button type="submit" class="btn pri block">Submit pilot request <i class="arr"></i></button>
+    </form>
+  </dialog>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col" style="grid-column: span 1.5;">
-          <div class="brand" style="margin-bottom: 14px;">
-            <span>EXPLOIDUS</span>
-          </div>
-          <p style="color: var(--text-dim); font-size: 13.5px; line-height: 1.6; max-width: 320px;">
-            Exploidus Labs engineers sovereign high-integrity infrastructure, deterministic state estimation, kernel cyber defense, and distributed computing foundations.
-          </p>
+  <!-- ============ FOOTER ============ -->
+  <footer class="foot on-dark">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="#top" class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M2 5h28M2 27h28" stroke="currentColor" stroke-width="5"/><path d="M2 16h17" stroke="var(--panel-accent)" stroke-width="5"/></svg>Exploidus</a>
+          <p>Exploidus Labs engineers sovereign high-integrity infrastructure, deterministic state estimation, kernel cyber defense, and distributed computing foundations.</p>
         </div>
-
-        <div class="footer-col">
+        <div>
           <h5>Sovereign Systems</h5>
-          <div class="footer-links">
-            <a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">aegis-filter (Aerospace GNC)</a>
-            <a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">Exploidus (Operating System)</a>
-            <a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (Kernel RFC #3845)</a>
-            <a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener">xdp-guard (100G Firewall)</a>
-          </div>
+          <ul>
+            <li><a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">aegis-filter (Aerospace GNC)</a></li>
+            <li><a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">Exploidus (Operating System)</a></li>
+            <li><a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (Kernel RFC #3845)</a></li>
+            <li><a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener">xdp-guard (100G Firewall)</a></li>
+          </ul>
         </div>
-
-        <div class="footer-col">
+        <div>
           <h5>Engines &amp; Runtimes</h5>
-          <div class="footer-links">
-            <a href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">browser_engine (Rust)</a>
-            <a href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">Yolish (Systems Language)</a>
-            <a href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">HuddleCluster (Balancer)</a>
-            <a href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">cnsl (Security Intelligence)</a>
-            <a href="contributions.html">Upstream Case Studies</a>
-          </div>
+          <ul>
+            <li><a href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">browser_engine (Rust)</a></li>
+            <li><a href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">Yolish (Systems Language)</a></li>
+            <li><a href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">HuddleCluster (Balancer)</a></li>
+            <li><a href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">cnsl (Security Intelligence)</a></li>
+            <li><a href="contributions.html">Upstream Case Studies</a></li>
+          </ul>
         </div>
-
-        <div class="footer-col">
+        <div>
           <h5>Community &amp; Connect</h5>
-          <div class="footer-links">
-            <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener">Principal Architect GitHub (@rahadbhuiya)</a>
-            <a href="https://github.com/Exploidus" target="_blank" rel="noopener">Exploidus Organization</a>
-            <a href="https://discord.gg/eGAGHpvXbB" target="_blank" rel="noopener">Engineering Discord</a>
-            <a href="mailto:rahadbhuiya2021@gmail.com">Direct Inquiry</a>
-          </div>
+          <ul>
+            <li><a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener">Principal Architect GitHub (@rahadbhuiya)</a></li>
+            <li><a href="https://github.com/Exploidus" target="_blank" rel="noopener">Exploidus Organization</a></li>
+            <li><a href="https://discord.gg/eGAGHpvXbB" target="_blank" rel="noopener">Engineering Discord</a></li>
+            <li><a href="mailto:rahadbhuiya2021@gmail.com">Direct Inquiry</a></li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-        <div>&copy; 2026 Exploidus Systems. All modules open-sourced under MIT / Apache-2.0.</div>
-        <div>Engineered with deterministic rigor by <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">Rahad Bhuiya (@rahadbhuiya)</a>.</div>
+    <div class="foot-mark" aria-hidden="true">&nbsp;Exploidus</div>
+    <div class="wrap">
+      <div class="foot-base">
+        <span>&copy; 2026 Exploidus Systems. All modules open-sourced under MIT / Apache-2.0.</span>
+        <span>Engineered with deterministic rigor by <a href="https://github.com/rahadbhuiya" target="_blank" rel="noopener">Rahad Bhuiya (@rahadbhuiya)</a>.</span>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
-  <script>
-    // Copy code button helper
-    function copyCode(btn, text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
-        btn.style.color = '#00F2FE';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.color = '';
-        }, 1800);
-      });
-    }
-
-    // Mobile Navigation Drawer Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    if (menuToggle && mobileNav) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = mobileNav.classList.toggle('active');
-        menuToggle.classList.toggle('active', isActive);
-      });
-    }
-
-    function closeMobileNav() {
-      if (mobileNav) mobileNav.classList.remove('active');
-      if (menuToggle) menuToggle.classList.remove('active');
-    }
-
-    // Close mobile nav on escape or click outside
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMobileNav();
-        closePilotModal();
-      }
-    });
-    document.addEventListener('click', (e) => {
-      if (mobileNav && mobileNav.classList.contains('active')) {
-        if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
-          closeMobileNav();
-        }
-      }
-    });
-
-    // Modal Control
-    const pilotModal = document.getElementById('pilotModal');
-    function openPilotModal(plan = '') {
-      if (pilotModal) pilotModal.classList.add('active');
-      if (plan) {
-        const select = document.getElementById('pilotDivision');
-        if (select) {
-          if (plan.includes('GNC') || plan.includes('Aerospace') || plan.includes('Flight')) select.value = 'aegis';
-          else if (plan.includes('100G') || plan.includes('Defense') || plan.includes('xdp') || plan.includes('Fleet')) select.value = 'xdp';
-          else if (plan.includes('Scheduler') || plan.includes('scx') || plan.includes('Kernel')) select.value = 'scx';
-          else if (plan.includes('Balancer') || plan.includes('Huddle')) select.value = 'huddle';
-          else select.value = 'custom';
-        }
-      }
-    }
-    function closePilotModal() {
-      if (pilotModal) pilotModal.classList.remove('active');
-    }
-    function closeModalOnOverlay(e) {
-      if (e.target === pilotModal) closePilotModal();
-    }
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('pilotName').value;
-      const org = document.getElementById('pilotOrg').value;
-      const email = document.getElementById('pilotEmail').value;
-      const division = document.getElementById('pilotDivision').value;
-      const msg = document.getElementById('pilotMsg').value;
-
-      // Direct fallback to mailto
-      const subject = encodeURIComponent(`[Exploidus Enterprise Pilot] - ${org} (${name})`);
-      const body = encodeURIComponent(`Name: ${name}\nOrganization: ${org}\nEmail: ${email}\nDomain: ${division}\n\nObjectives:\n${msg}`);
-      window.location.href = `mailto:rahadbhuiya2021@gmail.com?subject=${subject}&body=${body}`;
-      closePilotModal();
-    }
-
-
-    // =========================================================================
-    // DYNAMIC INTERACTIVE CONSTELLATION CANVAS (HERO BACKGROUND)
-    // =========================================================================
-    (function initConstellation() {
-      const canvas = document.getElementById('heroCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let w, h, particles = [];
-      const particleCount = window.innerWidth < 768 ? 28 : 55;
-
-      function resize() {
-        w = canvas.width = canvas.parentElement.offsetWidth;
-        h = canvas.height = canvas.parentElement.offsetHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
-          radius: Math.random() * 1.5 + 1
-        });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(0, 242, 254, 0.45)';
-          ctx.fill();
-
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 110) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 110) * 0.15})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    // =========================================================================
-    // INTERACTIVE GLITCH / VOLUMETRIC ATTACK INJECTION SIMULATION
-    // =========================================================================
-    let simCooldown = false;
-    function injectSimulationGlitch() {
-      if (simCooldown) return;
-      simCooldown = true;
-
-      const btnLabel = document.getElementById('simBtnLabel');
-      const hint = document.getElementById('simHintText');
-      const origText = btnLabel ? btnLabel.textContent : '';
-
-      // Determine active pane
-      const activeTab = document.querySelector('.telemetry-tab.active');
-      const tabName = activeTab ? activeTab.getAttribute('data-tab') : 'aegis';
-
-      if (tabName === 'aegis') {
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.style.background = 'rgba(244, 63, 94, 0.15)';
-        line.style.borderLeft = '3px solid #F43F5E';
-        line.style.paddingLeft = '6px';
-        line.innerHTML = `<span style="color: #F43F5E; font-weight: 700;">[SPOOF DETECTED] &Delta;y=+999.0m (142&sigma;)</span><span class="trace-drop">GATED_FAIL_CLOSED (4.07ns)</span>`;
-        if (aegisTrace) {
-          aegisTrace.appendChild(line);
-          if (aegisTrace.children.length > 6) aegisTrace.removeChild(aegisTrace.children[0]);
-        }
-        if (btnLabel) btnLabel.textContent = 'Anomaly Rejected (4.07ns)!';
-        if (hint) hint.textContent = '3-sigma gate verified zero covariance corruption';
-      } else if (tabName === 'xdp') {
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.style.background = 'rgba(244, 63, 94, 0.15)';
-        line.style.borderLeft = '3px solid #F43F5E';
-        line.style.paddingLeft = '6px';
-        line.innerHTML = `<span style="color: #F43F5E; font-weight: 700;">[100G SYN FLOOD] 84.8 Mpps</span><span class="trace-drop">XDP_DROP (WIRE-SPEED 72ns)</span>`;
-        if (xdpTrace) {
-          xdpTrace.appendChild(line);
-          if (xdpTrace.children.length > 6) xdpTrace.removeChild(xdpTrace.children[0]);
-        }
-        if (btnLabel) btnLabel.textContent = '84.8 Mpps Quarantined!';
-        if (hint) hint.textContent = 'Zero socket memory allocation incurred';
-      } else {
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.style.background = 'rgba(16, 185, 129, 0.15)';
-        line.style.borderLeft = '3px solid #10B981';
-        line.style.paddingLeft = '6px';
-        line.innerHTML = `<span style="color: #10B981; font-weight: 700;">[AUDIO_WAKE] PID_9941 Priority Event</span><span class="trace-ok">SCX_KICK_PREEMPT (0 JITTER)</span>`;
-        if (scxTrace) {
-          scxTrace.appendChild(line);
-          if (scxTrace.children.length > 6) scxTrace.removeChild(scxTrace.children[0]);
-        }
-        if (btnLabel) btnLabel.textContent = 'Compute Preempted Instantly!';
-        if (hint) hint.textContent = 'Audio buffer underrun prevented';
-      }
-
-      setTimeout(() => {
-        if (btnLabel) btnLabel.textContent = origText;
-        if (hint) hint.textContent = 'Click to trigger fail-closed rejection';
-        simCooldown = false;
-      }, 2400);
-    }
-
-    // Telemetry Tab Switcher
-    function switchTelemetry(e, tabName) {
-      if (e) {
-        if (e.preventDefault) e.preventDefault();
-        if (e.stopPropagation) e.stopPropagation();
-      }
-      const target = (e && (e.currentTarget || e.target)) || document.querySelector(`.telemetry-tab[data-tab="${tabName}"]`);
-      document.querySelectorAll('.telemetry-tab').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.telemetry-pane').forEach(p => p.classList.remove('active'));
-
-      if (target) target.classList.add('active');
-      const pane = document.getElementById(`pane-${tabName}`);
-      if (pane) pane.classList.add('active');
-    }
-
-    // Dynamic Live Simulated Telemetry Generators
-    const aegisTrace = document.getElementById('aegis-trace');
-    const xdpTrace = document.getElementById('xdp-trace');
-    const scxTrace = document.getElementById('scx-trace');
-
-    let tick = 0;
-    setInterval(() => {
-      tick++;
-
-      // Aegis Filter Trace
-      if (aegisTrace) {
-        const q_var = (0.0012 + Math.random() * 0.0004).toFixed(6);
-        const p_cov = (0.00045 - (tick % 20) * 0.00001).toFixed(6);
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.innerHTML = `<span>[GNC #${tick.toString().padStart(5, '0')}] Q_var: ${q_var} | P_cov: ${p_cov}</span><span class="trace-ok">JOSEPH_OK</span>`;
-        aegisTrace.appendChild(line);
-        if (aegisTrace.children.length > 6) aegisTrace.removeChild(aegisTrace.children[0]);
-      }
-
-      // XDP Guard Trace
-      if (xdpTrace) {
-        const port = Math.floor(1024 + Math.random() * 60000);
-        const pps = (82.5 + Math.random() * 4.2).toFixed(1);
-        document.getElementById('xdp-pps').textContent = `${pps} Mpps`;
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.innerHTML = `<span>[NIC drv] Ingress SYN-Flood :${port} &rarr; 0xDEAD</span><span class="trace-drop">XDP_DROP (79ns)</span>`;
-        xdpTrace.appendChild(line);
-        if (xdpTrace.children.length > 6) xdpTrace.removeChild(xdpTrace.children[0]);
-      }
-
-      // SCX Intent Trace
-      if (scxTrace) {
-        const dsq = ['DSQ_INTERACTIVE', 'DSQ_IO', 'DSQ_NETWORK', 'DSQ_COMPUTE'][tick % 4];
-        const line = document.createElement('div');
-        line.className = 'trace-line';
-        line.innerHTML = `<span>[BPF_DISPATCH] Task pid_${1000 + tick} &rarr; ${dsq}</span><span class="trace-ok">SLICE: 5ms</span>`;
-        scxTrace.appendChild(line);
-        if (scxTrace.children.length > 6) scxTrace.removeChild(scxTrace.children[0]);
-      }
-    }, 1200);
-
-    // Interactive Architecture Specification Switcher
-    const archSpecs = [
-      `<strong>SPECIFICATION // TIER 01: XDP-GUARD DRIVER HOOK</strong><br>
-       Hook location: <span style="color: #fff;">XDP_DRV (Direct Network Interface Card DMA buffer)</span><br>
-       Action: Evaluates SYN cookies, ACK flood patterns, and reflection signatures via eBPF LRU hash maps.<br>
-       Return: Emits XDP_DROP instantly (&lt;100 ns), preventing Linux sk_buff memory allocations under volumetric attack.`,
-
-      `<strong>SPECIFICATION // TIER 02: HUDDLECLUSTER THERMAL EQUILIBRIUM</strong><br>
-       Core Engine: <span style="color: #fff;">Bio-mimetic thermodynamic redistribution (Zenodo DOI: 10.5281/zenodo.20348019 | figshare: 10.6084/m9.figshare.32397180)</span><br>
-       Action: Monitors per-node CPU thermals and request queues. Automatically redistributes ingress flow from core to periphery.<br>
-       Fault Tolerance: Zero single point of failure (SPOF) with instant peer gossip reconciliation.`,
-
-      `<strong>SPECIFICATION // TIER 03: SCX_INTENT PREEMPTIVE LINUX KERNEL BPF</strong><br>
-       Architecture: <span style="color: #fff;">5 Dedicated In-Kernel Dispatch Queues (DSQ 0 to 4)</span><br>
-       Action: Separates Audit (0), Interactive (1), IO (2), Network (3), and Compute (4) into isolated priority classes.<br>
-       Starvation Protection: Enforces strict time slices and auto-boosts starving compute threads during interactive bursts.`,
-
-      `<strong>SPECIFICATION // TIER 04: AEGIS-FILTER DETERMINISTIC GNC LOOP</strong><br>
-       Execution Bound: <span style="color: #fff;">4.07 ns scalar cycle latency (16 CPU cycles at 4.0GHz)</span><br>
-       Guarantees: Pure #![no_std] zero-allocation memory constraints with Joseph-stabilized covariance symmetry.<br>
-       Aerospace Integration: NASA F Prime architecture compatible with real-time FDIR sensor divergence isolation.`
-    ];
-
-    function selectArch(index) {
-      const nodes = document.querySelectorAll('.arch-node');
-      nodes.forEach((n, i) => {
-        if (i === index) n.classList.add('active');
-        else n.classList.remove('active');
-      });
-      document.getElementById('archDetailBox').innerHTML = archSpecs[index];
-    }
-  </script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/instrument.js" defer></script>
 </body>
 </html>
