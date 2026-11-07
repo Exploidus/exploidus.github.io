@@ -83,7 +83,7 @@
         "operatingSystem": "Linux 6.12+",
         "applicationCategory": "SystemApplication",
         "description": "5-tier intent-driven preemptive Linux kernel scheduler implemented in pure in-kernel eBPF for sched-ext.",
-        "url": "https://github.com/sched-ext/scx/pull/3845"
+        "url": "https://github.com/Exploidus/scx_intent"
       },
       {
         "@type": "SoftwareApplication",
@@ -219,7 +219,7 @@
             <div class="cta">
               <button class="btn pri" type="button" data-pilot="custom">Request Enterprise Briefing <i class="arr"></i></button>
               <a class="btn" href="#native-systems">Explore Capabilities <i class="arr d"></i></a>
-              <a class="btn" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent BPF <i class="arr ne"></i></a>
+              <a class="btn" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">scx_intent BPF <i class="arr ne"></i></a>
             </div>
             <ul class="checks">
               <li><i class="chk"></i>Zero Dynamic Allocation</li>
@@ -430,13 +430,13 @@
           </article>
 
           <article class="entry" id="scx_intent" data-g="kernel">
-            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">Upstream PR #3845 <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">Exploidus/scx_intent <i class="arr"></i></a></div>
             <div>
               <h3>scx_intent</h3>
               <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
               <p class="d">Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.</p>
               <div class="tags"><span class="tag a">Linux 6.12+ Compatible</span><span class="tag ok">Pure in-Kernel eBPF</span><span class="tag">5 Dedicated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Exploidus Native</span></div>
-              <div class="cmd"><code>scx_intent --preset desktop --starvation-threshold 64</code><button type="button" data-copy="scx_intent --preset desktop --starvation-threshold 64">Copy</button></div>
+              <div class="cmd"><code>git clone https://github.com/Exploidus/scx_intent.git &amp;&amp; cargo run --release</code><button type="button" data-copy="git clone https://github.com/Exploidus/scx_intent.git && cargo run --release">Copy</button></div>
             </div>
           </article>
 
@@ -702,7 +702,7 @@
           <ul>
             <li><a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">aegis-filter (Aerospace GNC)</a></li>
             <li><a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">Exploidus (Operating System)</a></li>
-            <li><a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (Kernel RFC #3845)</a></li>
+            <li><a href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">scx_intent (Kernel Scheduler)</a></li>
             <li><a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener">xdp-guard (100G Firewall)</a></li>
           </ul>
         </div>
