@@ -83,7 +83,7 @@
         "operatingSystem": "Linux 6.12+",
         "applicationCategory": "SystemApplication",
         "description": "5-tier intent-driven preemptive Linux kernel scheduler implemented in pure in-kernel eBPF for sched-ext.",
-        "url": "https://github.com/Exploidus/scx_intent"
+        "url": "https://github.com/sched-ext/scx/pull/3845"
       },
       {
         "@type": "SoftwareApplication",
@@ -219,7 +219,7 @@
             <div class="cta">
               <button class="btn pri" type="button" data-pilot="custom">Request Enterprise Briefing <i class="arr"></i></button>
               <a class="btn" href="#native-systems">Explore Capabilities <i class="arr d"></i></a>
-              <a class="btn" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">scx_intent BPF <i class="arr ne"></i></a>
+              <a class="btn" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent BPF <i class="arr ne"></i></a>
             </div>
             <ul class="checks">
               <li><i class="chk"></i>Zero Dynamic Allocation</li>
@@ -350,8 +350,8 @@
               <h3>Deep Systems Auditing &amp; Upstream Patching</h3>
             </div>
             <div>
-              <p>Exhaustive edge-case root-cause investigations, memory-safety verification, and protocol standard alignment for mission-critical software. Proven track record identifying and submitting accepted upstream patches to NASA F Prime flight software, Microsoft VS Code core CLI, Subsurface dive models, and the Linux kernel.</p>
-              <div class="tags"><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">CCSDS Protocol Fixes</span><span class="tag">35 Multi-Platform CI Passes</span></div>
+              <p>Exhaustive edge-case root-cause investigations, memory-safety verification, and protocol standard alignment for mission-critical software. Proven track record identifying and submitting accepted upstream patches to Linux NVMe storage tooling, NASA F Prime flight software, Microsoft VS Code core CLI, Subsurface dive models, and the Linux kernel.</p>
+              <div class="tags"><span class="tag ok">Linux NVMe 5× Merged</span><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux 7.4 sched_ext</span><span class="tag">35 Multi-Platform CI Passes</span></div>
               <a class="btn" href="contributions.html">Review Upstream Case Studies <i class="arr"></i></a>
             </div>
           </article>
@@ -367,10 +367,11 @@
             <a class="btn pri" href="contributions.html">Inspect Case Studies <i class="arr"></i></a>
           </div>
           <ul class="prs">
+            <li><span>Linux NVMe PR #4391, #4393, #4395, #4396 &amp; #4397</span><span>5× Merged</span></li>
             <li><span>NASA F Prime PR #6226 &amp; #6143</span><span>2× Merged</span></li>
             <li><span>Microsoft VS Code PR #341565</span><span>Merged</span></li>
             <li><span>Subsurface PR #5071 &amp; #5055</span><span>Merged</span></li>
-            <li class="rfc"><span>Linux Sched-Ext PR #3845</span><span>RFC</span></li>
+            <li><span>Linux Kernel 7.4 SCX_TASK_READY Patch</span><span>Merged</span></li>
           </ul>
         </div>
       </div>
@@ -430,13 +431,13 @@
           </article>
 
           <article class="entry" id="scx_intent" data-g="kernel">
-            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">Exploidus/scx_intent <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">Upstream PR #3845 <i class="arr"></i></a></div>
             <div>
               <h3>scx_intent</h3>
               <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
               <p class="d">Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.</p>
               <div class="tags"><span class="tag a">Linux 6.12+ Compatible</span><span class="tag ok">Pure in-Kernel eBPF</span><span class="tag">5 Dedicated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Exploidus Native</span></div>
-              <div class="cmd"><code>git clone https://github.com/Exploidus/scx_intent.git &amp;&amp; cargo run --release</code><button type="button" data-copy="git clone https://github.com/Exploidus/scx_intent.git && cargo run --release">Copy</button></div>
+              <div class="cmd"><code>scx_intent --preset desktop --starvation-threshold 64</code><button type="button" data-copy="scx_intent --preset desktop --starvation-threshold 64">Copy</button></div>
             </div>
           </article>
 
@@ -652,8 +653,8 @@
             <span class="lbl">Executive leadership</span>
             <h3>Rahad Bhuiya</h3>
             <div class="role">Principal Systems Architect</div>
-            <p>Exploidus Labs was founded and is directed by Principal Systems Architect Rahad Bhuiya. Dedicated to low-level kernel development, aerospace state estimation, and eBPF network defense, the lab maintains an active upstream record contributing to NASA Jet Propulsion Laboratory flight software, Microsoft VS Code core CLI, and the Linux kernel.</p>
-            <div class="tags"><span class="tag a">Principal Architect</span><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux Kernel eBPF</span></div>
+            <p>Exploidus Labs was founded and is directed by Principal Systems Architect Rahad Bhuiya. Dedicated to low-level kernel development, aerospace state estimation, and eBPF network defense, the lab maintains an active upstream record contributing to Linux NVMe storage infrastructure, NASA Jet Propulsion Laboratory flight software, Microsoft VS Code core CLI, and the Linux kernel.</p>
+            <div class="tags"><span class="tag a">Principal Architect</span><span class="tag ok">Linux NVMe 5× Merged</span><span class="tag ok">NASA F Prime 2x Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux Kernel eBPF</span></div>
             <div class="cta">
               <a class="btn sm" href="https://github.com/Exploidus" target="_blank" rel="noopener">Organization GitHub <i class="arr ne"></i></a>
               <button class="btn sm pri" type="button" data-pilot="custom">Corporate Inquiry <i class="arr"></i></button>
@@ -702,7 +703,7 @@
           <ul>
             <li><a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">aegis-filter (Aerospace GNC)</a></li>
             <li><a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">Exploidus (Operating System)</a></li>
-            <li><a href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">scx_intent (Kernel Scheduler)</a></li>
+            <li><a href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">scx_intent (Kernel RFC #3845)</a></li>
             <li><a href="https://github.com/rahadbhuiya/xdp-guard" target="_blank" rel="noopener">xdp-guard (100G Firewall)</a></li>
           </ul>
         </div>

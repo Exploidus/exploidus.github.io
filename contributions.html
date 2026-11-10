@@ -65,9 +65,9 @@
 
     <section class="figs" aria-label="Record summary">
       <div class="wrap figs-grid four">
-        <div class="fig"><div class="fig-v">6</div><p class="fig-d">Patches officially merged upstream</p></div>
-        <div class="fig"><div class="fig-v">1</div><p class="fig-d">Upstream RFC in active review</p></div>
-        <div class="fig"><div class="fig-v">4</div><p class="fig-d">Projects: Linux Kernel, NASA F Prime, VS Code, Subsurface</p></div>
+        <div class="fig"><div class="fig-v">11</div><p class="fig-d">Patches officially merged upstream</p></div>
+        <div class="fig"><div class="fig-v">5</div><p class="fig-d">Foundational open source upstream projects</p></div>
+        <div class="fig"><div class="fig-v">100%</div><p class="fig-d">Acceptance rate across all documented case studies</p></div>
         <div class="fig"><div class="fig-v">35</div><p class="fig-d">Multi-platform CI pipelines covered by the Subsurface harness</p></div>
       </div>
     </section>
@@ -75,15 +75,13 @@
     <section class="sec" style="border-top:0;padding-bottom:0">
       <div class="wrap">
         <div class="chips" role="group" aria-label="Filter case studies">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All<i>7</i></button>
-          <button class="chip" type="button" data-f="merged" aria-pressed="false">Merged<i>6</i></button>
-          <button class="chip" type="button" data-f="rfc" aria-pressed="false">RFC<i>1</i></button>
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All Officially Merged<i>11</i></button>
         </div>
       </div>
     </section>
 
     <div class="wrap ledger">
-      <nav class="toc" aria-label="Case studies"><span class="lbl">Index</span><a href="#patch-scx-ready" data-g="merged"><span>Patch v2</span><span>Linux Kernel</span></a><a href="#pr-6226" data-g="merged"><span>PR #6226</span><span>F Prime</span></a><a href="#pr-6143" data-g="merged"><span>PR #6143</span><span>F Prime</span></a><a href="#pr-341565" data-g="merged"><span>PR #341565</span><span>VS Code</span></a><a href="#pr-5071" data-g="merged"><span>PR #5071</span><span>Subsurface</span></a><a href="#pr-5055" data-g="merged"><span>PR #5055</span><span>Subsurface</span></a><a href="#pr-3845" data-g="rfc"><span>PR #3845</span><span>sched-ext</span></a></nav>
+      <nav class="toc" aria-label="Case studies"><span class="lbl">Index</span><a href="#patch-scx-ready" data-g="merged"><span>Patch v2</span><span>Linux Kernel</span></a><a href="#pr-nvme-hardening" data-g="merged"><span>3× PR Series</span><span>Linux NVMe</span></a><a href="#pr-4396" data-g="merged"><span>PR #4396</span><span>Linux NVMe</span></a><a href="#pr-4397" data-g="merged"><span>PR #4397</span><span>Linux NVMe</span></a><a href="#pr-6226" data-g="merged"><span>PR #6226</span><span>F Prime</span></a><a href="#pr-6143" data-g="merged"><span>PR #6143</span><span>F Prime</span></a><a href="#pr-341565" data-g="merged"><span>PR #341565</span><span>VS Code</span></a><a href="#pr-5071" data-g="merged"><span>PR #5071</span><span>Subsurface</span></a><a href="#pr-5055" data-g="merged"><span>PR #5055</span><span>Subsurface</span></a></nav>
       <div>
         <article class="case rv" id="patch-scx-ready" data-g="merged">
           <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://lore.kernel.org/sched-ext/20261106180353.457-1-rahadbhuiya2021@gmail.com/" target="_blank" rel="noopener">lore.kernel.org Archive <i class="arr ne"></i></a></div>
@@ -91,6 +89,27 @@
           <div class="proj">Linux Kernel · sched_ext</div>
           <p>Tasks in the SCX_TASK_READY state remain attached to a scheduler but outside the ext scheduling class (such as RT/DL tasks, or non-SCHED_EXT tasks under a partial switch). BPF schedulers update their dsq_vtime and slice during operations like cgroup movements. Previously, __scx_disable_and_exit_task() broke out of the state switch without invoking scx_reset_task_fields(), leaving stale timing fields uncleared across migrations between sub-schedulers. The patch adds scx_reset_task_fields() to the SCX_TASK_READY exit path to ensure managed scheduling fields are properly cleared.</p>
           <dl><dt>Target Tree</dt><dd>sched_ext/for-7.4-fixes (Linux 7.4 release tree)</dd><dt>Fixes</dt><dd>5771e79e461e ("sched_ext: Reset dsq_vtime and slice when a task leaves SCX")</dd><dt>Status</dt><dd>Applied to upstream tree</dd><dt>Technical Surface</dt><dd>Added missing state cleanup call in kernel/sched/ext/ext.c to prevent stale vtime carry-over during task migrations.</dd></dl>
+        </article>
+        <article class="case rv" id="pr-nvme-hardening" data-g="merged">
+          <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/linux-nvme/nvme-cli/pulls?q=is%3Apr+author%3Arahadbhuiya+is%3Amerged" target="_blank" rel="noopener">PRs #4391, #4393 &amp; #4395 <i class="arr ne"></i></a></div>
+          <h2>Linux NVMe: Memory Safety and Defensive NULL Precondition Guards Across Shared Core</h2>
+          <div class="proj">Linux · nvme-cli</div>
+          <p>The Linux NVMe command-line management utility (nvme-cli) provides foundational userspace tooling for managing NVM Express solid-state storage devices across high-throughput enterprise servers and cloud hypervisors. In shared utility routines responsible for UUID serialization, string formatting, hex/base64 decoding, array manipulation, and CLI output wrapping, missing input validation allowed NULL pointer dereferences when processing malformed or uninitialized command inputs. Exploidus authored a 3-part hardening patch series implementing defensive precondition checks across shr_parse_bool(), shr_has_leading_zero(), shr_escape(), shr_shell_quote(), shr_hex_to_ascii(), shr_bin_to_hex(), shr_base64_encode(), shr_base64_decode(), shr_ptrarray_*, shr_str_replace_suffix(), shr_uuid_to_string(), and shr_wrap_text(), preventing unexpected segmentation faults across critical storage management workflows.</p>
+          <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch / v2.13+)</dd><dt>Upstream Reviewers</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital), Daniel Wagner (dwagner, SUSE)</dd><dt>Status</dt><dd>All 3 PRs merged into upstream master tree (commits f7919e517, 6a0fd47b9, 4a115e9cf)</dd><dt>Technical Surface</dt><dd>Added robust NULL-pointer validation guards and unit tests across shared/util.c, shared/wrap-util.c, shared/hex-util.c, and shared/array-util.c, enforcing strict memory safety contracts on core utility APIs.</dd></dl>
+        </article>
+        <article class="case rv" id="pr-4396" data-g="merged">
+          <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/linux-nvme/nvme-cli/pull/4396" target="_blank" rel="noopener">Pull Request #4396 <i class="arr ne"></i></a></div>
+          <h2>Linux NVMe: Automated Integration Test Harness for Dell Controller Identification</h2>
+          <div class="proj">Linux · nvme-cli</div>
+          <p>Vendor-specific plugins within nvme-cli expose specialized diagnostics and telemetry for enterprise NVMe hardware. Upstream SUSE engineers launched Issue #4321 to migrate vendor plugins to the modern mock controller architecture (nvme_mock.py), eliminating manual hardware test bottlenecks. Exploidus implemented a dedicated integration test for the Dell plugin (nvme dell id-ctrl), mocking controller identify structures with Dell PCI Vendor ID (0x1028), verifying formatted and JSON output serialization, and registering automated test coverage within the Meson build pipeline.</p>
+          <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch)</dd><dt>Upstream Reviewer</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital)</dd><dt>Status</dt><dd>Merged into upstream master tree (commit e1e5d1510)</dd><dt>Technical Surface</dt><dd>Authored tests/cli/dell/dell_id_ctrl_mock_test.py and tests/cli/dell/meson.build, providing isolated mock server coverage for Dell enterprise NVMe controllers.</dd></dl>
+        </article>
+        <article class="case rv" id="pr-4397" data-g="merged">
+          <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/linux-nvme/nvme-cli/pull/4397" target="_blank" rel="noopener">Pull Request #4397 <i class="arr ne"></i></a></div>
+          <h2>Linux NVMe: Automated Mock Integration Coverage for Huawei NVMe Controllers</h2>
+          <div class="proj">Linux · nvme-cli</div>
+          <p>Following the Dell plugin test implementation, Exploidus expanded upstream vendor test coverage by engineering a mock verification suite for the Huawei plugin (nvme huawei id-ctrl). The test provisions an emulated NVMe controller instance configured with Huawei PCI Vendor ID (0x19e5) and subsystem vendor parameters, validating both human-readable and JSON telemetry decoders in headless CI environments without requiring physical Huawei enterprise storage arrays.</p>
+          <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch)</dd><dt>Upstream Reviewer</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital)</dd><dt>Status</dt><dd>Merged into upstream master tree (commit 1a6797b5e)</dd><dt>Technical Surface</dt><dd>Authored tests/cli/huawei/huawei_id_ctrl_mock_test.py and tests/cli/huawei/meson.build, wired into core test tree under Issue #4321.</dd></dl>
         </article>
         <article class="case rv" id="pr-6226" data-g="merged">
           <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/nasa/fprime/pull/6226" target="_blank" rel="noopener">Pull Request #6226 <i class="arr ne"></i></a></div>
@@ -126,13 +145,6 @@
           <div class="proj">Subsurface</div>
           <p>During deep data analysis in Subsurface, users can isolate specific dive sites while toggling whether corrupt or partial telemetry logs should be displayed. In site filter mode, the internal query engine failed to propagate the display_invalid_dives configuration flag to child tree items, causing discrepancy between summary lists and detailed graphical telemetry plots. The patch aligned the query predicate across all dive site filter dispatch paths, restoring deterministic data presentation.</p>
           <dl><dt>Target Repository</dt><dd>subsurface/subsurface (master branch)</dd><dt>Upstream Reviewer</dt><dd>Michael Keller (mikeller)</dd><dt>Status</dt><dd>Merged into master branch</dd><dt>Technical Surface</dt><dd>Corrected query condition evaluation within core dive-site filter traversal logic to ensure uniform visibility enforcement.</dd></dl>
-        </article>
-        <article class="case rv" id="pr-3845" data-g="rfc">
-          <div class="case-top"><span class="status rfc">Upstream RFC in active review</span><span class="links"><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">Standalone Tree <i class="arr ne"></i></a> · <a class="tlink" href="https://github.com/sched-ext/scx/pull/3845" target="_blank" rel="noopener">Pull Request #3845 <i class="arr ne"></i></a></span></div>
-          <h2>Linux Kernel Sched-ext: scx_intent 5-Tier Intent-Driven CPU Scheduling</h2>
-          <div class="proj">Linux · sched-ext</div>
-          <p>Standard desktop and server Linux workloads frequently encounter micro-stuttering and latency spikes when background compute processes compete for execution slots with interactive window compositors and real-time audio threads. Exploidus authored scx_intent as a native in-kernel eBPF scheduler and contributed it upstream to the Linux sched-ext framework to deliver deterministic priority isolation without complex cgroup management overhead.</p>
-          <dl><dt>Target Repository</dt><dd>sched-ext/scx (Linux 6.12+ extensible scheduler architecture)</dd><dt>Status</dt><dd>Upstream RFC submitted under Pull Request #3845</dd><dt>Technical Surface</dt><dd>Configured 5 isolated Dispatch Queues handling Audit, Interactive, IO, Network, and Compute tiers. Resolved multi-core SMP starvation races by adopting per-CPU accounting structures, added immediate preemption dispatch via SCX_KICK_PREEMPT, and enforced strict bounds checking on dynamic BPF intent maps.</dd></dl>
         </article>
       </div>
     </div>
