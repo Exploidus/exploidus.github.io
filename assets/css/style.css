@@ -550,3 +550,29 @@ dialog.pilot::backdrop { background: rgba(10, 10, 8, .62); backdrop-filter: blur
 /* long unbroken strings (paths, DOIs) */
 .case dd, .case p, .spec dd, .entry p.d, .tag { overflow-wrap: anywhere; }
 .case, .entry > div, .cap > div { min-width: 0; }
+
+
+/* ---------- ecosystem interoperability strip ---------- */
+.eco-strip { border-top: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); padding: clamp(28px, 4vw, 44px) 0; background: var(--paper-2); }
+.eco-head { margin-bottom: 24px; }
+.eco-head p { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+.eco-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(14px, 2vw, 24px); }
+.eco-card { border: 1px solid var(--rule-2); background: var(--paper); padding: 16px 14px; display: flex; flex-direction: column; gap: 8px; transition: border-color .2s; }
+.eco-card:hover { border-color: var(--accent); }
+.eco-badge { font: 500 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.eco-card h5 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); margin: 0; }
+.eco-card p { font-size: 12px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+
+@media (max-width: 1100px) {
+  .eco-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .eco-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- tier headers in platforms register ---------- */
+.tier-strip { padding: 36px 0 16px; border-top: 2px solid var(--ink); margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.tier-strip:first-of-type { border-top: 0; margin-top: 0; }
+.tier-strip h4 { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 28px); font-weight: 400; color: var(--ink); margin: 0; }
+.tier-strip p { font-size: 13.5px; color: var(--ink-2); max-width: 70ch; margin: 0; }
+.tier-badge { display: inline-flex; align-items: center; gap: 6px; font: 600 10px/1.2 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 4px 7px; border: 1px solid var(--accent); color: var(--accent-ink); background: var(--paper); margin-bottom: 4px; }

@@ -95,7 +95,9 @@
         var f = c.getAttribute('data-f');
         chips.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
         items.forEach(function (it) {
-          var show = f === 'all' || it.getAttribute('data-g') === f;
+          var g = it.getAttribute('data-g') || '';
+          var tokens = g.split(/\s+/);
+          var show = f === 'all' || tokens.indexOf(f) !== -1;
           if (it.matches('a')) it.classList.toggle('hide', !show); else it.hidden = !show;
         });
       });

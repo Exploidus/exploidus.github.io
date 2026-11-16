@@ -59,13 +59,13 @@
       <div class="wrap">
         <div class="crumb lbl"><a href="index.html">Exploidus</a><span>/</span><b>Upstream Engineering Record</b></div>
         <h1>External contributions and <em>root-cause</em> analyses</h1>
-        <p class="lead">In addition to sovereign native engines, Exploidus actively audits critical upstream ecosystems, identifies edge-case protocol regressions, and submits production patches to foundational software frameworks including Linux NVMe storage tooling, NASA flight software, Microsoft VS Code, Subsurface, and the Linux kernel.</p>
+        <p class="lead">In addition to sovereign native engines, Exploidus actively audits critical upstream ecosystems, identifies edge-case protocol regressions, and submits production patches to foundational software frameworks including Linux NVMe storage tooling (11 merged PRs), NASA flight software, Microsoft VS Code, Subsurface, and the Linux kernel.</p>
       </div>
     </section>
 
     <section class="figs" aria-label="Record summary">
       <div class="wrap figs-grid four">
-        <div class="fig"><div class="fig-v">11</div><p class="fig-d">Patches officially merged upstream</p></div>
+        <div class="fig"><div class="fig-v">17</div><p class="fig-d">Patches officially merged upstream</p></div>
         <div class="fig"><div class="fig-v">5</div><p class="fig-d">Foundational open source upstream projects</p></div>
         <div class="fig"><div class="fig-v">100%</div><p class="fig-d">Acceptance rate across all documented case studies</p></div>
         <div class="fig"><div class="fig-v">35</div><p class="fig-d">Multi-platform CI pipelines covered by the Subsurface harness</p></div>
@@ -75,13 +75,13 @@
     <section class="sec" style="border-top:0;padding-bottom:0">
       <div class="wrap">
         <div class="chips" role="group" aria-label="Filter case studies">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All Officially Merged<i>11</i></button>
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All Officially Merged<i>17</i></button>
         </div>
       </div>
     </section>
 
     <div class="wrap ledger">
-      <nav class="toc" aria-label="Case studies"><span class="lbl">Index</span><a href="#patch-scx-ready" data-g="merged"><span>Patch v2</span><span>Linux Kernel</span></a><a href="#pr-nvme-hardening" data-g="merged"><span>3× PR Series</span><span>Linux NVMe</span></a><a href="#pr-4396" data-g="merged"><span>PR #4396</span><span>Linux NVMe</span></a><a href="#pr-4397" data-g="merged"><span>PR #4397</span><span>Linux NVMe</span></a><a href="#pr-6226" data-g="merged"><span>PR #6226</span><span>F Prime</span></a><a href="#pr-6143" data-g="merged"><span>PR #6143</span><span>F Prime</span></a><a href="#pr-341565" data-g="merged"><span>PR #341565</span><span>VS Code</span></a><a href="#pr-5071" data-g="merged"><span>PR #5071</span><span>Subsurface</span></a><a href="#pr-5055" data-g="merged"><span>PR #5055</span><span>Subsurface</span></a></nav>
+      <nav class="toc" aria-label="Case studies"><span class="lbl">Index</span><a href="#patch-scx-ready" data-g="merged"><span>Patch v2</span><span>Linux Kernel</span></a><a href="#pr-nvme-hardening" data-g="merged"><span>3× PR Series</span><span>Linux NVMe</span></a><a href="#pr-4396" data-g="merged"><span>PR #4396</span><span>Linux NVMe</span></a><a href="#pr-4397" data-g="merged"><span>PR #4397</span><span>Linux NVMe</span></a><a href="#pr-nvme-cloud" data-g="merged"><span>3× PR Series</span><span>Linux NVMe Cloud</span></a><a href="#pr-nvme-accel" data-g="merged"><span>3× PR Series</span><span>Linux NVMe DPU &amp; Sec</span></a><a href="#pr-6226" data-g="merged"><span>PR #6226</span><span>F Prime</span></a><a href="#pr-6143" data-g="merged"><span>PR #6143</span><span>F Prime</span></a><a href="#pr-341565" data-g="merged"><span>PR #341565</span><span>VS Code</span></a><a href="#pr-5071" data-g="merged"><span>PR #5071</span><span>Subsurface</span></a><a href="#pr-5055" data-g="merged"><span>PR #5055</span><span>Subsurface</span></a></nav>
       <div>
         <article class="case rv" id="patch-scx-ready" data-g="merged">
           <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://lore.kernel.org/sched-ext/20261106180353.457-1-rahadbhuiya2021@gmail.com/" target="_blank" rel="noopener">lore.kernel.org Archive <i class="arr ne"></i></a></div>
@@ -110,6 +110,20 @@
           <div class="proj">Linux · nvme-cli</div>
           <p>Following the Dell plugin test implementation, Exploidus expanded upstream vendor test coverage by engineering a mock verification suite for the Huawei plugin (nvme huawei id-ctrl). The test provisions an emulated NVMe controller instance configured with Huawei PCI Vendor ID (0x19e5) and subsystem vendor parameters, validating both human-readable and JSON telemetry decoders in headless CI environments without requiring physical Huawei enterprise storage arrays.</p>
           <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch)</dd><dt>Upstream Reviewer</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital)</dd><dt>Status</dt><dd>Merged into upstream master tree (commit 1a6797b5e)</dd><dt>Technical Surface</dt><dd>Authored tests/cli/huawei/huawei_id_ctrl_mock_test.py and tests/cli/huawei/meson.build, wired into core test tree under Issue #4321.</dd></dl>
+        </article>
+        <article class="case rv" id="pr-nvme-cloud" data-g="merged">
+          <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/linux-nvme/nvme-cli/pulls?q=is%3Apr+author%3Arahadbhuiya+is%3Amerged" target="_blank" rel="noopener">PRs #4401, #4404 &amp; #4408 <i class="arr ne"></i></a></div>
+          <h2>Linux NVMe: Hyperscale Cloud &amp; Industrial Storage Mock Integration Suites</h2>
+          <div class="proj">Linux · nvme-cli</div>
+          <p>Enterprise and cloud NVMe deployments require deterministic CLI identification across diverse hardware profiles. Exploidus authored complete mock controller test harnesses for Amazon AWS Nitro NVMe controllers (<code>nvme amzn id-ctrl</code>), Transcend industrial flash storage modules (<code>nvme transcend</code>), and Solidigm high-density enterprise QLC storage arrays (<code>nvme solidigm id-ctrl</code>). Each suite provisions custom emulated PCI IDs (Amazon 0x1d0f, Transcend 0x144d, Solidigm 0x025e), executes full vendor telemetry decoding, and validates JSON serialization in headless CI pipelines without physical silicon dependencies.</p>
+          <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch)</dd><dt>Upstream Reviewer</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital)</dd><dt>Status</dt><dd>All 3 pull requests merged upstream (commits 5b11eb08, cb7989ee, af6946e4)</dd><dt>Technical Surface</dt><dd>Authored mock test runners and Meson build registrations across tests/cli/amzn, tests/cli/transcend, and tests/cli/solidigm under Issue #4321.</dd></dl>
+        </article>
+        <article class="case rv" id="pr-nvme-accel" data-g="merged">
+          <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/linux-nvme/nvme-cli/pulls?q=is%3Apr+author%3Arahadbhuiya+is%3Amerged" target="_blank" rel="noopener">PRs #4400, #4412 &amp; #4416 <i class="arr ne"></i></a></div>
+          <h2>Linux NVMe: DPU Hardware Acceleration, Enterprise Controllers &amp; RPMB Security</h2>
+          <div class="proj">Linux · nvme-cli</div>
+          <p>Extending test automation to advanced storage hardware, Exploidus engineered mock test infrastructure for DapuStor enterprise NVMe controllers (<code>nvme dapustor</code>), MangoBoost DPU storage accelerators (<code>nvme mangoboost</code>), and Replay Protected Memory Block (RPMB) cryptographic write paths. The implementation addressed complex endianness constraints across multi-architecture CI targets (including IBM s390x big-endian architectures), validated secure key programming workflows without bricking physical eMMC/UFS/NVMe security fuses, and completed mock controller coverage across leading data-center hardware accelerators.</p>
+          <dl><dt>Target Repository</dt><dd>linux-nvme/nvme-cli (master branch)</dd><dt>Upstream Reviewer</dt><dd>Shin'ichiro Kawasaki (igaw, Western Digital)</dd><dt>Status</dt><dd>All 3 pull requests merged upstream (commits 2d645f7c, 2e604ec2, d056461c)</dd><dt>Technical Surface</dt><dd>Authored tests/cli/dapustor, tests/cli/mangoboost, and tests/cli/rpmb mock suites with multi-arch big-endian byte-order validation.</dd></dl>
         </article>
         <article class="case rv" id="pr-6226" data-g="merged">
           <div class="case-top"><span class="status">Officially merged upstream</span><a class="tlink" href="https://github.com/nasa/fprime/pull/6226" target="_blank" rel="noopener">Pull Request #6226 <i class="arr ne"></i></a></div>

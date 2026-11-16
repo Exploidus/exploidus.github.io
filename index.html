@@ -225,6 +225,7 @@
               <li><i class="chk"></i>Zero Dynamic Allocation</li>
               <li><i class="chk"></i>Pure In-Kernel eBPF</li>
               <li><i class="chk"></i>DO-178C Architecture</li>
+              <li><i class="chk"></i>17× Upstream Merged Patches</li>
             </ul>
           </div>
 
@@ -291,6 +292,43 @@
       </div>
     </section>
 
+    <!-- ============ ECOSYSTEM & STANDARDS ============ -->
+    <section class="eco-strip" aria-label="Ecosystem &amp; Standards Interoperability">
+      <div class="wrap">
+        <div class="eco-head">
+          <span class="lbl">Institutional Standards &amp; Ecosystem Interoperability</span>
+          <p>Exploidus architectures are engineered from first principles to interoperate directly with foundational aerospace, robotics, and kernel infrastructure standards:</p>
+        </div>
+        <div class="eco-grid">
+          <div class="eco-card">
+            <span class="eco-badge">AEROSPACE STANDARD</span>
+            <h5>NASA cFS &amp; F Prime</h5>
+            <p>Direct Software Bus &amp; FPP component integration for CubeSat and deep-space flight payloads.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-badge">AUTONOMOUS FLIGHT</span>
+            <h5>PX4 &amp; ArduPilot</h5>
+            <p>MAVLink and uORB real-time telemetry filtering with 4.07 ns Joseph-stabilized state estimation.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-badge">REAL-TIME ROBOTICS</span>
+            <h5>ROS 2 &amp; micro-ROS</h5>
+            <p>Zero-copy DDS transport bindings and deterministic sensor fusion nodes for autonomous robotic fleets.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-badge">KERNEL INFRASTRUCTURE</span>
+            <h5>Linux &amp; eBPF Foundation</h5>
+            <p>Upstream-compliant XDP driver hooks and sched-ext BPF scheduling classes merged in kernel 7.4.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-badge">SILICON TARGETS</span>
+            <h5>ARM &amp; RISC-V Silicon</h5>
+            <p>Zero-heap #![no_std] binaries validated across Cortex-M7, Cortex-A53, and 64-bit RISC-V cores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ CAPABILITIES ============ -->
     <section class="sec" id="capabilities" style="border-top:0">
       <div class="wrap">
@@ -351,7 +389,7 @@
             </div>
             <div>
               <p>Exhaustive edge-case root-cause investigations, memory-safety verification, and protocol standard alignment for mission-critical software. Proven track record identifying and submitting accepted upstream patches to Linux NVMe storage tooling, NASA F Prime flight software, Microsoft VS Code core CLI, Subsurface dive models, and the Linux kernel.</p>
-              <div class="tags"><span class="tag ok">Linux NVMe 5× Merged</span><span class="tag ok">NASA F Prime 2× Merged</span><span class="tag ok">Subsurface 2× Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux 7.4 sched_ext</span></div>
+              <div class="tags"><span class="tag ok">Linux NVMe 11× Merged</span><span class="tag ok">NASA F Prime 2× Merged</span><span class="tag ok">Subsurface 2× Merged</span><span class="tag ok">Microsoft VS Code Merged</span><span class="tag">Linux 7.4 sched_ext</span></div>
               <a class="btn" href="contributions.html">Review Upstream Case Studies <i class="arr"></i></a>
             </div>
           </article>
@@ -367,7 +405,7 @@
             <a class="btn pri" href="contributions.html">Inspect Case Studies <i class="arr"></i></a>
           </div>
           <ul class="prs">
-            <li><span>Linux NVMe PR #4391, #4393, #4395, #4396 &amp; #4397</span><span>5× Merged</span></li>
+            <li><span>Linux NVMe (11× Merged: Core NULL guards, Dell, Huawei, Amazon, Solidigm, DapuStor, MangoBoost, Transcend, RPMB)</span><span>11× Merged</span></li>
             <li><span>NASA F Prime PR #6226 &amp; #6143</span><span>2× Merged</span></li>
             <li><span>Microsoft VS Code PR #341565</span><span>Merged</span></li>
             <li><span>Subsurface PR #5071 &amp; #5055</span><span>Merged</span></li>
@@ -389,38 +427,23 @@
         </div>
 
         <div class="chips" role="group" aria-label="Filter platforms">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All<i>10</i></button>
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All Systems<i>10</i></button>
+          <button class="chip" type="button" data-f="flagship" aria-pressed="false">Commercial Flagships<i>2</i></button>
+          <button class="chip" type="button" data-f="infra" aria-pressed="false">Mission Infrastructure<i>3</i></button>
+          <button class="chip" type="button" data-f="labs" aria-pressed="false">Advanced R&amp;D Labs<i>5</i></button>
           <button class="chip" type="button" data-f="aero" aria-pressed="false">Aerospace<i>3</i></button>
           <button class="chip" type="button" data-f="kernel" aria-pressed="false">Kernel &amp; Network<i>3</i></button>
-          <button class="chip" type="button" data-f="runtime" aria-pressed="false">Runtimes<i>2</i></button>
-          <button class="chip" type="button" data-f="dist" aria-pressed="false">Distributed &amp; Security<i>2</i></button>
         </div>
 
         <div class="register">
-          <article class="entry feat" id="cfs-on-exploidus" data-g="aero">
-            <div class="entry-side"><span class="idx">P—01</span><span class="cat">NASA Flight Software Port</span><a class="tlink" href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener">v0.3.0 Qualified <i class="arr"></i></a></div>
-            <div>
-              <h3>cfs-on-exploidus</h3>
-              <p class="tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</p>
-              <p class="d">Mission-qualified native Exploidus OS port of the NASA Core Flight Executive (cFE) and Core Flight System (cFS). Features capability-gated Software Bus routing, microsecond-accurate MET/TAI/UTC mission clocks, atomic double-buffered parameter hot-reloading (TBL), deterministic 100Hz scheduler dispatch (SCH), and autonomous Single Event Upset (SEU) bit-flip containment. Fully qualified across Milestones 1, 2, and 3.</p>
-              <div class="tags"><span class="tag a">NASA cFS Stack</span><span class="tag ok">BLAKE3 Capability Gate</span><span class="tag">Atomic TBL Hot-Reload</span><span class="tag">SEU Bit-Flip Isolation</span><span class="tag">Zero Kernel Panic</span></div>
-              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-on-exploidus.git &amp;&amp; ./run_demo.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-on-exploidus.git && ./run_demo.sh">Copy</button></div>
-            </div>
-          </article>
+          <div class="tier-strip" data-g="all flagship aero kernel">
+            <span class="tier-badge">TIER 01 // COMMERCIAL FLAGSHIPS</span>
+            <h4>Production-Ready Aerospace &amp; Hyperscale Engines</h4>
+            <p>Hardened, dual-licensed platforms engineered for direct defense OEM procurement, cloud hypervisor defense, and flight computer integration.</p>
+          </div>
 
-          <article class="entry" id="cfs-adversarial-testbed" data-g="aero">
-            <div class="entry-side"><span class="idx">P—02</span><span class="cat">Zero-Trust Mission Assurance</span><a class="tlink" href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener">v0.1.0 Baseline <i class="arr"></i></a></div>
-            <div>
-              <h3>cfs-adversarial-testbed</h3>
-              <p class="tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</p>
-              <p class="d">Freestanding eBPF security testbed and formal invariant contract for the NASA Core Flight System. Implements non-intrusive tracepoint observation, 4-tier effect completion verification (invocation to destination state transition), decoupled ringbuffer accounting, and anti-replay protection. Co-reviewed and baselined under NASA cFS Community RFCs.</p>
-              <div class="tags"><span class="tag a">6 Formal Invariants</span><span class="tag ok">eBPF Kernel Probes</span><span class="tag">Decoupled Ringbuffer</span><span class="tag">Adversarial Injection</span><span class="tag">NASA cFS RFC #1168</span></div>
-              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-adversarial-testbed.git &amp;&amp; ./run_tests.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-adversarial-testbed.git && ./run_tests.sh">Copy</button></div>
-            </div>
-          </article>
-
-          <article class="entry feat" id="aegis-filter" data-g="aero">
-            <div class="entry-side"><span class="idx">P—03</span><span class="cat">Aerospace GNC &amp; Robotics</span><a class="tlink" href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">v0.4.0 Verified <i class="arr"></i></a></div>
+          <article class="entry feat" id="aegis-filter" data-g="flagship aero">
+            <div class="entry-side"><span class="idx">P—01</span><span class="cat">Aerospace GNC Flagship</span><a class="tlink" href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">v0.4.0 Verified <i class="arr"></i></a></div>
             <div>
               <h3>aegis-filter</h3>
               <p class="tagline">4.07 ns Zero-Allocation State Estimation and Fault Isolation</p>
@@ -430,19 +453,8 @@
             </div>
           </article>
 
-          <article class="entry" id="scx_intent" data-g="kernel">
-            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Exploidus Native Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">v0.2.0 In-Kernel BPF <i class="arr"></i></a></div>
-            <div>
-              <h3>scx_intent</h3>
-              <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
-              <p class="d">Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.</p>
-              <div class="tags"><span class="tag a">Linux 6.12+ Compatible</span><span class="tag ok">Pure in-Kernel eBPF</span><span class="tag">5 Dedicated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Exploidus Native</span></div>
-              <div class="cmd"><code>scx_intent --preset desktop --starvation-threshold 64</code><button type="button" data-copy="scx_intent --preset desktop --starvation-threshold 64">Copy</button></div>
-            </div>
-          </article>
-
-          <article class="entry" id="xdp-guard" data-g="kernel">
-            <div class="entry-side"><span class="idx">P—05</span><span class="cat">High-Speed Cyber Defense</span><a class="tlink" href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener">v0.4.0 on Crates.io <i class="arr"></i></a></div>
+          <article class="entry feat" id="xdp-guard" data-g="flagship kernel">
+            <div class="entry-side"><span class="idx">P—02</span><span class="cat">Cyber Defense Flagship</span><a class="tlink" href="https://crates.io/crates/xdp-guard" target="_blank" rel="noopener">v0.4.0 on Crates.io <i class="arr"></i></a></div>
             <div>
               <h3>xdp-guard</h3>
               <p class="tagline">100 Gbps Line-Rate Driver-Hook eBPF DDoS Shield</p>
@@ -452,8 +464,53 @@
             </div>
           </article>
 
-          <article class="entry" id="exploidus" data-g="kernel">
-            <div class="entry-side"><span class="idx">P—06</span><span class="cat">Sovereign Operating System</span><a class="tlink" href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">v0.1.0 Kernel Core <i class="arr"></i></a></div>
+          <div class="tier-strip" data-g="all infra aero kernel">
+            <span class="tier-badge">TIER 02 // MISSION INFRASTRUCTURE</span>
+            <h4>Sovereign Flight Software &amp; Deterministic Kernel Systems</h4>
+            <p>Foundational space flight executives, adversary qualification testbeds, and kernel-level preemptive schedulers with verified invariants.</p>
+          </div>
+
+          <article class="entry" id="cfs-on-exploidus" data-g="infra aero">
+            <div class="entry-side"><span class="idx">P—03</span><span class="cat">NASA Flight Executive Port</span><a class="tlink" href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener">v0.3.0 Qualified <i class="arr"></i></a></div>
+            <div>
+              <h3>cfs-on-exploidus</h3>
+              <p class="tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</p>
+              <p class="d">Mission-qualified native Exploidus OS port of the NASA Core Flight Executive (cFE) and Core Flight System (cFS). Features capability-gated Software Bus routing, microsecond-accurate MET/TAI/UTC mission clocks, atomic double-buffered parameter hot-reloading (TBL), deterministic 100Hz scheduler dispatch (SCH), and autonomous Single Event Upset (SEU) bit-flip containment. Fully qualified across Milestones 1, 2, and 3.</p>
+              <div class="tags"><span class="tag a">NASA cFS Stack</span><span class="tag ok">BLAKE3 Capability Gate</span><span class="tag">Atomic TBL Hot-Reload</span><span class="tag">SEU Bit-Flip Isolation</span><span class="tag">Zero Kernel Panic</span></div>
+              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-on-exploidus.git &amp;&amp; ./run_demo.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-on-exploidus.git && ./run_demo.sh">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="cfs-adversarial-testbed" data-g="infra aero">
+            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Zero-Trust Flight Assurance</span><a class="tlink" href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener">v0.1.0 Baseline <i class="arr"></i></a></div>
+            <div>
+              <h3>cfs-adversarial-testbed</h3>
+              <p class="tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</p>
+              <p class="d">Freestanding eBPF security testbed and formal invariant contract for the NASA Core Flight System. Implements non-intrusive tracepoint observation, 4-tier effect completion verification (invocation to destination state transition), decoupled ringbuffer accounting, and anti-replay protection. Co-reviewed and baselined under NASA cFS Community RFCs.</p>
+              <div class="tags"><span class="tag a">6 Formal Invariants</span><span class="tag ok">eBPF Kernel Probes</span><span class="tag">Decoupled Ringbuffer</span><span class="tag">Adversarial Injection</span><span class="tag">NASA cFS RFC #1168</span></div>
+              <div class="cmd"><code>git clone https://github.com/Exploidus/cfs-adversarial-testbed.git &amp;&amp; ./run_tests.sh</code><button type="button" data-copy="git clone https://github.com/Exploidus/cfs-adversarial-testbed.git && ./run_tests.sh">Copy</button></div>
+            </div>
+          </article>
+
+          <article class="entry" id="scx_intent" data-g="infra kernel">
+            <div class="entry-side"><span class="idx">P—05</span><span class="cat">Deterministic Kernel Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">v0.2.0 In-Kernel BPF <i class="arr"></i></a></div>
+            <div>
+              <h3>scx_intent</h3>
+              <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
+              <p class="d">Exploidus native CPU scheduler architecture created to empower the Linux kernel with deterministic priority execution. Contributed upstream to the official Linux sched-ext framework under PR #3845. Dynamically classifies runtime processes into five dedicated kernel dispatch queues: audit, interactive, IO, network, and compute. Eliminates scheduling jitter and audio buffer underruns during heavy parallel compilation.</p>
+              <div class="tags"><span class="tag a">Linux 6.12+ Compatible</span><span class="tag ok">Pure in-Kernel eBPF</span><span class="tag">5 Dedicated DSQs</span><span class="tag">Anti-Starvation Watchdog</span><span class="tag">Exploidus Native</span></div>
+              <div class="cmd"><code>scx_intent --preset desktop --starvation-threshold 64</code><button type="button" data-copy="scx_intent --preset desktop --starvation-threshold 64">Copy</button></div>
+            </div>
+          </article>
+
+          <div class="tier-strip" data-g="all labs runtime dist kernel">
+            <span class="tier-badge">TIER 03 // ADVANCED RESEARCH LABS</span>
+            <h4>First-Principles Sovereign Computing R&amp;D</h4>
+            <p>Long-horizon architectural explorations in bare-metal microkernels, memory-safe web runtimes, verified programming languages, and bio-mimetic compute clusters.</p>
+          </div>
+
+          <article class="entry" id="exploidus" data-g="labs kernel">
+            <div class="entry-side"><span class="idx">P—06</span><span class="cat">Bare-Metal Microkernel</span><a class="tlink" href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">v0.1.0 Kernel Core <i class="arr"></i></a></div>
             <div>
               <h3>Exploidus</h3>
               <p class="tagline">Security-Oriented Experimental Operating System in C</p>
@@ -463,8 +520,8 @@
             </div>
           </article>
 
-          <article class="entry" id="browser_engine" data-g="runtime">
-            <div class="entry-side"><span class="idx">P—07</span><span class="cat">Sovereign Web Runtime</span><a class="tlink" href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">v0.1.0 Prototype <i class="arr"></i></a></div>
+          <article class="entry" id="browser_engine" data-g="labs runtime">
+            <div class="entry-side"><span class="idx">P—07</span><span class="cat">Sandboxed Web Runtime</span><a class="tlink" href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">v0.1.0 Prototype <i class="arr"></i></a></div>
             <div>
               <h3>browser_engine</h3>
               <p class="tagline">Modular Memory-Safe Web Rendering Engine in Pure Rust</p>
@@ -474,8 +531,8 @@
             </div>
           </article>
 
-          <article class="entry" id="yolish" data-g="runtime">
-            <div class="entry-side"><span class="idx">P—08</span><span class="cat">Programming Systems</span><a class="tlink" href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">v0.1.0 AST Runtime <i class="arr"></i></a></div>
+          <article class="entry" id="yolish" data-g="labs runtime">
+            <div class="entry-side"><span class="idx">P—08</span><span class="cat">Systems Language Toolchain</span><a class="tlink" href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">v0.1.0 AST Runtime <i class="arr"></i></a></div>
             <div>
               <h3>Yolish</h3>
               <p class="tagline">Custom Interpreted Systems Language and AST Runtime in Pure C</p>
@@ -485,8 +542,8 @@
             </div>
           </article>
 
-          <article class="entry" id="huddlecluster" data-g="dist">
-            <div class="entry-side"><span class="idx">P—09</span><span class="cat">Bio-Mimetic Clustering</span><a class="tlink" href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">GitHub &amp; 2x DOI <i class="arr"></i></a></div>
+          <article class="entry" id="huddlecluster" data-g="labs dist">
+            <div class="entry-side"><span class="idx">P—09</span><span class="cat">Thermodynamic Orchestrator</span><a class="tlink" href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">GitHub &amp; 2x DOI <i class="arr"></i></a></div>
             <div>
               <h3>HuddleCluster</h3>
               <p class="tagline">Thermal-Aware Self-Organizing Distributed Balancer</p>
@@ -496,8 +553,8 @@
             </div>
           </article>
 
-          <article class="entry" id="cnsl" data-g="dist">
-            <div class="entry-side"><span class="idx">P—10</span><span class="cat">Threat Intelligence</span><a class="tlink" href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">GitHub &amp; PyPI <i class="arr"></i></a></div>
+          <article class="entry" id="cnsl" data-g="labs dist">
+            <div class="entry-side"><span class="idx">P—10</span><span class="cat">Threat Intelligence Auditor</span><a class="tlink" href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">GitHub &amp; PyPI <i class="arr"></i></a></div>
             <div>
               <h3>cnsl</h3>
               <p class="tagline">Correlated Network Security Layer and Incident Automation</p>
@@ -605,25 +662,25 @@
 
         <div class="plans rv">
           <div class="plan">
-            <span class="lbl">Community edition</span>
+            <span class="lbl">Sovereign open specification</span>
             <h3>Open Core</h3>
-            <p class="tg">For independent researchers, systems engineers, and open-source contributors.</p>
-            <div class="tags"><span class="tag a">Permissive MIT &amp; Apache 2.0</span><span class="tag ok">Full GitHub Source Access</span><span class="tag">Community Issue Tracking</span><span class="tag">Public Benchmarks</span></div>
+            <p class="tg">For independent researchers, academic institutions, and open-source aerospace contributors.</p>
+            <div class="tags"><span class="tag a">Permissive MIT &amp; Apache 2.0</span><span class="tag ok">Full GitHub Source Access</span><span class="tag">Community Issue Tracking</span><span class="tag">Public Benchmarks &amp; Telemetry</span></div>
             <a class="btn block" href="https://github.com/Exploidus" target="_blank" rel="noopener">Access Repositories <i class="arr ne"></i></a>
           </div>
           <div class="plan hl">
-            <span class="lbl">Commercial enterprise</span>
-            <h3>Enterprise Fleet</h3>
-            <p class="tg">For data centers, cloud providers, and mission-critical network operators.</p>
-            <div class="tags"><span class="tag a">Dedicated Technical SLA</span><span class="tag ok">Custom eBPF Rulesets</span><span class="tag">Enterprise Kubernetes Helm</span><span class="tag">Direct Architect Advisory</span></div>
-            <button class="btn block" type="button" data-pilot="xdp">Request Fleet Pilot <i class="arr"></i></button>
+            <span class="lbl">Featured // Defense &amp; Hyperscale</span>
+            <h3>Design Partner Program</h3>
+            <p class="tg">For defense UAV manufacturers, satellite prime contractors, and hyperscale cloud operators.</p>
+            <div class="tags"><span class="tag a">Hardware-in-the-Loop (HIL) Bring-up</span><span class="tag ok">Custom Kalman Sensor Fusion Tuning</span><span class="tag">Wire-Speed eBPF Ingress Deployment</span><span class="tag">Dedicated Engineering Escalation SLA</span></div>
+            <button class="btn block" type="button" data-pilot="aegis">Apply for Design Partner Pilot <i class="arr"></i></button>
           </div>
           <div class="plan">
-            <span class="lbl">Defense &amp; aerospace</span>
-            <h3>Mission GNC</h3>
-            <p class="tg">For aerospace contractors, defense agencies, and autonomous robotics fleets.</p>
-            <div class="tags"><span class="tag a">DO-178C Design Artifacts</span><span class="tag ok">NASA F Prime Integration</span><span class="tag">Hardware-in-the-Loop Tuning</span><span class="tag">Principal Architect Advisory</span></div>
-            <button class="btn block" type="button" data-pilot="aegis">Contact Principal Architect <i class="arr"></i></button>
+            <span class="lbl">Mission qualification &amp; escrow</span>
+            <h3>Air-Gapped Sovereign License</h3>
+            <p class="tg">For sovereign defense agencies, classified avionics, and national critical infrastructure.</p>
+            <div class="tags"><span class="tag a">DO-178C DAL-A Artifact Package</span><span class="tag ok">Perpetual Air-Gapped Rights</span><span class="tag">Zero-Telephony Security Escrow</span><span class="tag">Principal Architect Direct Advisory</span></div>
+            <button class="btn block" type="button" data-pilot="custom">Initiate Sovereign Procurement <i class="arr"></i></button>
           </div>
         </div>
       </div>
