@@ -24,5 +24,5 @@ Exploidus engineers deterministic, zero-allocation state estimation, line-rate e
 ## Author & Governance
 
 Architected and maintained by **Rahad Bhuiya** ([@rahadbhuiya](https://github.com/rahadbhuiya)).  
-All core modules are published under permissive open-source licenses (MIT / Apache-2.0).  
+All core modules are dual-licensed under open-source copyleft (GNU AGPLv3) and commercial enterprise terms.  
 Enterprise pilots and bespoke defense GNC contracts: `rahadbhuiya2021@gmail.com`.
