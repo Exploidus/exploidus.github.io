@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exploidus | High-Integrity Systems & Kernel-Level Cyber Defense</title>
   <meta name="description" content="Exploidus engineers deterministic, zero-allocation state estimation, line-rate eBPF cyber defense, and bio-mimetic distributed systems from first principles in Rust.">
-  <meta name="keywords" content="Exploidus, Aegis-Filter, XDP-Guard, scx_intent, HuddleCluster, Kalman Filter, UKF, eBPF, Linux Kernel Scheduler, Rust, Aerospace, Cyber Defense">
+  <meta name="keywords" content="Exploidus, PaySwitch, Aegis-Filter, XDP-Guard, scx_intent, HuddleCluster, Kalman Filter, UKF, eBPF, Linux Kernel Scheduler, Rust, Aerospace, Sovereign Fintech, Payment Switch, Cyber Defense">
   <meta name="author" content="Rahad Bhuiya">
 
   <link rel="canonical" href="https://exploidus.com/">
@@ -56,6 +56,7 @@
           "https://github.com/Exploidus",
           "https://crates.io/crates/aegis-filter",
           "https://crates.io/crates/xdp-guard",
+          "https://crates.io/crates/payswitch",
           "https://doi.org/10.5281/zenodo.23120995"
         ]
       },
@@ -150,8 +151,8 @@
   <div class="bar">
     <div class="wrap">
       <b>ANNOUNCEMENT</b>
-      <span>Aegis-Filter 4.07ns zero-allocation GNC engine released &amp; scx_intent v2 pure BPF scheduler available.</span>
-      <a href="#aegis-filter">Inspect GNC Platform</a>
+      <span>PaySwitch sovereign settlement engine live on crates.io &amp; Aegis-Filter 4.07ns GNC engine verified.</span>
+      <a href="#payswitch">Inspect Settlement Engine</a>
     </div>
   </div>
 
@@ -427,8 +428,9 @@
         </div>
 
         <div class="chips" role="group" aria-label="Filter platforms">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All Systems<i>10</i></button>
-          <button class="chip" type="button" data-f="flagship" aria-pressed="false">Commercial Flagships<i>2</i></button>
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All Systems<i>11</i></button>
+          <button class="chip" type="button" data-f="flagship" aria-pressed="false">Commercial Flagships<i>3</i></button>
+          <button class="chip" type="button" data-f="fintech" aria-pressed="false">Fintech &amp; Settlement<i>1</i></button>
           <button class="chip" type="button" data-f="infra" aria-pressed="false">Mission Infrastructure<i>3</i></button>
           <button class="chip" type="button" data-f="labs" aria-pressed="false">Advanced R&amp;D Labs<i>5</i></button>
           <button class="chip" type="button" data-f="aero" aria-pressed="false">Aerospace<i>3</i></button>
@@ -438,7 +440,7 @@
         <div class="register">
           <div class="tier-strip" data-g="all flagship aero kernel">
             <span class="tier-badge">TIER 01 // COMMERCIAL FLAGSHIPS</span>
-            <h4>Production-Ready Aerospace &amp; Hyperscale Engines</h4>
+            <h4>Production-Ready Aerospace, Cyber &amp; Sovereign Financial Engines</h4>
             <p>Hardened, dual-licensed platforms engineered for direct defense OEM procurement, cloud hypervisor defense, and flight computer integration.</p>
           </div>
 
@@ -464,6 +466,17 @@
             </div>
           </article>
 
+                    <article class="entry feat" id="payswitch" data-g="flagship fintech">
+            <div class="entry-side"><span class="idx">P—03</span><span class="cat">Sovereign Financial Switch</span><a class="tlink" href="https://crates.io/crates/payswitch" target="_blank" rel="noopener">v0.1.0 on Crates.io <i class="arr"></i></a></div>
+            <div>
+              <h3>payswitch</h3>
+              <p class="tagline">Sub-Millisecond Sovereign Cross-Border Settlement &amp; Double-Entry Ledger</p>
+              <p class="d">Deterministic, low-latency financial switching and gross settlement engine engineered from first principles in pure Rust. Connects international reserve currencies directly to domestic clearing networks with zero float loss. Eliminates floating-point rounding hazards through 128-bit unsigned atomic integer arithmetic. Features continuous SHA-256 Merkle audit chaining, crash-resilient Write-Ahead Logging (WAL) with CRC-32 checksums, and native ISO 20022 (pacs.008) alongside regional Bangladesh Bank rails (NPSB, BEFTN, and instant MFS payouts).</p>
+              <div class="tags"><span class="tag a">Sub-Millisecond Engine</span><span class="tag ok">Zero Float Loss</span><span class="tag">Pure Double-Entry</span><span class="tag">SHA-256 Merkle Audit</span><span class="tag">ISO 20022 &amp; NPSB</span><span class="tag">Durable WAL (CRC-32)</span></div>
+              <div class="cmd"><code>cargo add payswitch</code><button type="button" data-copy="cargo add payswitch">Copy</button></div>
+            </div>
+          </article>
+
           <div class="tier-strip" data-g="all infra aero kernel">
             <span class="tier-badge">TIER 02 // MISSION INFRASTRUCTURE</span>
             <h4>Sovereign Flight Software &amp; Deterministic Kernel Systems</h4>
@@ -471,7 +484,7 @@
           </div>
 
           <article class="entry" id="cfs-on-exploidus" data-g="infra aero">
-            <div class="entry-side"><span class="idx">P—03</span><span class="cat">NASA Flight Executive Port</span><a class="tlink" href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener">v0.3.0 Qualified <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—04</span><span class="cat">NASA Flight Executive Port</span><a class="tlink" href="https://github.com/Exploidus/cfs-on-exploidus" target="_blank" rel="noopener">v0.3.0 Qualified <i class="arr"></i></a></div>
             <div>
               <h3>cfs-on-exploidus</h3>
               <p class="tagline">Native NASA cFS Flight Executive with Hardware Effector Gatekeeping</p>
@@ -482,7 +495,7 @@
           </article>
 
           <article class="entry" id="cfs-adversarial-testbed" data-g="infra aero">
-            <div class="entry-side"><span class="idx">P—04</span><span class="cat">Zero-Trust Flight Assurance</span><a class="tlink" href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener">v0.1.0 Baseline <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—05</span><span class="cat">Zero-Trust Flight Assurance</span><a class="tlink" href="https://github.com/Exploidus/cfs-adversarial-testbed" target="_blank" rel="noopener">v0.1.0 Baseline <i class="arr"></i></a></div>
             <div>
               <h3>cfs-adversarial-testbed</h3>
               <p class="tagline">Platform-Independent Invariant Enforcement &amp; eBPF Attack Qualification</p>
@@ -493,7 +506,7 @@
           </article>
 
           <article class="entry" id="scx_intent" data-g="infra kernel">
-            <div class="entry-side"><span class="idx">P—05</span><span class="cat">Deterministic Kernel Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">v0.2.0 In-Kernel BPF <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—06</span><span class="cat">Deterministic Kernel Scheduler</span><a class="tlink" href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">v0.2.0 In-Kernel BPF <i class="arr"></i></a></div>
             <div>
               <h3>scx_intent</h3>
               <p class="tagline">Native Intent-Driven 5-Tier Preemptive Linux Kernel Scheduler</p>
@@ -510,7 +523,7 @@
           </div>
 
           <article class="entry" id="exploidus" data-g="labs kernel">
-            <div class="entry-side"><span class="idx">P—06</span><span class="cat">Bare-Metal Microkernel</span><a class="tlink" href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">v0.1.0 Kernel Core <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—07</span><span class="cat">Bare-Metal Microkernel</span><a class="tlink" href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">v0.1.0 Kernel Core <i class="arr"></i></a></div>
             <div>
               <h3>Exploidus</h3>
               <p class="tagline">Security-Oriented Experimental Operating System in C</p>
@@ -521,7 +534,7 @@
           </article>
 
           <article class="entry" id="browser_engine" data-g="labs runtime">
-            <div class="entry-side"><span class="idx">P—07</span><span class="cat">Sandboxed Web Runtime</span><a class="tlink" href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">v0.1.0 Prototype <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—08</span><span class="cat">Sandboxed Web Runtime</span><a class="tlink" href="https://github.com/rahadbhuiya/browser_engine" target="_blank" rel="noopener">v0.1.0 Prototype <i class="arr"></i></a></div>
             <div>
               <h3>browser_engine</h3>
               <p class="tagline">Modular Memory-Safe Web Rendering Engine in Pure Rust</p>
@@ -532,7 +545,7 @@
           </article>
 
           <article class="entry" id="yolish" data-g="labs runtime">
-            <div class="entry-side"><span class="idx">P—08</span><span class="cat">Systems Language Toolchain</span><a class="tlink" href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">v0.1.0 AST Runtime <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—09</span><span class="cat">Systems Language Toolchain</span><a class="tlink" href="https://github.com/rahadbhuiya/Yolish" target="_blank" rel="noopener">v0.1.0 AST Runtime <i class="arr"></i></a></div>
             <div>
               <h3>Yolish</h3>
               <p class="tagline">Custom Interpreted Systems Language and AST Runtime in Pure C</p>
@@ -543,7 +556,7 @@
           </article>
 
           <article class="entry" id="huddlecluster" data-g="labs dist">
-            <div class="entry-side"><span class="idx">P—09</span><span class="cat">Thermodynamic Orchestrator</span><a class="tlink" href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">GitHub &amp; 2x DOI <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—10</span><span class="cat">Thermodynamic Orchestrator</span><a class="tlink" href="https://github.com/rahadbhuiya/HuddleCluster" target="_blank" rel="noopener">GitHub &amp; 2x DOI <i class="arr"></i></a></div>
             <div>
               <h3>HuddleCluster</h3>
               <p class="tagline">Thermal-Aware Self-Organizing Distributed Balancer</p>
@@ -554,7 +567,7 @@
           </article>
 
           <article class="entry" id="cnsl" data-g="labs dist">
-            <div class="entry-side"><span class="idx">P—10</span><span class="cat">Threat Intelligence Auditor</span><a class="tlink" href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">GitHub &amp; PyPI <i class="arr"></i></a></div>
+            <div class="entry-side"><span class="idx">P—11</span><span class="cat">Threat Intelligence Auditor</span><a class="tlink" href="https://github.com/rahadbhuiya/cnsl" target="_blank" rel="noopener">GitHub &amp; PyPI <i class="arr"></i></a></div>
             <div>
               <h3>cnsl</h3>
               <p class="tagline">Correlated Network Security Layer and Incident Automation</p>
@@ -735,6 +748,7 @@
       <div class="fld"><label for="pilotEmail">Work email</label><input type="email" id="pilotEmail" placeholder="alex@organization.com" required autocomplete="email"></div>
       <div class="fld"><label for="pilotDivision">Domain of interest</label>
         <select id="pilotDivision">
+          <option value="payswitch">PaySwitch (Sovereign Financial Settlement Engine)</option>
           <option value="aegis">Aegis-Filter (Aerospace / Autonomous GNC)</option>
           <option value="scx">scx_intent (Linux Kernel CPU Scheduling)</option>
           <option value="xdp">XDP-Guard (100Gbps Line-Rate DDoS Defense)</option>
@@ -758,6 +772,7 @@
         <div>
           <h5>Sovereign Systems</h5>
           <ul>
+            <li><a href="https://crates.io/crates/payswitch" target="_blank" rel="noopener">payswitch (Sovereign Settlement)</a></li>
             <li><a href="https://github.com/Exploidus/aegis-filter" target="_blank" rel="noopener">aegis-filter (Aerospace GNC)</a></li>
             <li><a href="https://github.com/rahadbhuiya/Exploidus" target="_blank" rel="noopener">Exploidus (Operating System)</a></li>
             <li><a href="https://github.com/Exploidus/scx_intent" target="_blank" rel="noopener">scx_intent (Kernel Scheduler)</a></li>
